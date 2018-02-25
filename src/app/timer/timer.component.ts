@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/do';
+import {EntryItem} from '../model/entry-item';
 
 
 @Component({
@@ -17,6 +18,9 @@ export class TimerComponent implements OnInit, OnDestroy {
   subscription1: any;
   subscription2: any;
 
+  entry_in_progress: EntryItem;
+  d = new Date();
+
   constructor() {
   }
 
@@ -26,6 +30,9 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.subscription2 = this.timer.subscribe(x => {
       this.getRandomInt(1, 10);
     });
+    this.entry_in_progress = EntryItem.createBlank();
+    this.entry_in_progress.Date_Added = this.displayFormatDate(this.d);
+    this.entry_in_progress.Is_Active = 'active';
   }
 
   getRandomInt(min, max) {
@@ -39,6 +46,17 @@ export class TimerComponent implements OnInit, OnDestroy {
   stop() {
     this.subscription1.unsubscribe();
     this.subscription2.unsubscribe();
+  }
+
+  displayFormatDate(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    const strTime = hours + ':' + minutes + ' ' + ampm;
+    return date.getFullYear() + '-' + date.getMonth() + 1 + '-' + date.getDate() + '  ' + strTime;
   }
 
   ngOnDestroy() {

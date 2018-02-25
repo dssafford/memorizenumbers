@@ -16,3 +16,60 @@
 <div>
 
 </div>
+<div class="example-container">
+  <!--<p>Today is {{today | date:'yyyy-MM-dd'}}</p>-->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="mat-card-header-text">Number Memorization</mat-card-title>
+      <p>
+      </p>
+      <p></p>
+      <!--<mat-card-subtitle>Subtitle</mat-card-subtitle>-->
+    </mat-card-header>
+    <!--<img matCardImage src="Card wide image source">-->
+    <mat-card-content>
+      <mat-grid-list cols="3" rowHeight="70px" >
+        <mat-grid-tile >
+          <mat-form-field>
+            <input matInput placeholder="Date Added" [ngModel] = "entry_in_progress.Date_Added | date:'yyyy-MM-dd'"
+                   required readonly>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="File Directory" required
+                   [(ngModel)] = "entry_in_progress.File_Directory" value="file directory">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Project" required
+                   [(ngModel)] = "entry_in_progress.Project" value="Project">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Technology" required
+                   [(ngModel)] = "entry_in_progress.Technology" value="tech">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" style="text-align: left;" class="mystuff">
+          <mat-form-field align="left" style="margin: 15px; flex: 1">
+            <input matInput placeholder="Comments" required
+                   [(ngModel)] = "entry_in_progress.Comments" >
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button mat-button (click)="cancelPressed()">Cancel</button>
+      <span class="done">
+          <button mat-fab (click)="onAction1()">
+            <mat-icon>check circle</mat-icon>
+          </button>
+        </span>
+    </mat-card-actions>
+    <mat-card-footer>
+    </mat-card-footer>
+  </mat-card>
+</div>
