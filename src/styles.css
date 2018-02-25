@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+mat-card {
+  max-width: 90%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+mat-toolbar-row {
+  justify-content: space-between;
+}
+
+/* class repeated for increased specificity */
+.mat-form-field.mat-form-field {
+  width: 50%;
+}
+
+
+/*.done {*/
+/*position: fixed;*/
+/*bottom: 20px;*/
+/*right: 20px;*/
+/*color: white;*/
+/*}*/
