@@ -1,12 +1,26 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {TimerComponent} from './timer/timer.component';
+import {
+  MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatMenuModule, MatOptionModule, MatSelectModule,
+  MatToolbarModule
+} from '@angular/material';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MenuItemComponent} from './menu-item/menu-item.component';
+import {AlertService} from './service/alert.service';
+import {AuthenticationService} from './service/authentication.service';
+import {HttpClientModule} from '@angular/common/http';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent, TimerComponent
+        AppComponent, TimerComponent, MenuItemComponent
       ],
+      imports: [MatIconModule, MatInputModule, MatIconModule, MatFormFieldModule, MatGridListModule, MatOptionModule,
+        MatSelectModule, MatCardModule, MatMenuModule, MatToolbarModule, FormsModule, ReactiveFormsModule,
+        RouterTestingModule, HttpClientModule],
+      providers: [AlertService, AuthenticationService],
     }).compileComponents();
   }));
   it('should create the app', async(() => {

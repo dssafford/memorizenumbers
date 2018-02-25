@@ -1,23 +1,22 @@
 <div>
   <p>
-  Ticks (every second) : {{ticks}}
+  Ticks (every second) : {{counter}}
 </p>
 </div>
 <div>
-  <p>
-    Random Number (every second) : {{randomNumber}}
-  </p>
+  <h3>Random Number (every second) : {{randomNumber}}</h3>
 </div>
 <div>
   <p>
     counter =  {{counter}}
   </p>
 </div>
+date coming back = {{newDate}}
 <div>
 
 </div>
 <div class="example-container">
-  <!--<p>Today is {{today | date:'yyyy-MM-dd'}}</p>-->
+  <p>Today is {{today | date:'yyyy-MM-dd'}}</p>
   <mat-card>
     <mat-card-header>
       <mat-card-title class="mat-card-header-text">Number Memorization</mat-card-title>
@@ -28,10 +27,10 @@
     </mat-card-header>
     <!--<img matCardImage src="Card wide image source">-->
     <mat-card-content>
-      <mat-grid-list cols="3" rowHeight="70px" >
+      <mat-grid-list cols="2" rowHeight="70px" >
         <mat-grid-tile >
           <mat-form-field>
-            <input matInput placeholder="Date Added" [ngModel] = "entry_in_progress.Date_Added | date:'yyyy-MM-dd'"
+            <input matInput placeholder="Date Added" [ngModel] = "entry_in_progress.Date_Added"
                    required readonly>
           </mat-form-field>
         </mat-grid-tile>
@@ -65,7 +64,7 @@
       <button mat-button (click)="cancelPressed()">Cancel</button>
       <span class="done">
           <button mat-fab (click)="onAction1()">
-            <mat-icon>check circle</mat-icon>
+            <mat-icon>cached</mat-icon>
           </button>
         </span>
     </mat-card-actions>
