@@ -24,6 +24,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   d = new Date();
 
   numberList: Array<AnswerList> = new Array<AnswerList>();
+  chosenNumber: number;
 
   constructor() {}
 
@@ -31,6 +32,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.onAction1();
     this.newDate = this.dbTimestampFormatDate(this.d);
 
+    this.chosenNumber = 3;
   }
 
   resetCounter() {
@@ -72,9 +74,9 @@ export class TimerComponent implements OnInit, OnDestroy {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
-    let year = date.getFullYear();
-    let day = date.getDate();
-    let month = date.getMonth();
+    const year = date.getFullYear();
+    const day = date.getDate();
+    const month = date.getMonth();
 
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
@@ -82,9 +84,9 @@ export class TimerComponent implements OnInit, OnDestroy {
     seconds = seconds;
 
     const strTime = hours + ':' + minutes + ':' + seconds;
-    console.log('hey adding this -' + date.getFullYear() + '-' + date.getMonth() + 1 + '-' + date.getDate() + '  ' + strTime);
+    console.log('hey adding this -' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '  ' + strTime);
     // debugger
-    return (year + '-' + (month + 1) + '-' + day + '  ' + strTime).toString();
+    return (day + '-' + (month + 1) + '-' + year + '  ' + strTime).toString();
   }
   ngOnDestroy() {
     this.stop();
