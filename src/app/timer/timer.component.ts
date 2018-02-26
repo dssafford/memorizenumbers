@@ -22,17 +22,20 @@ export class TimerComponent implements OnInit, OnDestroy {
   newDate: string;
   entry_in_progress: EntryItem;
   d = new Date();
+  list_setup_count: number;
 
   numberList: Array<AnswerList> = new Array<AnswerList>();
   chosenNumber: number;
+  model: any = {};
+  isCounting: any;
+
 
   constructor() {}
 
   ngOnInit()  {
-    this.onAction1();
     this.newDate = this.dbTimestampFormatDate(this.d);
-
-    this.chosenNumber = 3;
+    // this.chosenNumber = 3;
+    this.isCounting = true;
   }
 
   resetCounter() {
@@ -42,8 +45,12 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.counter = 0;
   }
 
-  onAction1() {
+  selectNumberPressed() {
     this.resetCounter();
+
+    this.isCounting = true;
+    this.chosenNumber = this.model.runNumber;
+
     this.subscription1 = this.timer.subscribe(t => this.ticks = t);
     this.subscription2 = this.timer.subscribe(x => {
       this.getRandomInt(0, 9);
@@ -52,15 +59,16 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.entry_in_progress.Date_Added = this.dbTimestampFormatDate(this.d);
 
     // debugger
-    this.entry_in_progress.Is_Active = 'active';
+    // this.entry_in_progress.Is_Active = 'active';
   }
 
   getRandomInt(min, max) {
     this.counter = this.counter + 1;
     this.randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     this.numberList[this.counter] = new AnswerList(this.counter, this.randomNumber, this.entry_in_progress.Date_Added);
-    this.entry_in_progress.Comments = this.entry_in_progress.Comments + ' the dude abides = ';
-    if (this.counter === 10) {
+    console.log('get random = ' + this.counter + ' - this.chosenNumber = ' + this.chosenNumber);
+    if (this.counter == this.chosenNumber) {
+      this.isCounting = false;
       this.stop();
     }
   }
@@ -68,6 +76,11 @@ export class TimerComponent implements OnInit, OnDestroy {
   stop() {
     this.subscription1.unsubscribe();
     this.subscription2.unsubscribe();
+    var i;
+    for (i = 1; i < this.numberList.length; i++) {
+      console.log('final number = ' + this.numberList[i].Question);
+    }
+
   }
 
   dbTimestampFormatDate(date): string {

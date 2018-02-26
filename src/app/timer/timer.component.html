@@ -1,63 +1,28 @@
 <div>
-  <p>
-    Ticks (every second) : {{counter}}
-  </p>
+  <span class="done">
+    <!--<mat-input-container>-->
+      <mat-form-field>
+      <input matInput placeholder="How many" [(ngModel)]="model.runNumber" required>
+      </mat-form-field>
+    <button mat-fab (click)="selectNumberPressed(model.runNumber)">
+      <mat-icon>check circle</mat-icon>
+    </button>
+    <!--</mat-input-container>-->
+  </span>
+  <h1 *ngIf="isCounting">Random Number (every second) : {{randomNumber}}</h1>counter = {{counter}}
 </div>
-<div>
-  <h3>Random Number (every second) : {{randomNumber}}</h3>
-</div>
-<div>
-  <p>
-    counter = {{counter}}
-  </p>
-</div>
-date coming back = {{newDate}}
-<div>
 
-</div>
-<div class="example-container">
-  <p>Today is {{today | date:'yyyy-MM-dd'}}</p>
+<div class="example-container" *ngIf="!isCounting">
   <mat-card>
     <mat-card-header>
-      <mat-card-title class="mat-card-header-text">Number Memorization</mat-card-title>
-      <mat-card-subtitle>Subtitle</mat-card-subtitle>
-    </mat-card-header>
-    <!--<img matCardImage src="Card wide image source">-->
-    <mat-card-content>
-      <mat-grid-list cols="1" rowHeight="20px">
-        <mat-grid-tile>
-          <mat-form-field>
-            <input matInput placeholder="Date Added" [ngModel]="entry_in_progress.Date_Added"
-                   required readonly>
-          </mat-form-field>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card-content>
-  </mat-card>
-
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>My Second Card Title</mat-card-title>
+      <mat-card-title> <h1>Quiz</h1></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-grid-list cols="2" rowHeight="30px">
-        <mat-grid-tile  *ngIf="chosenNumber >= 1">
-          <mat-form-field>
-            <input matInput placeholder="Q1" required
-                   [(ngModel)]="entry_in_progress.File_Directory" value="file directory">
-          </mat-form-field>
-        </mat-grid-tile>
+      <mat-grid-list cols="1" rowHeight="30px">
         <mat-grid-tile  *ngIf="chosenNumber >= 1">
           <mat-form-field>
             <input matInput placeholder="A1" required
                    [(ngModel)]="entry_in_progress.Project" value="Project">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile *ngIf="chosenNumber >= 2">
-          <mat-form-field>
-            <input matInput placeholder="Q2" required
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile  *ngIf="chosenNumber >= 2">
@@ -68,20 +33,8 @@ date coming back = {{newDate}}
         </mat-grid-tile>
         <mat-grid-tile  *ngIf="chosenNumber >= 3">
           <mat-form-field>
-            <input matInput placeholder="Q3" required  *ngIf="chosenNumber >= 3"
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile  *ngIf="chosenNumber >= 3">
-          <mat-form-field>
             <input matInput placeholder="A3" required  *ngIf="chosenNumber >= 3"
                    [(ngModel)]="entry_in_progress.Project" value="Project">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile  *ngIf="chosenNumber >= 4">
-          <mat-form-field >
-            <input matInput placeholder="Q4" required
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile   *ngIf="chosenNumber >= 4">
@@ -92,20 +45,8 @@ date coming back = {{newDate}}
         </mat-grid-tile>
         <mat-grid-tile *ngIf="chosenNumber >= 5">
           <mat-form-field>
-            <input matInput placeholder="Q5" required
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile *ngIf="chosenNumber >= 5">
-          <mat-form-field>
             <input matInput placeholder="A5" required
                    [(ngModel)]="entry_in_progress.Project" value="Project">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile *ngIf="chosenNumber >= 6">
-          <mat-form-field>
-            <input matInput placeholder="Q6" required
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile *ngIf="chosenNumber >= 6">
@@ -114,25 +55,10 @@ date coming back = {{newDate}}
                    [(ngModel)]="entry_in_progress.Project" value="Project">
           </mat-form-field>
         </mat-grid-tile>
-
-        <mat-grid-tile *ngIf="chosenNumber >= 7">
-          <mat-form-field>
-            <input matInput placeholder="Q7" required
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
-          </mat-form-field>
-        </mat-grid-tile>
         <mat-grid-tile *ngIf="chosenNumber >= 7">
           <mat-form-field>
             <input matInput placeholder="A7" required
                    [(ngModel)]="entry_in_progress.Project" value="Project">
-          </mat-form-field>
-        </mat-grid-tile>
-
-
-        <mat-grid-tile *ngIf="chosenNumber >= 8">
-          <mat-form-field>
-            <input matInput placeholder="Q8" required
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile *ngIf="chosenNumber >= 8">
@@ -141,24 +67,10 @@ date coming back = {{newDate}}
                    [(ngModel)]="entry_in_progress.Project" value="Project">
           </mat-form-field>
         </mat-grid-tile>
-
-        <mat-grid-tile *ngIf="chosenNumber >= 9">
-          <mat-form-field>
-            <input matInput placeholder="Q9" required
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
-          </mat-form-field>
-        </mat-grid-tile>
         <mat-grid-tile *ngIf="chosenNumber >= 9">
           <mat-form-field>
             <input matInput placeholder="A9" required
                    [(ngModel)]="entry_in_progress.Project" value="Project">
-          </mat-form-field>
-        </mat-grid-tile>
-
-        <mat-grid-tile *ngIf="chosenNumber >= 10">
-          <mat-form-field>
-            <input matInput placeholder="Q10" required
-                   [(ngModel)]="entry_in_progress.Technology" value="tech">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile *ngIf="chosenNumber >= 10">
@@ -167,14 +79,8 @@ date coming back = {{newDate}}
                    [(ngModel)]="entry_in_progress.Project" value="Project">
           </mat-form-field>
         </mat-grid-tile>
-
-
       </mat-grid-list>
     </mat-card-content>
-
-
-
-
     <mat-card-actions align="center">
       <button mat-button (click)="cancelPressed()">Cancel</button>
       <span class="done">
