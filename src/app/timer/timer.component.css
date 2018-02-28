@@ -1,0 +1,74 @@
+mat-card {
+  max-width: 90%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+mat-toolbar-row {
+  justify-content: space-between;
+}
+
+/* class repeated for increased specificity */
+.mat-form-field.mat-form-field {
+  width: 50%;
+}
+
+
+/*.done {*/
+/*position: fixed;*/
+/*bottom: 20px;*/
+/*right: 20px;*/
+/*color: white;*/
+/*}*/
+
+
+.my-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-container > * {
+  width: 50%;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.input-small {
+  width: 10px !important;
+  text-align: right !important;
+
+}
+
+/*.text-inside-grid {*/
+/*position: absolute;*/
+/*left: 150px;*/
+/*}*/
+
+::ng-deep .mat-card-header-text {
+  width: 100%;
+  text-align: center;
+  font-size: 25px !important;
+}
+
+::ng-deep .mat-tab-label {
+  border-radius: 3px;
+  background-color: #eeeeee;
+}
+
+/*::ng-deep .mat-card-title {*/
+/*fxLayout  fxLayoutAlign="space-between stretch"*/
+/*!*: right !important;*!*/
+/*!*border-radius: 3px;*!*/
+/*!*background-color: #eeeeee;*!*/
+
+
+/*!*line-height: 10px !important;*!*/
+/*!*margin: 0 !important;*!*/
+/*!*font-size: 10px !important;*!*/
+/*}*/
