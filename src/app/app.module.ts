@@ -13,12 +13,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertService} from './service/alert.service';
+import { ExampleMaterialComponent } from './example-material/example-material.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent, MenuItemComponent
+    TimerComponent, MenuItemComponent, ExampleMaterialComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

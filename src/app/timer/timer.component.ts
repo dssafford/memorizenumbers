@@ -5,12 +5,22 @@ import 'rxjs/add/operator/do';
 import {EntryItem} from '../model/entry-item';
 import {AnswerList} from '../model/answer-list';
 
+const HEROES = [
+  {id: 1, name: 'Superman'},
+  {id: 2, name: 'Batman'},
+  {id: 5, name: 'BatGirl'},
+  {id: 3, name: 'Robin'},
+  {id: 4, name: 'Flash'}
+];
+
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css']
 })
+
+
 
 export class TimerComponent implements OnInit, OnDestroy {
   ticks = 0;
@@ -20,7 +30,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   subscription1: any;
   subscription2: any;
   newDate: string;
-  entry_in_progress: EntryItem = new EntryItem(0,'','','','','');
+  entry_in_progress: EntryItem = new EntryItem('');
   d = new Date();
   list_setup_count: number;
 
@@ -28,13 +38,18 @@ export class TimerComponent implements OnInit, OnDestroy {
   chosenNumber: number;
   model: any = {};
   isCounting: any;
+  dudes: Object[];
 
 
   constructor() {}
 
   ngOnInit()  {
+    this.dudes = HEROES;
+
     this.newDate = this.dbTimestampFormatDate(this.d);
-    this.chosenNumber = 10;
+
+    //debugging only
+    this.chosenNumber = 3 ;
     this.isCounting = true;
   }
 
@@ -62,6 +77,16 @@ export class TimerComponent implements OnInit, OnDestroy {
     // this.entry_in_progress.Is_Active = 'active';
   }
 
+  scoreEntries() {
+    var i;
+    // for (i = 1; i < this.numberList.length; i++) {
+    //   if (this.numberList[i].Question == ) {
+    //   console.log('final number = ' + this.numberList[i].Question);
+    // }
+
+
+  }
+
   getRandomInt(min, max) {
     this.counter = this.counter + 1;
     this.randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -76,10 +101,10 @@ export class TimerComponent implements OnInit, OnDestroy {
   stop() {
     this.subscription1.unsubscribe();
     this.subscription2.unsubscribe();
-    var i;
-    for (i = 1; i < this.numberList.length; i++) {
-      console.log('final number = ' + this.numberList[i].Question);
-    }
+    // var i;
+    // for (i = 1; i < this.numberList.length; i++) {
+    //   console.log('final number = ' + this.numberList[i].Question);
+    // }
 
   }
 
