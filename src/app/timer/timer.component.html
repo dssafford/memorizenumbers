@@ -10,37 +10,29 @@
             <input matInput placeholder="How many" maxlength="1" [(ngModel)]="model.runNumber" required class="input-small">
           </mat-form-field>
         </mat-grid-tile>
-        <!--<mat-grid-tile>-->
-        <!--</mat-grid-tile>-->
         <mat-grid-tile [colspan]="2">
           <button mat-mini-fab (click)="selectNumberPressed(model.runNumber)">
             <mat-icon>check circle</mat-icon>
           </button>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2">
-          <h4 *ngIf="isCounting">Random Number (every second) : {{randomNumber}}</h4> -- counter = {{counter}}
+          <h1 *ngIf="isCounting">{{randomNumber}} of {{counter}}</h1>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card-content>
   </mat-card>
 </div>
 
-<div *ngFor="let dude of dudes, let i = index">
-  <hr>hey= {{dudes[i].name}}
-</div>
-
-<div class="my-container">
-  <!--*ngIf="!isCounting">-->
+<div class="my-container" *ngIf="!isCounting">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Quiz</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-grid-list cols="1" rowHeight="30px" *ngFor="let dude of dudes, let i = index">
-        <mat-grid-tile>
-          <!--<hr>hey= {{dudes[i].name}}-->
+        <mat-grid-tile *ngIf="i>0">
           <mat-form-field>
-            <input matInput placeholder=A{{i}} required value="Project">
+            <input matInput  placeholder=A{{i}} required value="">
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>

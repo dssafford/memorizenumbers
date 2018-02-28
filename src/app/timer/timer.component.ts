@@ -34,22 +34,22 @@ export class TimerComponent implements OnInit, OnDestroy {
   d = new Date();
   list_setup_count: number;
 
-  numberList: Array<AnswerList> = new Array<AnswerList>();
+  // numberList: Array<AnswerList> = new Array<AnswerList>();
   chosenNumber: number;
   model: any = {};
   isCounting: any;
-  dudes: Object[];
+  dudes: any[] = [];
 
 
   constructor() {}
 
   ngOnInit()  {
-    this.dudes = HEROES;
+    // this.dudes = HEROES;
 
     this.newDate = this.dbTimestampFormatDate(this.d);
 
     //debugging only
-    this.chosenNumber = 3 ;
+    // this.chosenNumber = 3 ;
     this.isCounting = true;
   }
 
@@ -65,13 +65,18 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     this.isCounting = true;
     this.chosenNumber = this.model.runNumber;
+    // this.dudes = new Array(this.chosenNumber);
+    // debugger
+
 
     this.subscription1 = this.timer.subscribe(t => this.ticks = t);
     this.subscription2 = this.timer.subscribe(x => {
       this.getRandomInt(0, 9);
     });
-    this.entry_in_progress = EntryItem.createBlank();
-    this.entry_in_progress.Date_Added = this.dbTimestampFormatDate(this.d);
+
+
+    // this.entry_in_progress = EntryItem.createBlank();
+    this.dudes[0] = this.dbTimestampFormatDate(this.d);
 
     // debugger
     // this.entry_in_progress.Is_Active = 'active';
@@ -79,28 +84,37 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   scoreEntries() {
     var i;
-    // for (i = 1; i < this.numberList.length; i++) {
-    //   if (this.numberList[i].Question == ) {
-    //   console.log('final number = ' + this.numberList[i].Question);
-    // }
-
-
+    for (i = 1; i < this.dudes.length; i++) {
+      // if (this.dudes[i].Question ==) {
+        console.log('final number = ' + this.dudes[i]);
+      // }
+    }
   }
+
 
   getRandomInt(min, max) {
     this.counter = this.counter + 1;
     this.randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    this.numberList[this.counter] = new AnswerList(this.counter, this.randomNumber, this.entry_in_progress.Date_Added);
-    console.log('get random = ' + this.counter + ' - this.chosenNumber = ' + this.chosenNumber);
-    if (this.counter == this.chosenNumber) {
-      this.isCounting = false;
-      this.stop();
+
+    // this.numberList[this.counter] = new AnswerList(this.counter, this.randomNumber, this.entry_in_progress.Date_Added);
+    this.dudes[this.counter] = this.randomNumber;
+    // debugger
+    console.log('get random = ' + this.dudes[this.counter] + ' - this.counter = ' + this.counter);
+
+    if (this.counter >= this.chosenNumber) {
+      // debugger
+      setTimeout(() => {
+          this.stop();
+        },
+        1000);
+
     }
   }
 
   stop() {
     this.subscription1.unsubscribe();
     this.subscription2.unsubscribe();
+    this.isCounting = false;
     // var i;
     // for (i = 1; i < this.numberList.length; i++) {
     //   console.log('final number = ' + this.numberList[i].Question);
