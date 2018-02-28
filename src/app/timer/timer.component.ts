@@ -20,7 +20,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   subscription1: any;
   subscription2: any;
   newDate: string;
-  entry_in_progress: EntryItem;
+  entry_in_progress: EntryItem = new EntryItem(0,'','','','','');
   d = new Date();
   list_setup_count: number;
 
@@ -34,7 +34,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit()  {
     this.newDate = this.dbTimestampFormatDate(this.d);
-    // this.chosenNumber = 3;
+    this.chosenNumber = 10;
     this.isCounting = true;
   }
 

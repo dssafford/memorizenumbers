@@ -12,7 +12,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatIconModule} from '@angular/material';
 import {AlertService} from './service/alert.service';
 
 
@@ -23,7 +22,7 @@ import {AlertService} from './service/alert.service';
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
-    ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule, MatIconModule
+    ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule
   ],
   providers: [AuthenticationService, AlertService],
   bootstrap: [AppComponent]

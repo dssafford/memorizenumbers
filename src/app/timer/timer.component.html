@@ -12,35 +12,37 @@
   <h1 *ngIf="isCounting">Random Number (every second) : {{randomNumber}}</h1>counter = {{counter}}
 </div>
 
-<div class="example-container" *ngIf="!isCounting">
+<div class="example-container" >
+     <!--*ngIf="!isCounting">-->
   <mat-card>
     <mat-card-header>
       <mat-card-title> <h1>Quiz</h1></mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-grid-list cols="1" rowHeight="30px">
-        <mat-grid-tile  *ngIf="chosenNumber >= 1">
+        <mat-grid-tile>
           <mat-form-field>
             <input matInput placeholder="A1" required
                    [(ngModel)]="entry_in_progress.Project" value="Project">
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile  *ngIf="chosenNumber >= 2">
+        <mat-grid-tile>
           <mat-form-field>
             <input matInput placeholder="A2" required
-                   [(ngModel)]="entry_in_progress.Project" value="Project">
+                   [(ngModel)]="entry_in_progress.Comments" value="Project">
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile  *ngIf="chosenNumber >= 3">
+        <mat-grid-tile>
           <mat-form-field>
-            <input matInput placeholder="A3" required  *ngIf="chosenNumber >= 3"
-                   [(ngModel)]="entry_in_progress.Project" value="Project">
+            <input matInput placeholder="A3" required
+                   [(ngModel)]="entry_in_progress.Is_Active" value="Project">
           </mat-form-field>
         </mat-grid-tile>
+
         <mat-grid-tile   *ngIf="chosenNumber >= 4">
           <mat-form-field>
-            <input matInput placeholder="A4" required  *ngIf="chosenNumber >= 4"
-                   [(ngModel)]="entry_in_progress.Project" value="Project">
+            <input matInput placeholder="A4" required
+                   [(ngModel)]="entry_in_progress.Date_Added" value="Project">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile *ngIf="chosenNumber >= 5">
