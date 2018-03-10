@@ -55,17 +55,17 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.isCounting = true;
 
     // For testing creating a new entry
-    let myEntry: ResultEntry;
-    debugger
-    myEntry = new ResultEntry();
-    myEntry.question = 2;
-    myEntry.answer = 4;
-    myEntry.correct = false;
-    myEntry.date_added = this.newDate;
-    myEntry.comments = "eat me";
-
-    // this.createNewEntry(myEntry);
-    this.timerService.addNewEntry(myEntry);
+    // let myEntry: ResultEntry;
+    // // debugger
+    // myEntry = new ResultEntry();
+    // myEntry.question = 2;
+    // myEntry.answer = 4;
+    // myEntry.correct = false;
+    // myEntry.date_added = this.newDate;
+    // myEntry.comments = "eat me";
+    //
+    // // this.createNewEntry(myEntry);
+    // this.timerService.addNewEntry(myEntry);
   }
 
   resetCounter() {

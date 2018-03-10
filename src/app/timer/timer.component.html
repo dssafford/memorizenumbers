@@ -18,11 +18,12 @@
   </mat-card>
 </div>
 <div class="my-container"><h1 *ngIf="isCounting" class="h1-big">{{randomNumber}} of {{counter}}</h1></div>
+
 <div *ngIf="!isCounting" class="my-container">
-  <form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate>
+  <form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
     <span *ngFor="let question of questions, let i = index">
       <div *ngIf="i<questions.length">
-          <input class="input-stuff" name={{i}} ngModel required autofocus><br>
+          <input mat-input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"><br>
        </div>
     </span>
     <span class="my-container-right" >
@@ -34,3 +35,20 @@
 
 </div>
 
+
+
+<!--<div *ngIf="!isCounting" class="my-container">-->
+  <!--<form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" >-->
+    <!--<span *ngFor="let question of questions, let i = index">-->
+      <!--<div *ngIf="i<questions.length">-->
+          <!--<input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"><br>-->
+       <!--</div>-->
+    <!--</span>-->
+    <!--<span class="my-container-right" >-->
+
+        <!--<button mat-raised-button="check" [type]="submit" class="half">-->
+          <!--<mat-icon>done</mat-icon>-->
+        <!--</button></span>-->
+  <!--</form>-->
+
+<!--</div>-->
