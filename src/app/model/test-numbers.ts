@@ -1,6 +1,4 @@
-import { Hero } from './hero';
-
-export const NUMBERS: Number[] = [
+export const NUMBERS = [
   {
     'Number': 1,
     'Name': 'Orphan Annie',

@@ -2,8 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/do';
-import {ResultEntry} from '../model/result-entry';
+
 import {TimerService} from '../service/timer.service';
+import {ResultEntry} from '../model/ResultEntry';
 
 const HEROES = [
   {id: 1, name: 'Superman'},
@@ -49,12 +50,25 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     this.newDate = this.dbTimestampFormatDate(this.d);
 
+
+
+
     //debugging only
     // this.chosenNumber = 3 ;
     this.isCounting = true;
 
     // For testing creating a new entry
-    // this.createNewEntry();
+    let myEntry: ResultEntry;
+    debugger
+    myEntry = new ResultEntry();
+    myEntry.question = 2;
+    myEntry.answer = 4;
+    myEntry.correct = false;
+    myEntry.date_added = this.newDate;
+    myEntry.comments = "eat me";
+
+    // this.createNewEntry(myEntry);
+    this.timerService.addNewEntry(myEntry);
   }
 
   resetCounter() {
@@ -98,18 +112,18 @@ export class TimerComponent implements OnInit, OnDestroy {
       this.newResultEntry = new ResultEntry();
       this.newResultEntry.question = this.questions[i];
       this.newResultEntry.answer = this.answers[i];
-      this.newResultEntry.dateAdded = this.dbTimestampFormatDate(this.d);
+      this.newResultEntry.date_added = this.dbTimestampFormatDate(this.d);
 
       console.log('question =' + this.questions[i] + '- answer =' + this.answers[i]);
 
       if (this.questions[i] == this.answers[i]) {
         result = true;
         console.log('true');
-        this.newResultEntry.result = true;
+        this.newResultEntry.correct = true;
       } else {
         result = false;
         console.log('false');
-        this.newResultEntry.result = false;
+        this.newResultEntry.correct = false;
       }
       this.results.push(this.newResultEntry);
     }
@@ -124,9 +138,9 @@ export class TimerComponent implements OnInit, OnDestroy {
     myEntry = new ResultEntry();
     myEntry.question = resultEntry.question;
     myEntry.answer = resultEntry.answer;
-    myEntry.result = resultEntry.result;
-    myEntry.dateAdded = this.dbTimestampFormatDate(this.d);
-    myEntry.comments = this.chosenNumber +  '- chosen';
+    myEntry.correct = resultEntry.correct;
+    myEntry.date_added = this.dbTimestampFormatDate(this.d);
+    myEntry.comments =  this.chosenNumber +  '- chosen';
 
     this.timerService.addNewEntry(myEntry);
 
