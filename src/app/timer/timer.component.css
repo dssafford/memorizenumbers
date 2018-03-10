@@ -1,35 +1,84 @@
-mat-card {
+.mat-card {
   max-width: 90%;
   margin: 2em auto;
   text-align: center;
 }
 
-mat-toolbar-row {
+.mat-toolbar-row {
   justify-content: space-between;
 }
+.center { text-align: center }
+.right { text-align: right }
 
+.same-width {
+  width: 200px;
+}
+
+.input-stuff {
+  font-size:20px;
+  size: 1px;
+}
 /* class repeated for increased specificity */
 .mat-form-field.mat-form-field {
   width: 50%;
 }
-
-
+.h1-big {
+  font-size: 128px;
+}
 /*.done {*/
 /*position: fixed;*/
 /*bottom: 20px;*/
 /*right: 20px;*/
 /*color: white;*/
 /*}*/
-
-
-.my-container {
+.example-container {
   display: flex;
   flex-direction: column;
 }
 
-.my-container > * {
+.example-container > * {
+  width: 30%;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 300px;
+  width: 30%;
+}
+
+.example-full-width {
+  width: 40%;
+}
+.list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-container > * {
+  alignment: center;
+  width: 40%;
+}
+
+.full {
+  width: 100%;
+}
+
+.half {
   width: 50%;
 }
+.my-container {
+  width: 400px;
+  margin: auto;
+  padding:8px;
+}
+.my-container-right {
+  width: 400px;
+  margin: auto;
+  padding:8px;
+  alignment: right;
+}
+/*.my-container > * {*/
+  /*width: 50%;*/
+/*}*/
 .example-form {
   min-width: 150px;
   max-width: 500px;

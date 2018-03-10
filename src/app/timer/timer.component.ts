@@ -2,8 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/do';
-import {EntryItem} from '../model/entry-item';
-import {AnswerList} from '../model/answer-list';
+import {ResultEntry} from '../model/result-entry';
+import {TimerService} from '../service/timer.service';
 
 const HEROES = [
   {id: 1, name: 'Superman'},
@@ -21,7 +21,6 @@ const HEROES = [
 })
 
 
-
 export class TimerComponent implements OnInit, OnDestroy {
   ticks = 0;
   randomNumber = 0;
@@ -30,7 +29,6 @@ export class TimerComponent implements OnInit, OnDestroy {
   subscription1: any;
   subscription2: any;
   newDate: string;
-  entry_in_progress: EntryItem = new EntryItem('');
   d = new Date();
   list_setup_count: number;
 
@@ -38,19 +36,25 @@ export class TimerComponent implements OnInit, OnDestroy {
   chosenNumber: number;
   model: any = {};
   isCounting: any;
-  dudes: any[] = [];
+  questions: any[] = [];
+  answers: any[] = [];
+  results: any[] = [];
+  newResultEntry: ResultEntry;
 
+  constructor(private timerService: TimerService) {
+  }
 
-  constructor() {}
-
-  ngOnInit()  {
-    // this.dudes = HEROES;
+  ngOnInit() {
+    // this.question = HEROES;
 
     this.newDate = this.dbTimestampFormatDate(this.d);
 
     //debugging only
     // this.chosenNumber = 3 ;
     this.isCounting = true;
+
+    // For testing creating a new entry
+    // this.createNewEntry();
   }
 
   resetCounter() {
@@ -65,7 +69,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     this.isCounting = true;
     this.chosenNumber = this.model.runNumber;
-    // this.dudes = new Array(this.chosenNumber);
+    // this.question = new Array(this.chosenNumber);
     // debugger
 
 
@@ -76,7 +80,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
 
     // this.entry_in_progress = EntryItem.createBlank();
-    this.dudes[0] = this.dbTimestampFormatDate(this.d);
+    // this.question[0] = this.dbTimestampFormatDate(this.d);
 
     // debugger
     // this.entry_in_progress.Is_Active = 'active';
@@ -84,24 +88,98 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   scoreEntries() {
     var i;
-    for (i = 1; i < this.dudes.length; i++) {
-      // if (this.dudes[i].Question ==) {
-        console.log('final number = ' + this.dudes[i]);
-      // }
+    var result;
+
+    // debugger
+    this.results = Array<ResultEntry>();
+
+
+    for (i = 0; i < this.questions.length; i++) {
+      this.newResultEntry = new ResultEntry();
+      this.newResultEntry.question = this.questions[i];
+      this.newResultEntry.answer = this.answers[i];
+      this.newResultEntry.dateAdded = this.dbTimestampFormatDate(this.d);
+
+      console.log('question =' + this.questions[i] + '- answer =' + this.answers[i]);
+
+      if (this.questions[i] == this.answers[i]) {
+        result = true;
+        console.log('true');
+        this.newResultEntry.result = true;
+      } else {
+        result = false;
+        console.log('false');
+        this.newResultEntry.result = false;
+      }
+      this.results.push(this.newResultEntry);
     }
+
+     // debugger
+
+  }
+  createNewEntry(resultEntry: ResultEntry) {
+
+    console.log('in createNewEntry method');
+    let myEntry: ResultEntry;
+    myEntry = new ResultEntry();
+    myEntry.question = resultEntry.question;
+    myEntry.answer = resultEntry.answer;
+    myEntry.result = resultEntry.result;
+    myEntry.dateAdded = this.dbTimestampFormatDate(this.d);
+    myEntry.comments = this.chosenNumber +  '- chosen';
+
+    this.timerService.addNewEntry(myEntry);
+
+    // this.entry_in_progress.Date_Added = this.dbTimestampFormatDate(this.d);
+    // console.log(this.entry_in_progress);
+
+    // format date for mysql timestamp  YYYY-MM-DD HH:MM:SS
+
+    // this.entryService.addNewEntry(this.entry_in_progress)
+    //   .then((entryItem) => {
+    //     this.router.navigateByUrl('home');
+    //   });
+  }
+  // cancelPressed() {
+  //
+  //   this.router.navigateByUrl('home');
+  // }
+  onSubmit(post: any): void {
+    this.answers = post;
+    // console.log('answer 0 = ' + post[0]);
+    // console.log("answer 1 = " + post[1]);
+    // console.log("answer 2 = " + post[2]);
+    // // debugger
+    // console.log('answers:', this.answers + '- post was ' + post);
+    this.scoreEntries();
+
+    // Show results
+    this.showResults();
+    this.resetCounter();
+    this.isCounting = true;
   }
 
+  showResults() {
+      var i;
+    console.log('final results ========================== = ');
+      for (i = 0; i < this.questions.length; i++) {
+        console.log('Question: ' + this.results[i].question + ' - Answer; ' + this.results[i].answer + ' - Result= ' + this.results[i].result);
+        this.createNewEntry(this.results[i]);
+      }
+  }
 
   getRandomInt(min, max) {
-    this.counter = this.counter + 1;
+
     this.randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
     // this.numberList[this.counter] = new AnswerList(this.counter, this.randomNumber, this.entry_in_progress.Date_Added);
-    this.dudes[this.counter] = this.randomNumber;
+    this.questions[this.counter] = this.randomNumber;
     // debugger
-    console.log('get random = ' + this.dudes[this.counter] + ' - this.counter = ' + this.counter);
+    console.log('get random = ' + this.questions[this.counter] + ' - this.counter = ' + this.counter);
 
-    if (this.counter >= this.chosenNumber) {
+
+
+    if (this.counter == this.chosenNumber-1) {
       // debugger
       setTimeout(() => {
           this.stop();
@@ -109,6 +187,7 @@ export class TimerComponent implements OnInit, OnDestroy {
         1000);
 
     }
+    this.counter = this.counter + 1;
   }
 
   stop() {
@@ -140,6 +219,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     // debugger
     return (day + '-' + (month + 1) + '-' + year + '  ' + strTime).toString();
   }
+
   ngOnDestroy() {
     this.stop();
   }

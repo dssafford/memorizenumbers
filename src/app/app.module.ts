@@ -13,19 +13,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertService} from './service/alert.service';
-import { ExampleMaterialComponent } from './example-material/example-material.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import {TimerService} from './service/timer.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent, MenuItemComponent, ExampleMaterialComponent
+    TimerComponent, MenuItemComponent, DynamicFormComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule
   ],
-  providers: [AuthenticationService, AlertService],
+  providers: [AuthenticationService, AlertService, TimerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
