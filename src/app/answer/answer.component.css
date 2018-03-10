@@ -1,0 +1,11 @@
+.my-container {
+  width: 400px;
+  margin: auto;
+  padding:8px;
+}
+.my-container-right {
+  width: 400px;
+  margin: auto;
+  padding:8px;
+  alignment: right;
+}

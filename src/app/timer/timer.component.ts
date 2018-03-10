@@ -5,6 +5,8 @@ import 'rxjs/add/operator/do';
 
 import {TimerService} from '../service/timer.service';
 import {ResultEntry} from '../model/ResultEntry';
+import {AppRoutingModule} from '../app-routing.module';
+import {ActivatedRoute, Router} from '@angular/router';
 
 const HEROES = [
   {id: 1, name: 'Superman'},
@@ -38,22 +40,24 @@ export class TimerComponent implements OnInit, OnDestroy {
   model: any = {};
   isCounting: any;
   questions: any[] = [];
-  answers: any[] = [];
+
   results: any[] = [];
   newResultEntry: ResultEntry;
 
-  constructor(private timerService: TimerService) {
+  constructor(private timerService: TimerService, private router: Router) {
   }
 
   ngOnInit() {
     // this.question = HEROES;
 
-    this.newDate = this.dbTimestampFormatDate(this.d);
+    this.newDate = this.timerService.dbTimestampFormatDate(this.d);
 
     //debugging only
     // this.chosenNumber = 3 ;
     this.isCounting = true;
 
+    this.resetCounter();
+    this.isCounting = true;
     // For testing creating a new entry
     // let myEntry: ResultEntry;
     // // debugger
@@ -68,6 +72,10 @@ export class TimerComponent implements OnInit, OnDestroy {
     // this.timerService.addNewEntry(myEntry);
   }
 
+  gotoAnswer() {
+    [this.questions] = this.questions;
+    this.router.navigate(['answer']);
+  }
   resetCounter() {
     this.ticks = 0;
     this.randomNumber = 0;
@@ -90,94 +98,31 @@ export class TimerComponent implements OnInit, OnDestroy {
     });
 
 
-    // this.entry_in_progress = EntryItem.createBlank();
-    // this.question[0] = this.dbTimestampFormatDate(this.d);
 
-    // debugger
-    // this.entry_in_progress.Is_Active = 'active';
-  }
-
-  scoreEntries() {
-    var i;
-    var result;
-
-    // debugger
-    this.results = Array<ResultEntry>();
-
-
-    for (i = 0; i < this.questions.length; i++) {
-      this.newResultEntry = new ResultEntry();
-      this.newResultEntry.question = this.questions[i];
-      this.newResultEntry.answer = this.answers[i];
-      this.newResultEntry.date_added = this.dbTimestampFormatDate(this.d);
-
-      console.log('question =' + this.questions[i] + '- answer =' + this.answers[i]);
-
-      if (this.questions[i] == this.answers[i]) {
-        result = true;
-        console.log('true');
-        this.newResultEntry.correct = true;
-      } else {
-        result = false;
-        console.log('false');
-        this.newResultEntry.correct = false;
-      }
-      this.results.push(this.newResultEntry);
-    }
-
-     // debugger
+    // this.timerService.createAmswerList(this.questions);
 
   }
-  createNewEntry(resultEntry: ResultEntry) {
 
-    console.log('in createNewEntry method');
-    let myEntry: ResultEntry;
-    myEntry = new ResultEntry();
-    myEntry.question = resultEntry.question;
-    myEntry.answer = resultEntry.answer;
-    myEntry.correct = resultEntry.correct;
-    myEntry.date_added = this.dbTimestampFormatDate(this.d);
-    myEntry.comments =  this.chosenNumber +  '- chosen';
-
-    this.timerService.addNewEntry(myEntry);
-
-    // this.entry_in_progress.Date_Added = this.dbTimestampFormatDate(this.d);
-    // console.log(this.entry_in_progress);
-
-    // format date for mysql timestamp  YYYY-MM-DD HH:MM:SS
-
-    // this.entryService.addNewEntry(this.entry_in_progress)
-    //   .then((entryItem) => {
-    //     this.router.navigateByUrl('home');
-    //   });
-  }
   // cancelPressed() {
   //
   //   this.router.navigateByUrl('home');
   // }
-  onSubmit(post: any): void {
-    this.answers = post;
-    // console.log('answer 0 = ' + post[0]);
-    // console.log("answer 1 = " + post[1]);
-    // console.log("answer 2 = " + post[2]);
-    // // debugger
-    // console.log('answers:', this.answers + '- post was ' + post);
-    this.scoreEntries();
+  // onSubmit(post: any): void {
+  //   this.answers = post;
+  //   // console.log('answer 0 = ' + post[0]);
+  //   // console.log("answer 1 = " + post[1]);
+  //   // console.log("answer 2 = " + post[2]);
+  //   // // debugger
+  //   // console.log('answers:', this.answers + '- post was ' + post);
+  //   this.timerService.scoreEntries();
+  //
+  //   // Show results
+  //   this.timerService.showResults();
+  //   this.resetCounter();
+  //   this.isCounting = true;
+  // }
 
-    // Show results
-    this.showResults();
-    this.resetCounter();
-    this.isCounting = true;
-  }
 
-  showResults() {
-      var i;
-    console.log('final results ========================== = ');
-      for (i = 0; i < this.questions.length; i++) {
-        console.log('Question: ' + this.results[i].question + ' - Answer; ' + this.results[i].answer + ' - Result= ' + this.results[i].correct);
-        this.createNewEntry(this.results[i]);
-      }
-  }
 
   getRandomInt(min, max) {
 
@@ -210,26 +155,14 @@ export class TimerComponent implements OnInit, OnDestroy {
     //   console.log('final number = ' + this.numberList[i].Question);
     // }
 
+    // Go to the Answer form
+    // this.gotoAnswer();
+
+    console.log("questions in timer component length = " + this.questions.length);
+    this.timerService.showQuestions(this.questions);
   }
 
-  dbTimestampFormatDate(date): string {
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-    const year = date.getFullYear();
-    const day = date.getDate();
-    const month = date.getMonth();
 
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds;
-
-    const strTime = hours + ':' + minutes + ':' + seconds;
-    console.log('hey adding this -' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '  ' + strTime);
-    // debugger
-    return (day + '-' + (month + 1) + '-' + year + '  ' + strTime).toString();
-  }
 
   ngOnDestroy() {
     this.stop();

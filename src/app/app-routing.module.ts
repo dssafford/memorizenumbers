@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {MenuItemComponent} from './menu-item/menu-item.component';
 import {TimerComponent} from './timer/timer.component';
+import {AnswerComponent} from './answer/answer.component';
 // import {EntrySummaryListComponent} from './entry-summary-list/entry-summary-list.component';
 // import {FirstComponent} from './first/first.component';
 // import {EntryListComponent} from './entry-list/entry-list.component';
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
   // {path: 'become-angular-tailer', component: FourthComponent},
   // {path: '', component: EntryListComponent},
 
-  // { path: 'login', component:  LoginComponent },
+  { path: 'answer', component:  AnswerComponent },
   //
   // // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', component: TimerComponent },

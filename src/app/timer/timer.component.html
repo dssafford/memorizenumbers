@@ -1,11 +1,11 @@
-<div *ngIf="isCounting">
+<div *ngIf="isCounting" class="my-container">
   <mat-card class="same-width">
     <mat-card-content>
       <mat-grid-list cols="1" rowHeight="50px">
         <mat-grid-tile [colspan]="1">
-          <mat-form-field >
+          <mat-form-field>
             <input matInput placeholder="How many" maxlength="2" [(ngModel)]="model.runNumber" required
-                  class="center" >
+                   class="center">
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1">
@@ -18,37 +18,23 @@
   </mat-card>
 </div>
 <div class="my-container"><h1 *ngIf="isCounting" class="h1-big">{{randomNumber}} of {{counter}}</h1></div>
-
-<div *ngIf="!isCounting" class="my-container">
-  <form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
-    <span *ngFor="let question of questions, let i = index">
-      <div *ngIf="i<questions.length">
-          <input mat-input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"><br>
-       </div>
-    </span>
-    <span class="my-container-right" >
-
-        <button mat-raised-button="check" [type]="submit" class="half">
-          <mat-icon>done</mat-icon>
-        </button></span>
-  </form>
-
-</div>
-
+<!--<div *ngIf="!isCounting">-->
+  <!--<app-answer></app-answer>-->
+<!--</div>-->
 
 
 <!--<div *ngIf="!isCounting" class="my-container">-->
-  <!--<form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" >-->
-    <!--<span *ngFor="let question of questions, let i = index">-->
-      <!--<div *ngIf="i<questions.length">-->
-          <!--<input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"><br>-->
-       <!--</div>-->
-    <!--</span>-->
-    <!--<span class="my-container-right" >-->
+<!--<form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" >-->
+<!--<span *ngFor="let question of questions, let i = index">-->
+<!--<div *ngIf="i<questions.length">-->
+<!--<input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"><br>-->
+<!--</div>-->
+<!--</span>-->
+<!--<span class="my-container-right" >-->
 
-        <!--<button mat-raised-button="check" [type]="submit" class="half">-->
-          <!--<mat-icon>done</mat-icon>-->
-        <!--</button></span>-->
-  <!--</form>-->
+<!--<button mat-raised-button="check" [type]="submit" class="half">-->
+<!--<mat-icon>done</mat-icon>-->
+<!--</button></span>-->
+<!--</form>-->
 
 <!--</div>-->

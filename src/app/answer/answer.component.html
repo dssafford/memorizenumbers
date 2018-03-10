@@ -1,0 +1,14 @@
+
+<div class="my-container">
+  <form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
+    <span *ngFor="let question of questions, let i = index">
+      <div *ngIf="i<questions.length">
+          <input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"><br>
+       </div>
+    </span>
+    <span class="my-container-right" >
+        <button mat-raised-button="check" [type]="submit" class="half">
+          <mat-icon>done</mat-icon>
+        </button></span>
+  </form>
+</div>

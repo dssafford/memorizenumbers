@@ -15,12 +15,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertService} from './service/alert.service';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import {TimerService} from './service/timer.service';
+import { AnswerComponent } from './answer/answer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent, MenuItemComponent, DynamicFormComponent
+    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
