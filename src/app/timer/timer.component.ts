@@ -50,9 +50,6 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     this.newDate = this.dbTimestampFormatDate(this.d);
 
-
-
-
     //debugging only
     // this.chosenNumber = 3 ;
     this.isCounting = true;
@@ -177,7 +174,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       var i;
     console.log('final results ========================== = ');
       for (i = 0; i < this.questions.length; i++) {
-        console.log('Question: ' + this.results[i].question + ' - Answer; ' + this.results[i].answer + ' - Result= ' + this.results[i].result);
+        console.log('Question: ' + this.results[i].question + ' - Answer; ' + this.results[i].answer + ' - Result= ' + this.results[i].correct);
         this.createNewEntry(this.results[i]);
       }
   }
