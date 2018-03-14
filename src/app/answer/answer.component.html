@@ -1,14 +1,22 @@
-
 <div class="my-container">
-  <form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
     <span *ngFor="let question of questions, let i = index">
       <div *ngIf="i<questions.length">
-          <input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"><br>
-       </div>
+        <!--{{i}}-->
+        <div *ngIf="i==0; then first else last"></div>
+            <ng-template #first>
+             <input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"
+                    [focus]="myFocusTriggeringEventEmitter"><br>
+            </ng-template>
+            <ng-template #last>
+             <input class="input-stuff" name={{i}} ngModel [required]="true"><br>
+            </ng-template>
+      </div>
     </span>
-    <span class="my-container-right" >
+    <span class="my-container-right">
         <button mat-raised-button="check" [type]="submit" class="half">
           <mat-icon>done</mat-icon>
-        </button></span>
+        </button>
+    </span>
   </form>
 </div>

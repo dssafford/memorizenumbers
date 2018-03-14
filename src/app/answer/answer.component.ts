@@ -1,13 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {ResultEntry} from '../model/ResultEntry';
 import {TimerService} from '../service/timer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.css']
 })
-export class AnswerComponent implements OnInit {
+export class AnswerComponent implements OnInit, AfterViewInit {
   questions: any[] = [];
   answers: any[] = [];
   resultEntry: ResultEntry;
@@ -16,15 +17,33 @@ export class AnswerComponent implements OnInit {
 
   // @Input() questions: ResultEntry[];
 
-  constructor(private timerService: TimerService) { }
+  constructor(private timerService: TimerService, private router: Router) {
+  }
+
+  public myFocusTriggeringEventEmitter = new EventEmitter<boolean>();
+
+  someMethod() {
+    this.myFocusTriggeringEventEmitter.emit(true);
+  }
 
   ngOnInit() {
-
+    console.log('Im in the answer component .ngOnInit() method')
     console.log('found questions, length = ' + this.timerService.getQuestions().length);
 
     this.questions = this.timerService.getQuestions();
+    this.someMethod();
   }
 
+  // public focusSettingEventEmitter = new EventEmitter<boolean>();
+  //
+  ngAfterViewInit() { // ngOnInit is NOT the right lifecycle event for this.
+    // this.myFocusTriggeringEventEmitter.emit(true);
+    this.someMethod();
+  }
+
+  // setFocus(): void {
+  //   this.focusSettingEventEmitter.emit(true);
+  // }
   onSubmit(post: any): void {
     this.answers = post;
     // console.log('answer 0 = ' + post[0]);
@@ -40,6 +59,10 @@ export class AnswerComponent implements OnInit {
 
     // this.resetCounter();
     // this.isCounting = true;
+
+    this.router.navigate(['']);
+
+
   }
 
    createResults(): ResultEntry[] {
@@ -56,7 +79,7 @@ export class AnswerComponent implements OnInit {
         this.resultEntry.correct = false;
       }
       this.resultEntry.date_added = this.timerService.dbTimestampFormatDate(this.d);
-      debugger
+      // debugger
       this.resultEntry.comments = 'chosen ' + this.questions.length;
       this.results[i] = this.resultEntry;
      }

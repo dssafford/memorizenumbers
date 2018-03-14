@@ -49,7 +49,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // this.question = HEROES;
-
+  console.log('Im in the timer component .ngOnInit() method')
     this.newDate = this.timerService.dbTimestampFormatDate(this.d);
 
     //debugging only

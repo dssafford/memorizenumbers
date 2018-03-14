@@ -16,12 +16,13 @@ import {AlertService} from './service/alert.service';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import {TimerService} from './service/timer.service';
 import { AnswerComponent } from './answer/answer.component';
+import { FocusDirective } from './focus.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent
+    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
