@@ -10,7 +10,8 @@
 
       <mat-icon class="demo-toolbar-icon" [matMenuTriggerFor]='appMenu'>toc</mat-icon>
       <mat-menu #appMenu>
-        <button mat-menu-item (click)="addNewEntryPressed()">Add New</button>
+        <button mat-menu-item><a routerLink="quiz">New Quiz</a></button>
+        <button mat-menu-item> <a routerLink='quizzes'>List</a></button>
         <button mat-menu-item> <a routerLink='summaryList'>SummaryList</a></button>
         <button mat-menu-item><a routerLink='home'>Home</a></button>
         <button mat-menu-item><a routerLink='errInput'>First</a></button>

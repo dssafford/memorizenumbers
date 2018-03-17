@@ -13,6 +13,8 @@ export class AppComponent {
   constructor(private router: Router, private userService: AuthenticationService) {
   }
 
+
+
   addNewEntryPressed() {}
 
   logout(){}

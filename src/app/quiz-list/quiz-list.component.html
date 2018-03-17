@@ -1,0 +1,29 @@
+<div>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+      <mat-cell *matCellDef="let quiz"> {{quiz.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="question">
+      <mat-header-cell *matHeaderCellDef> question </mat-header-cell>
+      <mat-cell *matCellDef="let quiz"> {{quiz.question}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="answer">
+      <mat-header-cell *matHeaderCellDef> answer </mat-header-cell>
+      <mat-cell *matCellDef="let quiz"> {{quiz.answer}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="correct">
+      <mat-header-cell *matHeaderCellDef> correct </mat-header-cell>
+      <mat-cell *matCellDef="let quiz"> {{quiz.correct}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
+<!--id: number;-->
+<!--question: number;-->
+<!--answer: number;-->
+<!--correct: boolean;-->
+<!--date_added: string;-->
+<!--comments: string;-->

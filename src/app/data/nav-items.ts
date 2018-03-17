@@ -22,9 +22,9 @@ export const NAVITEMS: NavItem[] = [
           iconName: 'group',
           children: [
             {
-              displayName: 'Michael Prentice',
+              displayName: 'Quizzes',
               iconName: 'person',
-              route: 'michael-prentice',
+              route: 'quizzes',
               children: [
                 {
                   displayName: 'Create Enterprise UIs',

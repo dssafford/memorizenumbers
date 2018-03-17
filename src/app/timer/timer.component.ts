@@ -36,7 +36,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   list_setup_count: number;
 
   // numberList: Array<AnswerList> = new Array<AnswerList>();
-  chosenNumber: number;
+  chosenNumber: number = 0;
   model: any = {};
   isCounting: any;
   questions: any[] = [];
@@ -54,10 +54,10 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     //debugging only
     // this.chosenNumber = 3 ;
-    this.isCounting = true;
 
     this.resetCounter();
     this.isCounting = true;
+
     // For testing creating a new entry
     // let myEntry: ResultEntry;
     // // debugger
@@ -165,6 +165,10 @@ export class TimerComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.stop();
+    console.log('this.chosennubmer = ' + this.chosenNumber);
+    if (this.chosenNumber = 0) {
+      this.stop();
+    }
+
   }
 }

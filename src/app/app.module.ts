@@ -17,18 +17,21 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import {TimerService} from './service/timer.service';
 import { AnswerComponent } from './answer/answer.component';
 import { FocusDirective } from './focus.directive';
+import { QuizListComponent } from './quiz-list/quiz-list.component';
+import {QuizListService} from './service/quiz-list.service';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective
+    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule
   ],
-  providers: [AuthenticationService, AlertService, TimerService],
+  providers: [AuthenticationService, AlertService, TimerService, QuizListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

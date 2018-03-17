@@ -7,6 +7,7 @@ export class ResultEntry {
   comments: string;
 
   constructor() {}
+
   // constructor(Id: number, Question: number, Date_Added: string) {
   //   this.id = Id;
   //   this.question = Question;
