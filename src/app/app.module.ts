@@ -20,16 +20,21 @@ import { FocusDirective } from './focus.directive';
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 import {QuizListService} from './service/quiz-list.service';
 import { HomeComponent } from './home/home.component';
+import { ShowResultComponent } from './show-result/show-result.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexStuffComponent } from './flex-stuff/flex-stuff.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent
+    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
+    FlexStuffComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
-    ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule
+    ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule,
+    FlexLayoutModule
   ],
   providers: [AuthenticationService, AlertService, TimerService, QuizListService],
   bootstrap: [AppComponent]

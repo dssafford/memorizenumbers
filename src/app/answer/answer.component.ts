@@ -94,6 +94,8 @@ export class AnswerComponent implements OnInit, AfterViewInit {
       console.log('Question: ' + this.results[i].question + ' - Answer; ' + this.results[i].answer + ' - Result= ' + this.results[i].correct);
       this.timerService.createNewEntry(this.results[i]);
     }
+
+    this.router.navigateByUrl('showResult');
   }
 
 }

@@ -99,6 +99,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
 
 
+
     // this.timerService.createAmswerList(this.questions);
 
   }
@@ -141,6 +142,8 @@ export class TimerComponent implements OnInit, OnDestroy {
           this.stop();
         },
         1000);
+      ;
+
 
     }
     this.counter = this.counter + 1;

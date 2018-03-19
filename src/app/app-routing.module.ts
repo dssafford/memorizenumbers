@@ -5,6 +5,7 @@ import {TimerComponent} from './timer/timer.component';
 import {AnswerComponent} from './answer/answer.component';
 import {QuizListComponent} from './quiz-list/quiz-list.component';
 import {HomeComponent} from './home/home.component';
+import {ShowResultComponent} from './show-result/show-result.component';
 // import {EntrySummaryListComponent} from './entry-summary-list/entry-summary-list.component';
 // import {FirstComponent} from './first/first.component';
 // import {EntryListComponent} from './entry-list/entry-list.component';
@@ -30,13 +31,11 @@ const appRoutes: Routes = [
   // {path: 'my-ally-cli', component: ThirdComponent},
   // {path: 'become-angular-tailer', component: FourthComponng ent},
   // {path: '', component: EntryListComponent},
+  {path: 'showResult', component: ShowResultComponent},
   { path: 'quizzes', component: QuizListComponent },
   { path: 'answer', component:  AnswerComponent },
-
   { path: 'quiz' , component: TimerComponent },
-
   { path: 'home', component: HomeComponent },
-
   // otherwise redirect to home
   { path: '**', redirectTo: 'home' }
 
