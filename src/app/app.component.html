@@ -1,46 +1,58 @@
-<div class="basic-container">
-  <!--<app-alert></app-alert>-->
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <mat-icon class="toolbar-icon">home</mat-icon>
-      <span class="toolbar-text">Doug's Learning Application</span>
-      <span class="demo-fill-remaining"></span>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-      <span class="demo-fill-remaining"></span>
 
-      <mat-icon class="demo-toolbar-icon" [matMenuTriggerFor]='appMenu'>toc</mat-icon>
-      <mat-menu #appMenu>
-        <button mat-menu-item><a routerLink="quiz">New Quiz</a></button>
-        <button mat-menu-item> <a routerLink='quizzes'>List</a></button>
-        <button mat-menu-item> <a routerLink='summaryList'>SummaryList</a></button>
-        <button mat-menu-item><a routerLink='home'>Home</a></button>
-        <button mat-menu-item><a routerLink='errInput'>First</a></button>
-        <button mat-menu-item (click)="logout()">Logout</button>
-      </mat-menu>
-    </mat-toolbar-row>
+<!--<div class="basic-container">-->
+  <!--&lt;!&ndash;<app-alert></app-alert>&ndash;&gt;-->
+  <!--<mat-toolbar color="primary">-->
+    <!--<mat-toolbar-row>-->
+      <!--<mat-icon class="toolbar-icon">home</mat-icon>-->
+      <!--<span class="toolbar-text">Doug's Learning Application</span>-->
+      <!--<span class="demo-fill-remaining"></span>-->
 
-  </mat-toolbar>
-  <mat-toolbar class="menu-bar mat-elevation-z1">
-    <span *ngFor="let item of navItems">
-      <!-- Handle branch node buttons here -->
-      <span *ngIf="item.children && item.children.length > 0">
-        <button mat-button [matMenuTriggerFor]="menu.childMenu"
-                [disabled]="item.disabled">
-          {{item.displayName}}
-        </button>
-        <app-menu-item #menu [items]="item.children"></app-menu-item>
-      </span>
-      <!-- Leaf node buttons here -->
-      <span *ngIf="!item.children || item.children.length === 0">
-        <button mat-button color="primary" [routerLink]="item.route">
-          {{item.displayName}}
-        </button>
-      </span>
-    </span>
-  </mat-toolbar>
-</div>
-<div>
-  <!--<app-timer></app-timer>-->
-  <!--<app-flex-stuff></app-flex-stuff>-->
-  <router-outlet></router-outlet>
-</div>
+      <!--<span class="demo-fill-remaining"></span>-->
+
+      <!--<mat-icon class="demo-toolbar-icon" [matMenuTriggerFor]='appMenu'>toc</mat-icon>-->
+      <!--<mat-menu #appMenu>-->
+        <!--<button mat-menu-item><a routerLink="quiz">New Quiz</a></button>-->
+        <!--<button mat-menu-item> <a routerLink='quizzes'>List</a></button>-->
+        <!--<button mat-menu-item><a routerLink='home'>Home</a></button>-->
+        <!--<button mat-menu-item><a routerLink='errInput'>First</a></button>-->
+        <!--<button mat-menu-item (click)="logout()">Logout</button>-->
+      <!--</mat-menu>-->
+    <!--</mat-toolbar-row>-->
+
+  <!--</mat-toolbar>-->
+  <!--<mat-toolbar class="menu-bar mat-elevation-z1">-->
+    <!--<span *ngFor="let item of navItems">-->
+      <!--&lt;!&ndash; Handle branch node buttons here &ndash;&gt;-->
+      <!--<span *ngIf="item.children && item.children.length > 0">-->
+        <!--<button mat-button [matMenuTriggerFor]="menu.childMenu"-->
+                <!--[disabled]="item.disabled">-->
+          <!--{{item.displayName}}-->
+        <!--</button>-->
+        <!--<app-menu-item #menu [items]="item.children"></app-menu-item>-->
+      <!--</span>-->
+      <!--&lt;!&ndash; Leaf node buttons here &ndash;&gt;-->
+      <!--<span *ngIf="!item.children || item.children.length === 0">-->
+        <!--<button mat-button color="primary" [routerLink]="item.route">-->
+          <!--{{item.displayName}}-->
+        <!--</button>-->
+      <!--</span>-->
+    <!--</span>-->
+  <!--</mat-toolbar>-->
+<!--</div>-->
+<!--<div>-->
+  <!--&lt;!&ndash;<app-timer></app-timer>&ndash;&gt;-->
+  <!--&lt;!&ndash;<app-flex-stuff></app-flex-stuff>&ndash;&gt;-->
+  <!--<router-outlet></router-outlet>-->
+<!--</div>-->

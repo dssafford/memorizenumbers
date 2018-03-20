@@ -22,21 +22,56 @@
   </form>
 </div>
 <div *ngIf="show == true" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-  <table border="1">
-    <tr>
-      <th>Question</th>
-      <th>Answer</th>
-      <th>Correct</th>
-    </tr>
-    <div *ngFor="let result of results, let i = index">
-       <tr>
-      <td>{{result.question}}</td>
-      <td>{{result.answer}}</td>
-      <td>{{result.correct}}</td>
-    </tr>
-    </div>
-  </table>
-</div>
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="question">
+        <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
+        <mat-cell *matCellDef="let result"> {{result.question}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="answer">
+        <mat-header-cell *matHeaderCellDef> Answer </mat-header-cell>
+        <mat-cell *matCellDef="let result"> {{result.answer}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="correct">
+        <mat-header-cell *matHeaderCellDef> Correct </mat-header-cell>
+        <mat-cell *matCellDef="let result"> {{result.correct}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <!--<mat-paginator #paginator-->
+                   <!--[pageSize]="10"-->
+                   <!--[pageSizeOptions]="[5, 10, 20]"-->
+                   <!--[showFirstLastButtons]="true">-->
+    <!--</mat-paginator>-->
+  </div>
+
+
+
+
+  <!--<table border="1">-->
+    <!--<tr>-->
+      <!--<th>Question</th>-->
+      <!--<th>Answer</th>-->
+      <!--<th>Correct</th>-->
+    <!--</tr>-->
+    <!--<div *ngFor="let result of results, let i = index">-->
+       <!--<tr>-->
+      <!--<td>{{result.question}}</td>-->
+      <!--<td>{{result.answer}}</td>-->
+      <!--<td>{{result.correct}}</td>-->
+    <!--</tr>-->
+    <!--</div>-->
+  <!--</table>-->
+<!--</div>-->
 
 <!--<table style="width:100%">-->
   <!--<tr>-->

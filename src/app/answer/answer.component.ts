@@ -2,6 +2,10 @@ import {AfterViewInit, Component, EventEmitter, Input, OnInit} from '@angular/co
 import {ResultEntry} from '../model/ResultEntry';
 import {TimerService} from '../service/timer.service';
 import {Router} from '@angular/router';
+import {QuizListService} from '../service/quiz-list.service';
+import {DataSource} from '@angular/cdk/collections';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-answer',
@@ -15,6 +19,10 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   d = new Date();
   results: ResultEntry[];
   show: boolean = false;
+
+  dataSource: ResultsDataSource;
+
+  displayedColumns = ['question', 'answer', 'correct'];
 
   // @Input() questions: ResultEntry[];
 
@@ -101,6 +109,19 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     }
     this.show = true;
     // this.router.navigateByUrl('showResult');
+    debugger
+    this.dataSource = new ResultsDataSource(this.results);
   }
+
+}
+
+export class ResultsDataSource extends DataSource<any> {
+  constructor(private answerResults: ResultEntry[]) {
+    super();
+  }
+  connect(): Observable<ResultEntry[]> {
+    return Observable.of(this.answerResults);
+  }
+  disconnect() {}
 
 }

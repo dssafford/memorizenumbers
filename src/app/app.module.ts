@@ -24,13 +24,15 @@ import { ShowResultComponent } from './show-result/show-result.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FlexStuffComponent } from './flex-stuff/flex-stuff.component';
 import {MatFormFieldModule} from '@angular/material';
+import {SidenavListComponent} from './navigation/sidenav-list/sidenav-list.component';
+import {HeaderComponent} from './navigation/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
-    FlexStuffComponent
+    FlexStuffComponent, SidenavListComponent, HeaderComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

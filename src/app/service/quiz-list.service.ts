@@ -20,4 +20,9 @@ export class QuizListService {
     return (this.http.get<ResultEntry[]>(this.api));
 
   }
+
+  getResultsList(results: ResultEntry[]) {
+
+    return results;
+  }
 }

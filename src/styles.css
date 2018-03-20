@@ -2,29 +2,39 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
 
+html, body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: Roboto, sans-serif;
 }
 
-h3 {
-  font-size : 24px;
-}
 
-mat-card {
-  max-width: 90%;
-  margin: 2em auto;
-  text-align: center;
-}
+/*body {*/
+  /*margin: 0;*/
+  /*font-family: Roboto, sans-serif;*/
+/*}*/
 
-mat-toolbar-row {
-  justify-content: space-between;
-}
+/*h3 {*/
+  /*font-size : 24px;*/
+/*}*/
 
-/* class repeated for increased specificity */
-.mat-form-field.mat-form-field {
-  width: 50%;
-}
+/*mat-card {*/
+  /*max-width: 90%;*/
+  /*margin: 2em auto;*/
+  /*text-align: center;*/
+/*}*/
+
+/*mat-toolbar-row {*/
+  /*justify-content: space-between;*/
+/*}*/
+
+/*!* class repeated for increased specificity *!*/
+/*.mat-form-field.mat-form-field {*/
+  /*width: 50%;*/
+/*}*/
 
 
 /*.done {*/
