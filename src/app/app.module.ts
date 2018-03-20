@@ -10,7 +10,6 @@ import {MenuItemComponent} from './menu-item/menu-item.component';
 import {AuthenticationService} from './service/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertService} from './service/alert.service';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
@@ -23,16 +22,16 @@ import { HomeComponent } from './home/home.component';
 import { ShowResultComponent } from './show-result/show-result.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FlexStuffComponent } from './flex-stuff/flex-stuff.component';
-import {MatFormFieldModule} from '@angular/material';
 import {SidenavListComponent} from './navigation/sidenav-list/sidenav-list.component';
 import {HeaderComponent} from './navigation/header/header.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
-    FlexStuffComponent, SidenavListComponent, HeaderComponent
+    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

@@ -25,6 +25,11 @@
   <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
 
+      <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> Index </mat-header-cell>
+        <mat-cell *matCellDef="let result"> {{result.index}} </mat-cell>
+      </ng-container>
+
       <!-- Position Column -->
       <ng-container matColumnDef="question">
         <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
@@ -54,39 +59,3 @@
     <!--</mat-paginator>-->
   </div>
 
-
-
-
-  <!--<table border="1">-->
-    <!--<tr>-->
-      <!--<th>Question</th>-->
-      <!--<th>Answer</th>-->
-      <!--<th>Correct</th>-->
-    <!--</tr>-->
-    <!--<div *ngFor="let result of results, let i = index">-->
-       <!--<tr>-->
-      <!--<td>{{result.question}}</td>-->
-      <!--<td>{{result.answer}}</td>-->
-      <!--<td>{{result.correct}}</td>-->
-    <!--</tr>-->
-    <!--</div>-->
-  <!--</table>-->
-<!--</div>-->
-
-<!--<table style="width:100%">-->
-  <!--<tr>-->
-    <!--<th>Firstname</th>-->
-    <!--<th>Lastname</th>-->
-    <!--<th>Age</th>-->
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<td>Jill</td>-->
-    <!--<td>Smith</td>-->
-    <!--<td>50</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-    <!--<td>Eve</td>-->
-    <!--<td>Jackson</td>-->
-    <!--<td>94</td>-->
-  <!--</tr>-->
-<!--</table>-->

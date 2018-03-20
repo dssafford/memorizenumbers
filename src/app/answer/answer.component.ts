@@ -2,7 +2,6 @@ import {AfterViewInit, Component, EventEmitter, Input, OnInit} from '@angular/co
 import {ResultEntry} from '../model/ResultEntry';
 import {TimerService} from '../service/timer.service';
 import {Router} from '@angular/router';
-import {QuizListService} from '../service/quiz-list.service';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -19,10 +18,11 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   d = new Date();
   results: ResultEntry[];
   show: boolean = false;
+  showButton: boolean = false;
 
   dataSource: ResultsDataSource;
 
-  displayedColumns = ['question', 'answer', 'correct'];
+  displayedColumns = ['index', 'question', 'answer', 'correct'];
 
   // @Input() questions: ResultEntry[];
 
@@ -33,9 +33,13 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
   someMethod() {
     this.myFocusTriggeringEventEmitter.emit(true);
+
   }
 
   ngOnInit() {
+    if(this.answers.length == 0) {
+      this.showButton = false;
+    }
     console.log('Im in the answer component .ngOnInit() method')
     console.log('found questions, length = ' + this.timerService.getQuestions().length);
 
@@ -43,35 +47,18 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     this.someMethod();
   }
 
-  // public focusSettingEventEmitter = new EventEmitter<boolean>();
-  //
   ngAfterViewInit() { // ngOnInit is NOT the right lifecycle event for this.
-    // this.myFocusTriggeringEventEmitter.emit(true);
+
     this.someMethod();
   }
 
-  // setFocus(): void {
-  //   this.focusSettingEventEmitter.emit(true);
-  // }
+
   onSubmit(post: any): void {
     this.answers = post;
-    // console.log('answer 0 = ' + post[0]);
-    // console.log("answer 1 = " + post[1]);
-    // console.log("answer 2 = " + post[2]);
-    // // debugger
-    // console.log('answers:', this.answers + '- post was ' + post);
-
     this.createResults();
 
     // Show results
     this.showResults();
-
-    // this.resetCounter();
-    // this.isCounting = true;
-
-    // this.show = true;
-
-    // this.router.navigate(['showResult']);
 
 
   }
@@ -109,7 +96,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     }
     this.show = true;
     // this.router.navigateByUrl('showResult');
-    debugger
+    // debugger
     this.dataSource = new ResultsDataSource(this.results);
   }
 
