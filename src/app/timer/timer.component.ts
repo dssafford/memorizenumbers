@@ -7,6 +7,7 @@ import {TimerService} from '../service/timer.service';
 import {ResultEntry} from '../model/ResultEntry';
 import {AppRoutingModule} from '../app-routing.module';
 import {ActivatedRoute, Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 const HEROES = [
   {id: 1, name: 'Superman'},
@@ -49,7 +50,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // this.question = HEROES;
-  console.log('Im in the timer component .ngOnInit() method')
+    console.log('Im in the timer component .ngOnInit() method')
     this.newDate = this.timerService.dbTimestampFormatDate(this.d);
 
     //debugging only
@@ -57,19 +58,6 @@ export class TimerComponent implements OnInit, OnDestroy {
 
     this.resetCounter();
     this.isCounting = true;
-
-    // For testing creating a new entry
-    // let myEntry: ResultEntry;
-    // // debugger
-    // myEntry = new ResultEntry();
-    // myEntry.question = 2;
-    // myEntry.answer = 4;
-    // myEntry.correct = false;
-    // myEntry.date_added = this.newDate;
-    // myEntry.comments = "eat me";
-    //
-    // // this.createNewEntry(myEntry);
-    // this.timerService.addNewEntry(myEntry);
   }
 
   gotoAnswer() {
@@ -108,22 +96,25 @@ export class TimerComponent implements OnInit, OnDestroy {
   //
   //   this.router.navigateByUrl('home');
   // }
-  // onSubmit(post: any): void {
-  //   this.answers = post;
-  //   // console.log('answer 0 = ' + post[0]);
-  //   // console.log("answer 1 = " + post[1]);
-  //   // console.log("answer 2 = " + post[2]);
-  //   // // debugger
-  //   // console.log('answers:', this.answers + '- post was ' + post);
-  //   this.timerService.scoreEntries();
-  //
-  //   // Show results
-  //   this.timerService.showResults();
-  //   this.resetCounter();
-  //   this.isCounting = true;
-  // }
 
 
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+    console.log('value of chosenNumber = ' + form.controls['chosenNumber'].value);
+
+    this.resetCounter();
+
+    this.isCounting = true;
+    this.chosenNumber = form.controls['chosenNumber'].value;
+
+    // this.question = new Array(this.chosenNumber);
+    // debugger
+
+    this.subscription1 = this.timer.subscribe(t => this.ticks = t);
+    this.subscription2 = this.timer.subscribe(x => {
+      this.getRandomInt(0, 9);
+    });
+  }
 
   getRandomInt(min, max) {
 

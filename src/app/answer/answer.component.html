@@ -1,5 +1,6 @@
-<div class="my-container">
-  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+<div *ngIf="show == false">
+  <br>
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
     <span *ngFor="let question of questions, let i = index">
       <div *ngIf="i<questions.length">
         <!--{{i}}-->
@@ -13,10 +14,44 @@
             </ng-template>
       </div>
     </span>
-    <span class="my-container-right">
+    <span>
         <button mat-raised-button="check" [type]="submit" class="half">
           <mat-icon>done</mat-icon>
         </button>
     </span>
   </form>
 </div>
+<div *ngIf="show == true" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <table border="1">
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Correct</th>
+    </tr>
+    <div *ngFor="let result of results, let i = index">
+       <tr>
+      <td>{{result.question}}</td>
+      <td>{{result.answer}}</td>
+      <td>{{result.correct}}</td>
+    </tr>
+    </div>
+  </table>
+</div>
+
+<!--<table style="width:100%">-->
+  <!--<tr>-->
+    <!--<th>Firstname</th>-->
+    <!--<th>Lastname</th>-->
+    <!--<th>Age</th>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>Jill</td>-->
+    <!--<td>Smith</td>-->
+    <!--<td>50</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>Eve</td>-->
+    <!--<td>Jackson</td>-->
+    <!--<td>94</td>-->
+  <!--</tr>-->
+<!--</table>-->

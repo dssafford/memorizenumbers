@@ -14,6 +14,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   resultEntry: ResultEntry;
   d = new Date();
   results: ResultEntry[];
+  show: boolean = false;
 
   // @Input() questions: ResultEntry[];
 
@@ -60,7 +61,9 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     // this.resetCounter();
     // this.isCounting = true;
 
-    this.router.navigate(['']);
+    // this.show = true;
+
+    // this.router.navigate(['showResult']);
 
 
   }
@@ -92,10 +95,12 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     console.log('final results ========================== = ');
     for (i = 0; i < this.results.length; i++) {
       console.log('Question: ' + this.results[i].question + ' - Answer; ' + this.results[i].answer + ' - Result= ' + this.results[i].correct);
+
+
       this.timerService.createNewEntry(this.results[i]);
     }
-
-    this.router.navigateByUrl('showResult');
+    this.show = true;
+    // this.router.navigateByUrl('showResult');
   }
 
 }

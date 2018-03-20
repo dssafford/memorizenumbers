@@ -1,17 +1,8 @@
 
-
-
-/*.mat-card {*/
-  /*max-width: 90%;*/
-  /*margin: 2em auto;*/
-  /*text-align: center;*/
-/*}*/
-
-/*.mat-toolbar-row {*/
-  /*justify-content: space-between;*/
-/*}*/
-/*.center { text-align: center }*/
-/*.right { text-align: right }*/
+.mat-form-field {
+  width: 100px;
+  text-align: center;
+}
 
 .same-width {
   width: 200px;
@@ -21,10 +12,7 @@
   font-size:20px;
   size: 1px;
 }
-/* class repeated for increased specificity */
-.mat-form-field.mat-form-field {
-  width: 50%;
-}
+
 .h1-big-red {
   color: red;
   font-size: 128px;

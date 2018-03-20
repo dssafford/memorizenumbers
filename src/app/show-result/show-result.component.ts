@@ -10,6 +10,7 @@ export class ShowResultComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

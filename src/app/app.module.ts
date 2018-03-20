@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { ShowResultComponent } from './show-result/show-result.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FlexStuffComponent } from './flex-stuff/flex-stuff.component';
+import {MatFormFieldModule} from '@angular/material';
 
 
 @NgModule({

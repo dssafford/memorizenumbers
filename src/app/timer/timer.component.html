@@ -1,40 +1,15 @@
-<div *ngIf="isCounting" class="my-container">
-  <mat-card class="same-width">
-    <mat-card-content>
-      <mat-grid-list cols="1" rowHeight="50px">
-        <mat-grid-tile [colspan]="1">
-          <mat-form-field>
-            <input matInput placeholder="How many" maxlength="2" [(ngModel)]="model.runNumber" required
-                   class="center">
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1">
-          <button mat-mini-fab (click)="selectNumberPressed(model.runNumber)">
-            <mat-icon>check circle</mat-icon>
-          </button>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card-content>
-  </mat-card>
-</div>
-<div class="my-container"><h1 *ngIf="isCounting" class="h1-big-red">{{randomNumber}} </h1><h1 class="h1-big-blue">of {{counter}}</h1></div>
-<!--<div *ngIf="!isCounting">-->
-  <!--<app-answer></app-answer>-->
-<!--</div>-->
+<section>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <mat-form-field>
+        <input matInput name="chosenNumber" ngModel required autofocus #chosenNumberInput="ngModel">
+        <mat-error *ngIf="chosenNumberInput.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+    </form>
+</section>
 
+<div fxLayout="row" fxLayoutAlign="center" class="my-container"><h1 *ngIf="isCounting" class="h1-big-red">
+  {{randomNumber}} </h1>
+  <h1 class="h1-big-blue"> &nbsp; of {{counter}}</h1></div>
+<app-flex-stuff></app-flex-stuff>
 
-<!--<div *ngIf="!isCounting" class="my-container">-->
-<!--<form  #f="ngForm" (ngSubmit)="onSubmit(f.value)" >-->
-<!--<span *ngFor="let question of questions, let i = index">-->
-<!--<div *ngIf="i<questions.length">-->
-<!--<input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"><br>-->
-<!--</div>-->
-<!--</span>-->
-<!--<span class="my-container-right" >-->
-
-<!--<button mat-raised-button="check" [type]="submit" class="half">-->
-<!--<mat-icon>done</mat-icon>-->
-<!--</button></span>-->
-<!--</form>-->
-
-<!--</div>-->
