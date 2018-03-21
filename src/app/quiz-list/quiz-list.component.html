@@ -1,29 +1,37 @@
 <div>
   <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-      <mat-cell *matCellDef="let quiz"> {{quiz.id}} </mat-cell>
+      <mat-header-cell fxFlex="30px" *matHeaderCellDef> id </mat-header-cell>
+      <mat-cell fxFlex="30px" *matCellDef="let quiz"> {{quiz.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="date_added">
+      <mat-header-cell fxFlex="100px" *matHeaderCellDef> date added </mat-header-cell>
+      <mat-cell fxFlex="100px" *matCellDef="let quiz"> {{quiz.date_added}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="question">
-      <mat-header-cell *matHeaderCellDef> question </mat-header-cell>
-      <mat-cell *matCellDef="let quiz"> {{quiz.question}} </mat-cell>
+      <mat-header-cell fxFlex="70px" *matHeaderCellDef> question </mat-header-cell>
+      <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.question}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="answer">
-      <mat-header-cell *matHeaderCellDef> answer </mat-header-cell>
-      <mat-cell *matCellDef="let quiz"> {{quiz.answer}} </mat-cell>
+      <mat-header-cell fxFlex="70px" *matHeaderCellDef> answer </mat-header-cell>
+      <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.answer}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="correct">
-      <mat-header-cell *matHeaderCellDef> correct </mat-header-cell>
-      <mat-cell *matCellDef="let quiz"> {{quiz.correct}} </mat-cell>
+      <mat-header-cell fxFlex="70px" *matHeaderCellDef> correct </mat-header-cell>
+      <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.correct}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="comments">
+      <mat-header-cell fxFlex="200px" *matHeaderCellDef> comments </mat-header-cell>
+      <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.comments}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+  <mat-paginator #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 20]"
+  [showFirstLastButtons]="true">
+  </mat-paginator>
 </div>
 
-<!--id: number;-->
-<!--question: number;-->
-<!--answer: number;-->
-<!--correct: boolean;-->
-<!--date_added: string;-->
-<!--comments: string;-->
+

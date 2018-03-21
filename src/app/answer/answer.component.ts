@@ -69,6 +69,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.questions.length; i++) {
 
       this.resultEntry  = new ResultEntry();
+      this.resultEntry.id = i;
       this.resultEntry.question = this.questions[i];
       this.resultEntry.answer = this.answers[i];
       if (this.resultEntry.question == this.resultEntry.answer) {

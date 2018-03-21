@@ -7,8 +7,9 @@ import {
   MatIconModule,
   MatCardModule, MatTableModule, MatSortModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonToggleModule,
   MatGridListModule, MatInputModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatListItem,
-  MatListModule, MatTabsModule
+  MatListModule, MatTabsModule, MatPaginatorModule
 } from '@angular/material';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
@@ -38,7 +39,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatNativeDateModule,
     MatCheckboxModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatPaginatorModule
 
   ],
   exports: [
@@ -67,7 +69,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatNativeDateModule,
     MatCheckboxModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule {}

@@ -15,7 +15,7 @@ export class QuizListComponent implements OnInit {
 
   quizzes: ResultEntry[];
 
-  displayedColumns = ['id', 'question', 'answer', 'correct'];
+  displayedColumns = ['id', 'question', 'answer', 'correct', 'date_added', 'comments'];
 
 
   dataSource = new QuizDataSource(this.quizlistService);
