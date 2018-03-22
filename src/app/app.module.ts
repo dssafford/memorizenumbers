@@ -26,13 +26,14 @@ import {SidenavListComponent} from './navigation/sidenav-list/sidenav-list.compo
 import {HeaderComponent} from './navigation/header/header.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { SortTableComponent } from './sort-table/sort-table.component';
+import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
-    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent
+    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
