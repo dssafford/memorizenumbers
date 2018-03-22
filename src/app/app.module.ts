@@ -25,13 +25,14 @@ import { FlexStuffComponent } from './flex-stuff/flex-stuff.component';
 import {SidenavListComponent} from './navigation/sidenav-list/sidenav-list.component';
 import {HeaderComponent} from './navigation/header/header.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { SortTableComponent } from './sort-table/sort-table.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
-    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent
+    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

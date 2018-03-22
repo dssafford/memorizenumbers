@@ -42,43 +42,6 @@ export class TimerService {
 
   }
 
-  // showResults() {
-  //   var i;
-  //   console.log('final results ========================== = ');
-  //   for (i = 0; i < this.questions.length; i++) {
-  //     console.log('Question: ' + this.results[i].question + ' - Answer; ' + this.results[i].answer + ' - Result= ' + this.results[i].correct);
-  //     this.createNewEntry(this.results[i]);
-  //   }
-  // }
-
-  // scoreEntries(questions[], answers[] {
-  //   var i;
-  //   var result;
-  //
-  //   // debugger
-  //   this.results = Array<ResultEntry>();
-  //
-  //
-  //   for (i = 0; i < this.questions.length; i++) {
-  //     this.newResultEntry = new ResultEntry();
-  //     this.newResultEntry.question = this.questions[i];
-  //     this.newResultEntry.answer = this.answers[i];
-  //     this.newResultEntry.date_added = this.dbTimestampFormatDate(this.d);
-  //
-  //     console.log('question =' + this.questions[i] + '- answer =' + this.answers[i]);
-  //
-  //     if (this.questions[i] == this.answers[i]) {
-  //       result = true;
-  //       console.log('true');
-  //       this.newResultEntry.correct = true;
-  //     } else {
-  //       result = false;
-  //       console.log('false');
-  //       this.newResultEntry.correct = false;
-  //     }
-  //     this.results.push(this.newResultEntry);
-  //   }
-
   createNewEntry(resultEntry: ResultEntry) {
 
     console.log('in createNewEntry method');
