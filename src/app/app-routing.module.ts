@@ -9,6 +9,7 @@ import {ShowResultComponent} from './show-result/show-result.component';
 import {QuizComponent} from './quiz/quiz.component';
 import {SortTableComponent} from './sort-table/sort-table.component';
 import {TablePaginationComponent} from './table-pagination/table-pagination.component';
+import {LearnListComponent} from './learn-list/learn-list.component';
 // import {EntrySummaryListComponent} from './entry-summary-list/entry-summary-list.component';
 // import {FirstComponent} from './first/first.component';
 // import {EntryListComponent} from './entry-list/entry-list.component';
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   // {path: 'become-angular-tailer', component: FourthComponent},
   // {path: '', component: EntryListComponent},
 
+  { path: 'learn', component: LearnListComponent},
   { path: 'paginate', component: TablePaginationComponent},
   { path: 'sortTable', component: SortTableComponent},
   { path: 'showResult', component: ShowResultComponent},

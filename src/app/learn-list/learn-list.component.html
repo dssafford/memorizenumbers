@@ -1,0 +1,44 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span><img src=""></span>
+    <span class="example-fill-remaining-space"></span>
+    <span class="example-spacer"></span>
+
+    <button mat-button>About</button>
+    <button mat-button>Contact</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let mynumber"> {{mynumber.number}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let mynumber"> {{mynumber.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let mynumber"> {{mynumber.action}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="object">
+      <mat-header-cell *matHeaderCellDef> Object </mat-header-cell>
+      <mat-cell *matCellDef="let mynumber"> {{mynumber.object}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "rowClicked(row)" ></mat-row>
+  </mat-table>
+  <mat-paginator [length]="5" [pageSize]="4" [pageSizeOptions]="[5, 10, 25]">
+  </mat-paginator>
+</div>
