@@ -10,6 +10,10 @@
 </mat-toolbar>
 <div class=" mat-elevation-z8" fxLayout="column" fxLayoutAlign="center center"
      fxLayoutGap="10px">
+
+
+    <mat-spinner *ngIf="loading"></mat-spinner>
+
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">

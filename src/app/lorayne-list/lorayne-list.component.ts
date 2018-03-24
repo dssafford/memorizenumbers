@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-lorayne-list',
@@ -8,6 +9,11 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 })
 export class LorayneListComponent implements OnInit {
   displayedColumns = ['number', 'name'];
+
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+
+  // public loading$ = this.loadingSubject.asObservable();
+  public loading$ = false;
 
   dataSource = new MatTableDataSource<MYNUMBER>();
   mynumbers: MYNUMBER[];
@@ -24,15 +30,29 @@ export class LorayneListComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   applyFilter(filterValue: string) {
+
+    // this.loadingSubject.next(true);
+    this.loading$ = true;
+    //Wait 2 seconds, and show this image:
+    // setTimeout(() => this.loading$ = true, 2000);
+
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    //Wait 2 seconds, and show this image:
+    // setTimeout(() => this.dataSource.filter = filterValue;, 2000);
+
+
+
+    this.loading$ = false;
   }
+
   rowClicked(row: any): void {
     console.log(row);
   }
 
   ngOnInit() {
+    //Wait 2 seconds, and show this image:
+    setTimeout(() => this.loading$ = true, 10000);
     // this.apiService.getUsers().subscribe(
     //   data => {
     //     this.dataSource.data = data;
@@ -40,6 +60,7 @@ export class LorayneListComponent implements OnInit {
 
     this.dataSource.data = NUMBER_LEARNING_DATA;
 
+    this.loading$ = false;
   }
 }
 
@@ -52,8 +73,8 @@ const NUMBER_LEARNING_DATA: MYNUMBER[] = [
   {'number': 1, 'name' : 'tie'},
 {'number': 2, 'name': 'knee'},
 {'number': 3, 'name': 'Ma'},
-{'number': 4, 'name': 'rye'}
-{'number': 5, 'name': 'wall'}
+{'number': 4, 'name': 'rye'},
+{'number': 5, 'name': 'wall'},
 {'number': 6, 'name': 'jaw'},
 {'number': 7, 'name': 'cow'},
 {'number': 8, 'name': 'ivy'},

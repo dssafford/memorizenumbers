@@ -7,7 +7,7 @@ import {
   MatIconModule,
   MatCardModule, MatTableModule, MatSortModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonToggleModule,
   MatGridListModule, MatInputModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatListItem,
-  MatListModule, MatTabsModule, MatPaginatorModule, MatProgressSpinnerModule
+  MatListModule, MatTabsModule, MatPaginatorModule, MatProgressSpinnerModule, MatProgressBarModule
 } from '@angular/material';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -41,7 +41,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatListModule,
     MatTabsModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
 
   ],
   exports: [
@@ -72,7 +73,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatListModule,
     MatTabsModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule {}

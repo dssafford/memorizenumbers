@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-learn-list',
@@ -11,7 +12,10 @@ export class LearnListComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<MYNUMBER>();
   mynumbers: MYNUMBER[];
-  constructor(){}
+
+  loading: boolean;
+
+  constructor(private http: HttpClient){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -24,21 +28,50 @@ export class LearnListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+
+    const sampleUrl = 'http://slowwly.robertomurray.co.uk/delay/1000/url/https://jsonplaceholder.typicode.com/posts/1';
+    this.loading = true;
+    setTimeout(() => {
+
+      this.loading = true;
+
+    }, 2000);
+    this.http.get(sampleUrl)
+      .subscribe((response) => {
+
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
+        this.loading = false;
+
+      });
+    // this.dataSource.filter = filterValue;
+    // this.loading = false;
   }
+
   rowClicked(row: any): void {
     console.log(row);
   }
 
   ngOnInit() {
-    // this.apiService.getUsers().subscribe(
-    //   data => {
-    //     this.dataSource.data = data;
-    //     //this.length = data.result.length;
+    const sampleUrl = 'http://slowwly.robertomurray.co.uk/delay/2000/url/https://jsonplaceholder.typicode.com/posts/1';
 
-    this.dataSource.data = NUMBER_LEARNING_DATA;
+    this.loading = true;
+    // setTimeout(() => {
+    //
+    // }, 1000);
+    setTimeout(() => {
+
+    }, 2000);
+    this.http.get(sampleUrl)
+      .subscribe((response) => {
+        this.dataSource.data = NUMBER_LEARNING_DATA;
+        this.loading = false;
+
+      });
+
+
+    // this.loading = false;
 
   }
 }
