@@ -28,13 +28,14 @@ import { QuizComponent } from './quiz/quiz.component';
 import { SortTableComponent } from './sort-table/sort-table.component';
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 import { LearnListComponent } from './learn-list/learn-list.component';
+import { LorayneListComponent } from './lorayne-list/lorayne-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
-    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent
+    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent, LorayneListComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
