@@ -22,7 +22,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
   dataSource: ResultsDataSource;
 
-  displayedColumns = ['index', 'question', 'answer', 'correct'];
+  displayedColumns = ['id', 'question', 'answer', 'correct'];
 
   // @Input() questions: ResultEntry[];
 
