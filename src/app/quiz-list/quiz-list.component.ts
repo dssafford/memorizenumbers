@@ -2,11 +2,12 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {QuizListService} from '../service/quiz-list.service';
 import {Observable} from 'rxjs/Observable';
 import {ResultEntry} from '../model/ResultEntry';
-import {MatPaginator, MatSort} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {fromEvent} from 'rxjs/observable/fromEvent';
 import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
 import {merge} from 'rxjs/observable/merge';
 import {QuizListDataSource} from '../service/quizListDataSource';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-quiz-list',
@@ -14,37 +15,39 @@ import {QuizListDataSource} from '../service/quizListDataSource';
   styleUrls: ['./quiz-list.component.css']
 })
 export class QuizListComponent implements OnInit, AfterViewInit {
-
+  api = 'http://localhost:8004/api/QuizList';
   title = 'Quiz List Directory';
 
   quizzes: ResultEntry[];
 
   displayedColumns = ['id', 'question', 'answer', 'correct', 'date_added', 'comments'];
 
-  dataSource: QuizListDataSource;
+  // dataSource: QuizListDataSource;
+
+  dataSource = new MatTableDataSource<ResultEntry>();
+  length: number;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 
-  @ViewChild('input') input: ElementRef;
-
+  // @ViewChild('input') input: ElementRef;
 
 
   // dataSource = new QuizDataSource(this.quizlistService);
 
 
-  constructor(private quizlistService: QuizListService) { }
+  constructor(private quizlistService: QuizListService,
+              private http: HttpClient) {
+  }
 
   ngOnInit() {
-  //   console.log('in getQuizList');
-  //
-  // this.quizlistService.getQuizList();
-
-    this.dataSource = new QuizListDataSource(this.quizlistService);
-
-    this.dataSource.loadQuizzes( '', 'asc' , 0, 3);
-}
+    this.quizlistService.getQuizList().subscribe(
+      data => {
+        this.dataSource.data = data;
+        // this.length = data.result.length;
+      });
+  }
 
   getQuizzes(): Observable<ResultEntry[]> {
 
@@ -54,34 +57,47 @@ export class QuizListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
-    fromEvent(this.input.nativeElement, 'keyup ' )
-      .pipe(
-        debounceTime(150),
-        distinctUntilChanged(),
-        tap(() => {
-          this.paginator.pageIndex = 0;
+    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-          this.loadQuizzesPage();
-        })
-      )
-      .subscribe();
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        tap(() => this.loadQuizzesPage())
-      )
-      .subscribe();
+    // fromEvent(this.input.nativeElement, 'keyup ')
+    //   .pipe(
+    //     debounceTime(150),
+    //     distinctUntilChanged(),
+    //     tap(() => {
+    //       this.paginator.pageIndex = 0;
+    //
+    //       this.loadQuizzesPage();
+    //     })
+    //   )
+    //   .subscribe();
+    //
+    // merge(this.sort.sortChange, this.paginator.page)
+    //   .pipe(
+    //     tap(() => this.loadQuizzesPage())
+    //   )
+    //   .subscribe();
   }
 
-  loadQuizzesPage() {
-    this.dataSource.loadQuizzes(
-      this.input.nativeElement.value,
-      this.sort.direction,
-      this.paginator.pageIndex,
-      this.paginator.pageSize);
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
+
+  rowClicked(row: any): void {
+    console.log(row);
+  }
+
+  // loadQuizzesPage() {
+  //   this.dataSource.loadQuizzes(
+  //     this.input.nativeElement.value,
+  //     this.sort.direction,
+  //     this.paginator.pageIndex,
+  //     this.paginator.pageSize);
+  // }
 }
 
 // export class QuizDataSource extends DataSource<any> {

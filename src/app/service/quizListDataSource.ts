@@ -28,7 +28,7 @@ export class QuizListDataSource implements DataSource<ResultEntry> {
 
     this.loadingSubject.next(true);
 
-    this.quizListService.findQuizzes(filter, sortDirection,
+    this.quizListService.findQuizzes(sortDirection,
       pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
