@@ -29,22 +29,22 @@ export class LearnListComponent implements OnInit, AfterViewInit {
   }
   applyFilter(filterValue: string) {
 
-    const sampleUrl = 'http://slowwly.robertomurray.co.uk/delay/1000/url/https://jsonplaceholder.typicode.com/posts/1';
+    // const sampleUrl = 'http://slowwly.robertomurray.co.uk/delay/1000/url/https://jsonplaceholder.typicode.com/posts/1';
     this.loading = true;
-    setTimeout(() => {
-
-      this.loading = true;
-
-    }, 2000);
-    this.http.get(sampleUrl)
-      .subscribe((response) => {
+    // setTimeout(() => {
+    //
+    //   this.loading = true;
+    //
+    // }, 2000);
+    // this.http.get(sampleUrl)
+    //   .subscribe((response) => {
 
         filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
         this.dataSource.filter = filterValue;
         this.loading = false;
 
-      });
+      // });
     // this.dataSource.filter = filterValue;
     // this.loading = false;
   }
@@ -60,15 +60,15 @@ export class LearnListComponent implements OnInit, AfterViewInit {
     // setTimeout(() => {
     //
     // }, 1000);
-    setTimeout(() => {
-
-    }, 2000);
-    this.http.get(sampleUrl)
-      .subscribe((response) => {
+    // setTimeout(() => {
+    //
+    // }, 2000);
+    // this.http.get(sampleUrl)
+    //   .subscribe((response) => {
         this.dataSource.data = NUMBER_LEARNING_DATA;
         this.loading = false;
 
-      });
+      // });
 
 
     // this.loading = false;

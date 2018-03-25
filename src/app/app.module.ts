@@ -29,13 +29,17 @@ import { SortTableComponent } from './sort-table/sort-table.component';
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 import { LearnListComponent } from './learn-list/learn-list.component';
 import { LorayneListComponent } from './lorayne-list/lorayne-list.component';
+import { BindingExamplesComponent } from './binding-examples/binding-examples.component';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './child/child.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
-    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent, LorayneListComponent
+    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent,
+    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

@@ -1,15 +1,36 @@
-<mat-sidenav-container>
-  <mat-sidenav #sidenav role="navigation">
-    <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<!--<mat-sidenav-container>-->
+  <!--<mat-sidenav #sidenav role="navigation">-->
+    <!--<app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>-->
+  <!--</mat-sidenav>-->
+  <!--<mat-sidenav-content>-->
+    <!--<app-header (sidenavToggle)="sidenav.toggle()"></app-header>-->
+    <!--<main>-->
+      <!--<router-outlet></router-outlet>-->
+    <!--</main>-->
+  <!--</mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->
 
+<h3>app Component</h3>
+
+<!--<label>app Component</label>-->
+<!--<input type="text" #pcomponent (keyup)="0"/>-->
+
+<!--<p>Value of binding component is: {{ CData }}</p>-->
+<!--<app-binding-examples [PData]="pcomponent.value" [parentCount]="count" (childEvent)="CData=$event"></app-binding-examples>-->
+
+<!--<div>-->
+  <!--<p>Value of child component is: {{ CData }}</p>-->
+  <app-binding-examples [parentCount]="count" [resultEntry]="firstResultEntry"> </app-binding-examples>
+<!--&lt;!&ndash;<app-binding-examples [resultEntry]="firstResultEntry" ></app-binding-examples>&ndash;&gt;-->
+<!--</div>-->
+<!--<h3>app Component</h3>-->
+
+<!--<label>app Component</label>-->
+<!--<input type="text" #pcomponent (keyup)="0"/>-->
+
+<!--<p>Value of binding examples component is: {{ CData }}</p>-->
+
+<!--<app-binding-examples [PData]="pcomponent.value" (childEvent)="CData=$event"></app-binding-examples>-->
 
 <!--<div class="basic-container">-->
   <!--&lt;!&ndash;<app-alert></app-alert>&ndash;&gt;-->

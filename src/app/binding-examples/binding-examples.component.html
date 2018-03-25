@@ -1,0 +1,43 @@
+<p>
+binding-examples works!
+
+</p>
+<div>Simple example of field interpolation: {{dude}}</div>
+<div>
+<div>Simple example of method interpolation: {{wasWatched()}}</div>
+
+<div><h2 [textContent]="name">Simple example of property binding two way: </h2></div>
+<div>
+  <br>
+  <div></div>
+  <div>
+    <div>
+      <p></p>
+      <a class="delete" (click)="onDelete()">delete</a>
+      <p></p>
+      <a href="" class="submit">submit</a>
+    </div>
+    <div>ParentCount = {{parentCount}}</div>
+  </div>
+
+
+  <!--<div>-->
+  <!--<p></p>-->
+  <!--Using the @Input directive from app.component item:-->
+  <!--<p>The question value = {{resultEntry.question}}</p>-->
+  <!--<p>The answer value = {{resultEntry.answer}}</p>-->
+  <!--<p>The correct value = {{resultEntry.correct}}</p>-->
+  <!--</div>-->
+  <div>
+    <h3>binding Component</h3>
+
+    <label>binding Component</label>
+    <input type="text" #ccomponent (keyup)="onChange(ccomponent.value)"/>
+
+    <p>Value of parent component is: {{ PData }}</p>
+    <p>Value of parent count is: {{ parentCount }}</p>
+    <p>Value of resultEntry question: {{ resultEntry.question }}</p>
+    <p>Value of resultEntry answer: {{ resultEntry.answer }}</p>
+    <p>Value of resultEntry correct: {{ resultEntry.correct }}</p>
+    <p>Value of resultEntry date: {{ resultEntry.date_added }}</p>
+  </div>

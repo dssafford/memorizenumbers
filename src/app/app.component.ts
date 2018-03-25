@@ -10,6 +10,18 @@ import {AuthenticationService} from './service/authentication.service';
 export class AppComponent {
   title = 'app';
 
+  count: number = 10;
+
+  firstResultEntry = {
+    id: 12,
+    question:  1,
+    answer: 2,
+    correct: 1,
+    date_added: '2018-01-01',
+    comments: 'dude comments'
+
+  };
+
   constructor(private router: Router, private userService: AuthenticationService) {
   }
 
