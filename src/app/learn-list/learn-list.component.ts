@@ -15,10 +15,12 @@ export class LearnListComponent implements OnInit, AfterViewInit {
 
   loading: boolean;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
@@ -26,27 +28,13 @@ export class LearnListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.loading = false;
   }
+
   applyFilter(filterValue: string) {
-
-    // const sampleUrl = 'http://slowwly.robertomurray.co.uk/delay/1000/url/https://jsonplaceholder.typicode.com/posts/1';
-    this.loading = true;
-    // setTimeout(() => {
-    //
-    //   this.loading = true;
-    //
-    // }, 2000);
-    // this.http.get(sampleUrl)
-    //   .subscribe((response) => {
-
-        filterValue = filterValue.trim(); // Remove whitespace
-        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-        this.dataSource.filter = filterValue;
-        this.loading = false;
-
-      // });
-    // this.dataSource.filter = filterValue;
-    // this.loading = false;
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
   rowClicked(row: any): void {
@@ -54,24 +42,15 @@ export class LearnListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    const sampleUrl = 'http://slowwly.robertomurray.co.uk/delay/2000/url/https://jsonplaceholder.typicode.com/posts/1';
 
-    this.loading = true;
-    // setTimeout(() => {
-    //
-    // }, 1000);
-    // setTimeout(() => {
-    //
-    // }, 2000);
-    // this.http.get(sampleUrl)
-    //   .subscribe((response) => {
-        this.dataSource.data = NUMBER_LEARNING_DATA;
-        this.loading = false;
+    setTimeout(() => {
+      this.loading = true;
 
-      // });
+    }, 2000);
 
+    this.dataSource.data = NUMBER_LEARNING_DATA;
 
-    // this.loading = false;
+    this.loading = false;
 
   }
 }
@@ -685,7 +664,7 @@ const NUMBER_LEARNING_DATA: MYNUMBER[] =
       'action': '',
       'object': ''
     }
-  ]
+  ];
 
 
 //   Study which consonants commonly correspond to which numbers. Each number is assigned a consonant based on some kind of recognizable relationship between the two:[2]

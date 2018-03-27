@@ -1,48 +1,51 @@
 <!--<mat-toolbar color="primary">-->
-  <!--&lt;!&ndash;<mat-toolbar-row>&ndash;&gt;-->
-    <!--&lt;!&ndash;<span><img src=""></span>&ndash;&gt;-->
-    <!--&lt;!&ndash;<span class="example-fill-remaining-space"></span>&ndash;&gt;-->
-    <!--&lt;!&ndash;<span class="example-spacer"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;<mat-toolbar-row>&ndash;&gt;-->
+<!--&lt;!&ndash;<span><img src=""></span>&ndash;&gt;-->
+<!--&lt;!&ndash;<span class="example-fill-remaining-space"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;<span class="example-spacer"></span>&ndash;&gt;-->
 
-    <!--&lt;!&ndash;<button mat-button>About</button>&ndash;&gt;-->
-    <!--&lt;!&ndash;<button mat-button>Contact</button>&ndash;&gt;-->
-  <!--&lt;!&ndash;</mat-toolbar-row>&ndash;&gt;-->
+<!--&lt;!&ndash;<button mat-button>About</button>&ndash;&gt;-->
+<!--&lt;!&ndash;<button mat-button>Contact</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</mat-toolbar-row>&ndash;&gt;-->
 <!--</mat-toolbar>-->
 <div class=" mat-elevation-z8" fxLayout="column" fxLayoutAlign="center center"
      fxLayoutGap="10px">
 
-
-    <mat-spinner *ngIf="loading"></mat-spinner>
+  <!--<div *ngIf="loading == true">-->
+    <!--<mat-spinner mode="indeterminate" color="accent"></mat-spinner>-->
+  <!--</div>-->
 
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
+
+
   <mat-table #table [dataSource]="dataSource" matSort style="width: 600px">
 
     <ng-container matColumnDef="number">
-      <mat-header-cell *matHeaderCellDef  fxFlex="20px"> No. </mat-header-cell>
-      <mat-cell *matCellDef="let mynumber" fxFlex="20px"> {{mynumber.number}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef fxFlex="20px"> No.</mat-header-cell>
+      <mat-cell *matCellDef="let mynumber" fxFlex="20px"> {{mynumber.number}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-      <mat-cell *matCellDef="let mynumber"> {{mynumber.name}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
+      <mat-cell *matCellDef="let mynumber"> {{mynumber.name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-      <mat-cell *matCellDef="let mynumber"> {{mynumber.action}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
+      <mat-cell *matCellDef="let mynumber"> {{mynumber.action}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="object">
-      <mat-header-cell *matHeaderCellDef> Object </mat-header-cell>
-      <mat-cell *matCellDef="let mynumber"> {{mynumber.object}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Object</mat-header-cell>
+      <mat-cell *matCellDef="let mynumber"> {{mynumber.object}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "rowClicked(row)" ></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></mat-row>
   </mat-table>
   <mat-paginator [length]="5" [pageSize]="4" [pageSizeOptions]="[5, 10, 25]">
   </mat-paginator>
