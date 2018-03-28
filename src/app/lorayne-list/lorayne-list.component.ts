@@ -13,7 +13,7 @@ export class LorayneListComponent implements OnInit {
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   // public loading$ = this.loadingSubject.asObservable();
-  public loading$ = false;
+  public loading = false;
 
   dataSource = new MatTableDataSource<MYNUMBER>();
   mynumbers: MYNUMBER[];
@@ -26,24 +26,25 @@ export class LorayneListComponent implements OnInit {
    * be able to query its view for the initialized paginator.
    */
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.loading = true;
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.loading = false;
+    }, 1000);
   }
   applyFilter(filterValue: string) {
 
-    // this.loadingSubject.next(true);
-    this.loading$ = true;
-    //Wait 2 seconds, and show this image:
-    // setTimeout(() => this.loading$ = true, 2000);
+      this.loading = true;
 
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    //Wait 2 seconds, and show this image:
-    // setTimeout(() => this.dataSource.filter = filterValue;, 2000);
-
+    setTimeout(() => {
+        filterValue = filterValue.trim();
+        filterValue = filterValue.toLowerCase();
+        this.dataSource.filter = filterValue;
+        this.loading = false
+      }, 500);
 
 
-    this.loading$ = false;
   }
 
   rowClicked(row: any): void {
@@ -51,16 +52,12 @@ export class LorayneListComponent implements OnInit {
   }
 
   ngOnInit() {
-    //Wait 2 seconds, and show this image:
-    setTimeout(() => this.loading$ = true, 10000);
-    // this.apiService.getUsers().subscribe(
-    //   data => {
-    //     this.dataSource.data = data;
-    //     //this.length = data.result.length;
 
-    this.dataSource.data = NUMBER_LEARNING_DATA;
-
-    this.loading$ = false;
+    this.loading = true;
+    setTimeout(() => {
+      this.dataSource.data = NUMBER_LEARNING_DATA;
+      this.loading = false;
+    }, 1000);
   }
 }
 

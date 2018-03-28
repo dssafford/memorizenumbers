@@ -26,15 +26,22 @@ export class LearnListComponent implements OnInit, AfterViewInit {
    * be able to query its view for the initialized paginator.
    */
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    this.loading = false;
+    this.loading = true;
+
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, 1000);
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    this.loading = true;
+    setTimeout(() => {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
+        this.loading = false;
+      }, 500);
   }
 
   rowClicked(row: any): void {
@@ -42,15 +49,13 @@ export class LearnListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.loading = true;
 
     setTimeout(() => {
-      this.loading = true;
+      this.dataSource.data = NUMBER_LEARNING_DATA;
+      this.loading = false;
+    }, 1000);
 
-    }, 2000);
-
-    this.dataSource.data = NUMBER_LEARNING_DATA;
-
-    this.loading = false;
 
   }
 }

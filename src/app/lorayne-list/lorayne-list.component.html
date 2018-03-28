@@ -1,19 +1,10 @@
-<!--<mat-toolbar color="primary">-->
-  <!--<mat-toolbar-row>-->
-    <!--<span><img src=""></span>-->
-    <!--<span class="example-fill-remaining-space"></span>-->
-    <!--<span class="example-spacer"></span>-->
-  <!--</mat-toolbar-row>-->
-<!--</mat-toolbar>-->
-
 <div class=" mat-elevation-z8" fxLayout="column" fxLayoutAlign="center center"
      fxLayoutGap="10px" >
 
-  <div class="spinner-container" *ngIf="loading$">
-
-    <mat-spinner mode="indeterminate"></mat-spinner>
-
+  <div *ngIf="loading == true">
+    <mat-spinner mode="indeterminate" color="accent"></mat-spinner>
   </div>
+
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
