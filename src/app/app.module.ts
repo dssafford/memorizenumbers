@@ -32,6 +32,7 @@ import { LorayneListComponent } from './lorayne-list/lorayne-list.component';
 import { BindingExamplesComponent } from './binding-examples/binding-examples.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
+import { LearningComponent } from './learning/learning.component';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { ChildComponent } from './child/child.component';
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
     FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent,
-    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent
+    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent, LearningComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
