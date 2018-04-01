@@ -33,6 +33,7 @@ import { BindingExamplesComponent } from './binding-examples/binding-examples.co
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { LearningComponent } from './learning/learning.component';
+import { CssComponent } from './css/css.component';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { LearningComponent } from './learning/learning.component';
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
     FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent,
-    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent, LearningComponent
+    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent, LearningComponent, CssComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

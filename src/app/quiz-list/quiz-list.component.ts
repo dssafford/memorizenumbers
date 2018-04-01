@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {QuizListService} from '../service/quiz-list.service';
 import {Observable} from 'rxjs/Observable';
-import {ResultEntry} from '../model/ResultEntry';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {fromEvent} from 'rxjs/observable/fromEvent';
 import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
 import {merge} from 'rxjs/observable/merge';
 import {QuizListDataSource} from '../service/quizListDataSource';
 import {HttpClient} from '@angular/common/http';
+import {Quiz} from '../model/quiz';
 
 @Component({
   selector: 'app-quiz-list',
@@ -18,13 +18,13 @@ export class QuizListComponent implements OnInit, AfterViewInit {
   api = 'http://localhost:8004/api/QuizList';
   title = 'Quiz List Directory';
 
-  quizzes: ResultEntry[];
+  quizzes: Quiz[];
 
-  displayedColumns = ['id', 'question', 'answer', 'correct', 'date_added', 'comments'];
+  displayedColumns = ['id', 'number_of_questions', 'score', 'date_added', 'comments'];
 
   // dataSource: QuizListDataSource;
 
-  dataSource = new MatTableDataSource<ResultEntry>();
+  dataSource = new MatTableDataSource<Quiz>();
   length: number;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -49,7 +49,7 @@ export class QuizListComponent implements OnInit, AfterViewInit {
       });
   }
 
-  getQuizzes(): Observable<ResultEntry[]> {
+  getQuizzes(): Observable<Quiz[]> {
 
     return this.quizlistService.getQuizList();
 

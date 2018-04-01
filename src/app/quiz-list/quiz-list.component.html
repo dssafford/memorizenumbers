@@ -8,33 +8,31 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
+
   <!--<mat-table (matSortChange)="sortData($event)" [dataSource]="dataSource"-->
              <!--matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>-->
+
     <mat-table [dataSource]="dataSource"
                matSort matSortDirection="asc">
     <ng-container matColumnDef="id">
       <mat-header-cell fxFlex="30px" mat-sort-header *matHeaderCellDef> id</mat-header-cell>
-      <mat-cell fxFlex="30px" *matCellDef="let quiz"> {{quiz.id}}</mat-cell>
+      <mat-cell fxFlex="30px" *matCellDef="let quiz"> {{quiz[0]}}</mat-cell>
     </ng-container>
+      <ng-container matColumnDef="number_of_questions">
+        <mat-header-cell fxFlex="70px" *matHeaderCellDef> # Qs</mat-header-cell>
+        <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz[1]}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="score">
+        <mat-header-cell fxFlex="70px" *matHeaderCellDef> score</mat-header-cell>
+        <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz[2]}}</mat-cell>
+      </ng-container>
     <ng-container matColumnDef="date_added">
       <mat-header-cell mat-sort-header fxFlex="200px" *matHeaderCellDef> date added</mat-header-cell>
-      <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.date_added}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="question">
-      <mat-header-cell fxFlex="70px" *matHeaderCellDef> question</mat-header-cell>
-      <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.question}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="answer">
-      <mat-header-cell fxFlex="70px" *matHeaderCellDef> answer</mat-header-cell>
-      <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.answer}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="correct">
-      <mat-header-cell fxFlex="70px" *matHeaderCellDef> correct</mat-header-cell>
-      <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.correct}}</mat-cell>
+      <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz[3]}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="comments">
       <mat-header-cell fxFlex="200px" *matHeaderCellDef> comments</mat-header-cell>
-      <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.comments}}</mat-cell>
+      <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz[4]}}</mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
