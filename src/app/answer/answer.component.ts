@@ -100,18 +100,21 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
     let numCorrect: number = 0;
     let numIncorrect: number = 0;
+    let finalNumber: string = '';
 
     // set up quiz
      this.currentQuiz = new Quiz();
      this.currentQuiz.comments = "dude";
      this.currentQuiz.numberOfQuestions = this.questions.length;
-     this.currentQuiz.score = 22; //this.getScore(numCorrect, numIncorrect);
+
 
      this.currentQuiz.answers = new Array<Answer>();
 
     // Create Answers Array
     this.newAnswers = new Array < Answer >();
-
+    for( let i =0; i< this.questions.length; i++) {
+      finalNumber = finalNumber + this.questions[i];
+     }
 
     for (let i = 0; i < this.questions.length; i++) {
 
@@ -129,7 +132,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
       this.currentAnswer.date_added = this.timerService.dbTimestampFormatDate(this.d);
       // debugger
-      this.currentAnswer.comments = 'chosen ' + this.questions.length;
+      this.currentAnswer.comments = 'chosen ' + finalNumber;
 
       this.newAnswers[i] = this.currentAnswer;
 
@@ -137,7 +140,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
      }
 
      // get the quiz info
-
+     this.currentQuiz.score = 22; //this.getScore(numCorrect, numIncorrect);
 
 
 
