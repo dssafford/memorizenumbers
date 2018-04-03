@@ -34,6 +34,7 @@ import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { LearningComponent } from './learning/learning.component';
 import { CssComponent } from './css/css.component';
+import { QuizDetailsComponent } from './quiz-details/quiz-details.component';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { CssComponent } from './css/css.component';
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
     FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent,
-    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent, LearningComponent, CssComponent
+    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent, LearningComponent, CssComponent, QuizDetailsComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

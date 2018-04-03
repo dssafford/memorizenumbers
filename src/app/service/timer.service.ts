@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {ResultEntry} from '../model/ResultEntry';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {AppRoutingModule} from '../app-routing.module';
 import {Router} from '@angular/router';
+import {Quiz} from '../model/quiz';
+import {Answer} from '../model/Answer';
 
 @Injectable()
 export class TimerService {
@@ -11,24 +12,13 @@ export class TimerService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  ticks = 0;
   randomNumber = 0;
   timer = Observable.timer(2000, 1000);
-  counter = 0;
-  subscription1: any;
-  subscription2: any;
-  newDate: string;
   d = new Date();
-  list_setup_count: number;
-
-  // numberList: Array<AnswerList> = new Array<AnswerList>();
   chosenNumber: number;
   model: any = {};
   isCounting: any;
   questions: any[] = [];
-  answers: any[] = [];
-  results: any[] = [];
-  newResultEntry: ResultEntry;
 
   showQuestions(questions: any[]) {
     this.questions = questions;
@@ -37,43 +27,48 @@ export class TimerService {
   }
 
   getQuestions(): ResultEntry[] {
-
     return this.questions;
-
   }
 
-  createNewEntry(resultEntry: ResultEntry) {
-
+  createNewQuizEntry(quizEntry: Quiz) {
     console.log('in createNewEntry method');
-    let myEntry: ResultEntry;
-    myEntry = new ResultEntry();
-    myEntry.question = resultEntry.question;
-    myEntry.answer = resultEntry.answer;
-    myEntry.correct = resultEntry.correct;
-    myEntry.date_added = this.dbTimestampFormatDate(this.d);
-    myEntry.comments = resultEntry.comments;
+    let myQuiz: Quiz;
+    myQuiz = new Quiz();
+    myQuiz.numberOfQuestions = quizEntry.numberOfQuestions;
+    myQuiz.score = quizEntry.score;
+    myQuiz.date_added = this.dbTimestampFormatDate(this.d);
+    myQuiz.comments = quizEntry.comments;
 
-    this.addNewEntry(myEntry);
-
-    // this.entry_in_progress.Date_Added = this.dbTimestampFormatDate(this.d);
-    // console.log(this.entry_in_progress);
-
-    // format date for mysql timestamp  YYYY-MM-DD HH:MM:SS
-
-    // this.entryService.addNewEntry(this.entry_in_progress)
-    //   .then((entryItem) => {
-    //     this.router.navigateByUrl('home');
-    //   });
+    this.addNewQuiz(myQuiz);
   }
 
-
-  addNewEntry(resultEntry: ResultEntry) {
+  // createNewAnswerEntry(answerEntry: Answer) {
+  //   console.log('in createNewEntry method');
+  //   let myAnswer: Answer;
+  //   myAnswer = new Answer();
+  //   myAnswer.question = answerEntry.question;
+  //   myAnswer.answer = answerEntry.answer;
+  //   myAnswer.correct = answerEntry.correct;
+  //   myAnswer.date_added = this.dbTimestampFormatDate(this.d);
+  //   myAnswer.comments = answerEntry.comments;
+  //   myAnswer.quiz_id = answerEntry.quiz_id;
+  //
+  //   // this.addNewAnswer(myAnswer);
+  // }
+  addNewQuiz(myQuiz: Quiz) {
     return this.http
-      .post('http://localhost:8004' + '/api/Quiz', resultEntry)
+      .post('http://localhost:8004' + '/api/Quiz', myQuiz)
       .toPromise()
-      .then(response => response as ResultEntry)
+      .then(response => response as Quiz)
       .catch(this.handleError);
   }
+  // addNewAnswer(myAnswer: Answer) {
+  //   return this.http
+  //     .post('http://localhost:8004' + '/api/Answer', myAnswer)
+  //     .toPromise()
+  //     .then(response => response as Quiz)
+  //     .catch(this.handleError);
+  // }
 
   dbTimestampFormatDate(date): string {
     let hours = date.getHours();
@@ -93,7 +88,6 @@ export class TimerService {
     // debugger
     return (day + '-' + (month + 1) + '-' + year + '  ' + strTime).toString();
   }
-
 
   private handleError(error: any): Promise<any> {
     console.error('ERROR OCCURRED TALKING TO SERVER' + error);

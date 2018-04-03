@@ -1,8 +1,8 @@
 <div class="example-container mat-elevation-z8">
 
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
-  </div>
+  <!--<div class="spinner-container" *ngIf="dataSource.loading$ | async">-->
+    <!--<mat-spinner></mat-spinner>-->
+  <!--</div>-->
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -12,7 +12,7 @@
   <!--<mat-table (matSortChange)="sortData($event)" [dataSource]="dataSource"-->
              <!--matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>-->
 
-    <mat-table [dataSource]="dataSource"
+    <mat-table [dataSource]="quizDataSource"
                matSort matSortDirection="asc">
     <ng-container matColumnDef="id">
       <mat-header-cell fxFlex="30px" mat-sort-header *matHeaderCellDef> id</mat-header-cell>
@@ -35,10 +35,36 @@
       <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz[4]}}</mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></mat-row>
   </mat-table>
   <mat-paginator [length]="5" [pageSize]="4" [pageSizeOptions]="[5, 10, 25]">
   </mat-paginator>
 </div>
-
-
+<p></p>
+<!--<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">-->
+  <!--<div class="example-container mat-elevation-z8">-->
+    <!--<mat-table fxFlex="500px" #table [dataSource]="answerDataSource">-->
+      <!--<ng-container matColumnDef="id">-->
+        <!--<mat-header-cell fxFlex="30px" *matHeaderCellDef> id </mat-header-cell>-->
+        <!--<mat-cell fxFlex="30px" *matCellDef="let answer"> {{answer[0]} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="question">-->
+        <!--<mat-header-cell fxFlex="70px" *matHeaderCellDef> question </mat-header-cell>-->
+        <!--<mat-cell fxFlex="70px" *matCellDef="let answer"> {{answer[1]}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="answer">-->
+        <!--<mat-header-cell fxFlex="70px" *matHeaderCellDef> answer </mat-header-cell>-->
+        <!--<mat-cell fxFlex="70px" *matCellDef="let answer"> {{answer[2]}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="correct">-->
+        <!--<mat-header-cell fxFlex="70px" *matHeaderCellDef> correct </mat-header-cell>-->
+        <!--<mat-cell fxFlex="70px" *matCellDef="let answer"> {{answer[3]}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="comments">-->
+        <!--<mat-header-cell fxFlex="200px" *matHeaderCellDef> comments </mat-header-cell>-->
+        <!--<mat-cell fxFlex="200px" *matCellDef="let answer"> {{answer[4]}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+      <!--<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>-->
+    <!--</mat-table>-->
+  <!--</div>-->

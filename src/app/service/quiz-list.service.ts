@@ -14,20 +14,24 @@ export class QuizListService {
   }
 
   getQuizList(): Observable<Quiz[]> {
-    console.log('list below');
 
-// debugger
-
-    console.log(this.http.get('http://localhost:8004/api/getSome').toPromise());
+    // console.log(this.http.get('http://localhost:8004/api/getSome').toPromise());
 
     return (this.http.get<Quiz[]>(this.api));
+
+  }
+
+  getAnswerList(id: string): Observable<ResultEntry[]> {
+
+    const myApi = 'http://localhost:8004/api/getAnswers/' + id;
+    return (this.http.get<ResultEntry[]>(myApi));
 
   }
 
   findQuizzes(sortOrder = 'asc',
     pageNumber = 1, pageSize = 2):  Observable<ResultEntry[]> {
 
-    console.log(this.http.get(this.api).toPromise());
+    // console.log(this.http.get(this.api).toPromise());
     // return this.http.get(this.api);
 
     return this.http.get(this.api, {

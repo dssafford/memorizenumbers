@@ -5,6 +5,9 @@ import {Router} from '@angular/router';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {Quiz} from '../model/quiz';
+import {Answer} from '../model/Answer';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-answer',
@@ -13,12 +16,16 @@ import 'rxjs/add/observable/of';
 })
 export class AnswerComponent implements OnInit, AfterViewInit {
   questions: any[] = [];
-  answers: any[] = [];
+  answers: any = [];
+  newAnswers: Answer[] = [];
   resultEntry: ResultEntry;
   d = new Date();
   results: ResultEntry[];
   show: boolean = false;
   showButton: boolean = false;
+  currentQuiz: Quiz;
+  currentAnswer: Answer;
+  mystr: string;
 
   dataSource: ResultsDataSource;
 
@@ -26,7 +33,8 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
   // @Input() questions: ResultEntry[];
 
-  constructor(private timerService: TimerService, private router: Router) {
+  constructor(private timerService: TimerService, private router: Router,
+              private http: HttpClient) {
   }
 
   public myFocusTriggeringEventEmitter = new EventEmitter<boolean>();
@@ -54,52 +62,133 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
 
   onSubmit(post: any): void {
+    // get info from form submit
     this.answers = post;
+
+    // Set up Results Quiz and Answer List
     this.createResults();
 
-    // Show results
-    this.showResults();
+
+
+    // Process results and enter to db
+    // this.processResults();
 
 
   }
 
-   createResults(): ResultEntry[] {
-    this.results = new Array < ResultEntry >();
+  // Quiz quiz = new Quiz(12, 85, "dude comments here");
+  //
+  // Answer myAnswer1 = new Answer();
+  // myAnswer1.setQuestion(1);
+  // myAnswer1.setAnswer(1);
+  // myAnswer1.setCorrect(true);
+  // myAnswer1.setComments("comments in answer here");
+  // myAnswer1.setQuiz(quiz);
+  //
+  // Answer myAnswer2 = new Answer();
+  // myAnswer2.setQuestion(1);
+  // myAnswer2.setAnswer(1);
+  // myAnswer2.setCorrect(true);
+  // myAnswer2.setComments("comments in answer here");
+  // myAnswer2.setQuiz(quiz);
+  //
+  // quiz.getAnswers().add(myAnswer1);
+  // quiz.getAnswers().add(myAnswer2);
+  //
+  // quizRepository.save(quiz);
+   createResults() {
+
+    let numCorrect: number = 0;
+    let numIncorrect: number = 0;
+
+    // set up quiz
+     this.currentQuiz = new Quiz();
+     this.currentQuiz.comments = "dude";
+     this.currentQuiz.numberOfQuestions = this.questions.length;
+     this.currentQuiz.score = 22; //this.getScore(numCorrect, numIncorrect);
+
+     this.currentQuiz.answers = new Array<Answer>();
+
+    // Create Answers Array
+    this.newAnswers = new Array < Answer >();
+
 
     for (let i = 0; i < this.questions.length; i++) {
 
-      this.resultEntry  = new ResultEntry();
-      this.resultEntry.id = i;
-      this.resultEntry.question = this.questions[i];
-      this.resultEntry.answer = this.answers[i];
-      if (this.resultEntry.question == this.resultEntry.answer) {
-        this.resultEntry.correct = true;
+      this.currentAnswer  = new Answer();
+      this.currentAnswer.id = i;
+      this.currentAnswer.question = this.questions[i];
+      this.currentAnswer.answer = this.answers[i];
+      if (this.currentAnswer.question == this.currentAnswer.answer) {
+        this.currentAnswer.correct = true;
+        numCorrect++;
       } else {
-        this.resultEntry.correct = false;
+        this.currentAnswer.correct = false;
+        numIncorrect++;
       }
-      this.resultEntry.date_added = this.timerService.dbTimestampFormatDate(this.d);
+
+      this.currentAnswer.date_added = this.timerService.dbTimestampFormatDate(this.d);
       // debugger
-      this.resultEntry.comments = 'chosen ' + this.questions.length;
-      this.results[i] = this.resultEntry;
+      this.currentAnswer.comments = 'chosen ' + this.questions.length;
+
+      this.newAnswers[i] = this.currentAnswer;
+
+      this.currentQuiz.answers.push(this.currentAnswer);
      }
-     return this.results;
 
+     // get the quiz info
+
+
+
+
+
+     this.mystr = JSON.stringify(this.currentQuiz);
+     console.log(this.mystr);
+
+     this.http
+       .post('http://localhost:8004' + '/api/Quiz', this.currentQuiz)
+       .toPromise()
+       .then(response => response as Quiz);
+
+
+     this.show = true;
+     // this.router.navigateByUrl('showResult');
+     // debugger
+     this.dataSource = new ResultsDataSource(this.newAnswers);
+
+   }
+  // todo wow what here
+  // todo-me dude
+
+//  todo fix this below to add questions then #answers
+
+
+  getScore(numCorrect: number, numIncorrect: number): number {
+
+    return 87;
   }
 
-  showResults() {
-    var i;
-    console.log('final results ========================== = ');
-    for (i = 0; i < this.results.length; i++) {
-      console.log('Question: ' + this.results[i].question + ' - Answer; ' + this.results[i].answer + ' - Result= ' + this.results[i].correct);
 
-
-      this.timerService.createNewEntry(this.results[i]);
-    }
-    this.show = true;
-    // this.router.navigateByUrl('showResult');
-    // debugger
-    this.dataSource = new ResultsDataSource(this.results);
-  }
+  // processResults() {
+  //   var i;
+  //   console.log('final results ========================== = ');
+  //
+  //   // add currentQuiz info to database
+  //   this.timerService.createNewQuizEntry(this.currentQuiz);
+  //
+  //   // process then add Answers to database
+  //   for (i = 0; i < this.questions.length; i++) {
+  //     console.log('Question: ' + this.newAnswers[i].question + ' - Answer; ' + this.newAnswers[i].answer +
+  //       ' - Result= ' + this.newAnswers[i].correct);
+  //
+  //     this.timerService.createNewAnswerEntry(this.newAnswers[i]);
+  //
+  //   }
+  //   this.show = true;
+  //   // this.router.navigateByUrl('showResult');
+  //   // debugger
+  //   this.dataSource = new ResultsDataSource(this.newAnswers);
+  // }
 
 }
 
