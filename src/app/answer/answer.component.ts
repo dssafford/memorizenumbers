@@ -76,6 +76,9 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
   }
 
+  return() {
+    this.router.navigateByUrl('home');
+  }
   // Quiz quiz = new Quiz(12, 85, "dude comments here");
   //
   // Answer myAnswer1 = new Answer();
@@ -170,7 +173,6 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
     return 87;
   }
-
 
   // processResults() {
   //   var i;
