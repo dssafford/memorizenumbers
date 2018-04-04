@@ -3,11 +3,15 @@ import {QuizListService} from '../service/quiz-list.service';
 import {Observable} from 'rxjs/Observable';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {fromEvent} from 'rxjs/observable/fromEvent';
-import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, startWith, tap, delay, catchError, finalize} from 'rxjs/operators';
 import {merge} from 'rxjs/observable/merge';
 import {QuizListDataSource} from '../service/quizListDataSource';
 import {HttpClient} from '@angular/common/http';
 import {Quiz} from '../model/quiz';
+import {DataSource} from '@angular/cdk/collections';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {of} from 'rxjs/Observable/of';
+
 
 @Component({
   selector: 'app-quiz-list',
@@ -34,7 +38,7 @@ export class QuizListComponent implements OnInit, AfterViewInit {
   // @ViewChild('input') input: ElementRef;
 
 
-  // dataSource = new QuizDataSource(this.quizlistService);
+
 
 
   constructor(private quizlistService: QuizListService,
@@ -42,11 +46,16 @@ export class QuizListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
     this.quizlistService.getQuizList().subscribe(
       data => {
         this.dataSource.data = data;
-        // this.length = data.result.length;
       });
+
+
+
+console.log(this.quizlistService.getQuizList().toPromise());
+console.log('test');
   }
 
   getQuizzes(): Observable<Quiz[]> {
@@ -58,9 +67,9 @@ export class QuizListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
 
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+    //
     // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
     // fromEvent(this.input.nativeElement, 'keyup ')
@@ -82,11 +91,11 @@ export class QuizListComponent implements OnInit, AfterViewInit {
     //   .subscribe();
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
+  // applyFilter(filterValue: string) {
+  //   filterValue = filterValue.trim(); // Remove whitespace
+  //   filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+  //   this.dataSource.filter = filterValue;
+  // }
 
   rowClicked(row: any): void {
     console.log(row);
@@ -103,7 +112,7 @@ export class QuizListComponent implements OnInit, AfterViewInit {
 
 // export class QuizDataSource extends DataSource<any> {
 //
-//   private quizSubject = new BehaviorSubject<ResultEntry[]>([]);
+//   private quizSubject = new BehaviorSubject<Quiz[]>([]);
 //
 //   private loadingSubject = new BehaviorSubject<boolean>(false);
 //
@@ -113,10 +122,10 @@ export class QuizListComponent implements OnInit, AfterViewInit {
 //     super();
 //   }
 //
-//   loadQuizzes(filter:string,
-//               sortDirection:string,
-//               pageIndex:number,
-//               pageSize:number) {
+//   loadQuizzes(filter: string,
+//               sortDirection: string,
+//               pageIndex: number,
+//               pageSize: number) {
 //
 //     this.loadingSubject.next(true);
 //
@@ -129,8 +138,7 @@ export class QuizListComponent implements OnInit, AfterViewInit {
 //
 //   }
 //
-//
-//     connect(): Observable<ResultEntry[]> {
+//     connect(): Observable<Quiz[]> {
 //     return this.quizSubject.asObservable();
 //   }
 //   disconnect() {}

@@ -8,14 +8,14 @@ import {Quiz} from '../model/quiz';
 @Injectable()
 export class QuizListService {
 
-  api = 'http://localhost:8004/api/getSome';
+  api = 'http://localhost:8004/api/QuizList';
 
   constructor(private http: HttpClient) {
   }
 
   getQuizList(): Observable<Quiz[]> {
 
-    // console.log(this.http.get('http://localhost:8004/api/getSome').toPromise());
+    console.log(this.http.get('http://localhost:8004/api/QuizList').toPromise());
 
     return (this.http.get<Quiz[]>(this.api));
 
