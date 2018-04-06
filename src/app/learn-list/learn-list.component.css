@@ -4,11 +4,6 @@
   width: 500px;
 }
 
-.mat-table {
-  overflow: auto;
-  max-height: 600px;
-}
-
 .example-header {
   min-height: 64px;
   padding: 8px 24px 0;

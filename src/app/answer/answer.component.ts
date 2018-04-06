@@ -79,6 +79,10 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   return() {
     this.router.navigateByUrl('home');
   }
+
+  quizAgain() {
+    this.router.navigateByUrl('quiz');
+  }
   // Quiz quiz = new Quiz(12, 85, "dude comments here");
   //
   // Answer myAnswer1 = new Answer();

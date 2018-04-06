@@ -11,6 +11,10 @@ body {
   margin: 0;
 }
 
+.mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
 
 /*body {*/
   /*margin: 0;*/

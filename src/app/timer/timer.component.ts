@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/do';
@@ -49,15 +49,11 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.question = HEROES;
     console.log('Im in the timer component .ngOnInit() method')
     this.newDate = this.timerService.dbTimestampFormatDate(this.d);
-
-    //debugging only
-    // this.chosenNumber = 3 ;
-
     this.resetCounter();
     this.isCounting = true;
+
   }
 
   gotoAnswer() {
