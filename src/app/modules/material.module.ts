@@ -7,7 +7,7 @@ import {
   MatIconModule,
   MatCardModule, MatTableModule, MatSortModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonToggleModule,
   MatGridListModule, MatInputModule, MatSidenavModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatListItem,
-  MatListModule, MatTabsModule, MatPaginatorModule, MatProgressSpinnerModule, MatProgressBarModule, MatSnackBarModule
+  MatListModule, MatTabsModule, MatPaginatorModule, MatProgressSpinnerModule, MatProgressBarModule, MatSnackBarModule,
 } from '@angular/material';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';

@@ -42,19 +42,6 @@ export class TimerService {
     this.addNewQuiz(myQuiz);
   }
 
-  // createNewAnswerEntry(answerEntry: Answer) {
-  //   console.log('in createNewEntry method');
-  //   let myAnswer: Answer;
-  //   myAnswer = new Answer();
-  //   myAnswer.question = answerEntry.question;
-  //   myAnswer.answer = answerEntry.answer;
-  //   myAnswer.correct = answerEntry.correct;
-  //   myAnswer.date_added = this.dbTimestampFormatDate(this.d);
-  //   myAnswer.comments = answerEntry.comments;
-  //   myAnswer.quiz_id = answerEntry.quiz_id;
-  //
-  //   // this.addNewAnswer(myAnswer);
-  // }
   addNewQuiz(myQuiz: Quiz) {
     return this.http
       .post('http://localhost:8004' + '/api/Quiz', myQuiz)
@@ -62,13 +49,6 @@ export class TimerService {
       .then(response => response as Quiz)
       .catch(this.handleError);
   }
-  // addNewAnswer(myAnswer: Answer) {
-  //   return this.http
-  //     .post('http://localhost:8004' + '/api/Answer', myAnswer)
-  //     .toPromise()
-  //     .then(response => response as Quiz)
-  //     .catch(this.handleError);
-  // }
 
   dbTimestampFormatDate(date): string {
     let hours = date.getHours();

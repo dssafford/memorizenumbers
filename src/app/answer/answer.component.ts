@@ -2,12 +2,11 @@ import {AfterViewInit, Component, EventEmitter, Input, OnInit} from '@angular/co
 import {ResultEntry} from '../model/ResultEntry';
 import {TimerService} from '../service/timer.service';
 import {Router} from '@angular/router';
-import {DataSource} from '@angular/cdk/collections';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {Quiz} from '../model/quiz';
 import {Answer} from '../model/Answer';
 import {HttpClient} from '@angular/common/http';
+import {AnswerShowService} from '../service/answer-show.service';
 
 @Component({
   selector: 'app-answer',
@@ -18,6 +17,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   questions: any[] = [];
   answers: any = [];
   newAnswers: Answer[] = [];
+  // myAnswers: Answer[] = [];
   resultEntry: ResultEntry;
   d = new Date();
   results: ResultEntry[];
@@ -27,31 +27,40 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   currentAnswer: Answer;
   mystr: string;
 
-  dataSource: ResultsDataSource;
+
+  message: string;
+  myAnswers: Answer[];
+
+
+  // dataSource: ResultsDataSource;
 
   displayedColumns = ['id', 'question', 'answer', 'correct'];
 
   // @Input() questions: ResultEntry[];
 
   constructor(private timerService: TimerService, private router: Router,
-              private http: HttpClient) {
+              private http: HttpClient, private answerShow: AnswerShowService) {
   }
 
   public myFocusTriggeringEventEmitter = new EventEmitter<boolean>();
 
   someMethod() {
     this.myFocusTriggeringEventEmitter.emit(true);
-
   }
 
   ngOnInit() {
-    if(this.answers.length == 0) {
+    this.answerShow.currentMessage.subscribe(message => this.message = message);
+    this.answerShow.myArray.subscribe(data => this.myAnswers = data);
+
+
+    if(this.answers.length === 0) {
       this.showButton = false;
     }
     console.log('Im in the answer component .ngOnInit() method')
     console.log('found questions, length = ' + this.timerService.getQuestions().length);
 
     this.questions = this.timerService.getQuestions();
+
     this.someMethod();
   }
 
@@ -60,19 +69,12 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     this.someMethod();
   }
 
-
   onSubmit(post: any): void {
     // get info from form submit
     this.answers = post;
 
     // Set up Results Quiz and Answer List
     this.createResults();
-
-
-
-    // Process results and enter to db
-    // this.processResults();
-
 
   }
 
@@ -83,26 +85,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   quizAgain() {
     this.router.navigateByUrl('quiz');
   }
-  // Quiz quiz = new Quiz(12, 85, "dude comments here");
-  //
-  // Answer myAnswer1 = new Answer();
-  // myAnswer1.setQuestion(1);
-  // myAnswer1.setAnswer(1);
-  // myAnswer1.setCorrect(true);
-  // myAnswer1.setComments("comments in answer here");
-  // myAnswer1.setQuiz(quiz);
-  //
-  // Answer myAnswer2 = new Answer();
-  // myAnswer2.setQuestion(1);
-  // myAnswer2.setAnswer(1);
-  // myAnswer2.setCorrect(true);
-  // myAnswer2.setComments("comments in answer here");
-  // myAnswer2.setQuiz(quiz);
-  //
-  // quiz.getAnswers().add(myAnswer1);
-  // quiz.getAnswers().add(myAnswer2);
-  //
-  // quizRepository.save(quiz);
+
    createResults() {
 
     let numCorrect: number = 0;
@@ -111,15 +94,13 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
     // set up quiz
      this.currentQuiz = new Quiz();
-     this.currentQuiz.comments = "dude";
+     this.currentQuiz.comments = 'dude';
      this.currentQuiz.numberOfQuestions = this.questions.length;
-
-
      this.currentQuiz.answers = new Array<Answer>();
 
     // Create Answers Array
     this.newAnswers = new Array < Answer >();
-    for( let i =0; i< this.questions.length; i++) {
+    for( let i = 0; i < this.questions.length; i++) {
       finalNumber = finalNumber + this.questions[i];
      }
 
@@ -147,10 +128,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
      }
 
      // get the quiz info
-     this.currentQuiz.score = 22; //this.getScore(numCorrect, numIncorrect);
-
-
-
+     this.currentQuiz.score = this.getScore(numCorrect, numIncorrect); //this.getScore(numCorrect, numIncorrect);
 
      this.mystr = JSON.stringify(this.currentQuiz);
      console.log(this.mystr);
@@ -160,11 +138,12 @@ export class AnswerComponent implements OnInit, AfterViewInit {
        .toPromise()
        .then(response => response as Quiz);
 
+     this.changeAnswerArray();
 
-     this.show = true;
-     // this.router.navigateByUrl('showResult');
-     // debugger
-     this.dataSource = new ResultsDataSource(this.newAnswers);
+     // this.show = true;
+     this.router.navigateByUrl('showResult');
+
+     // this.dataSource = new ResultsDataSource(this.newAnswers);
 
    }
   // todo wow what here
@@ -175,39 +154,21 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
   getScore(numCorrect: number, numIncorrect: number): number {
 
-    return 87;
+    return (numCorrect / (numCorrect + numIncorrect)) * 100;
   }
 
-  // processResults() {
-  //   var i;
-  //   console.log('final results ========================== = ');
-  //
-  //   // add currentQuiz info to database
-  //   this.timerService.createNewQuizEntry(this.currentQuiz);
-  //
-  //   // process then add Answers to database
-  //   for (i = 0; i < this.questions.length; i++) {
-  //     console.log('Question: ' + this.newAnswers[i].question + ' - Answer; ' + this.newAnswers[i].answer +
-  //       ' - Result= ' + this.newAnswers[i].correct);
-  //
-  //     this.timerService.createNewAnswerEntry(this.newAnswers[i]);
-  //
-  //   }
-  //   this.show = true;
-  //   // this.router.navigateByUrl('showResult');
-  //   // debugger
-  //   this.dataSource = new ResultsDataSource(this.newAnswers);
-  // }
-
+  changeAnswerArray() {
+    this.answerShow.changeArray(this.newAnswers);
+  }
 }
 
-export class ResultsDataSource extends DataSource<any> {
-  constructor(private answerResults: ResultEntry[]) {
-    super();
-  }
-  connect(): Observable<ResultEntry[]> {
-    return Observable.of(this.answerResults);
-  }
-  disconnect() {}
-
-}
+// export class ResultsDataSource extends DataSource<any> {
+//   constructor(private answerResults: ResultEntry[]) {
+//     super();
+//   }
+//   connect(): Observable<ResultEntry[]> {
+//     return Observable.of(this.answerResults);
+//   }
+//   disconnect() {}
+//
+// }

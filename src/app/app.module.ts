@@ -35,6 +35,8 @@ import { ChildComponent } from './child/child.component';
 import { LearningComponent } from './learning/learning.component';
 import { CssComponent } from './css/css.component';
 import { QuizDetailsComponent } from './quiz-details/quiz-details.component';
+import { AnswerShowComponent } from './answer-show/answer-show.component';
+import {AnswerShowService} from './service/answer-show.service';
 
 
 @NgModule({
@@ -42,14 +44,15 @@ import { QuizDetailsComponent } from './quiz-details/quiz-details.component';
     AppComponent,
     TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
     FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent,
-    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent, LearningComponent, CssComponent, QuizDetailsComponent
+    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent, LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule,
     FlexLayoutModule
   ],
-  providers: [AuthenticationService, AlertService, TimerService, QuizListService],
+  providers: [AuthenticationService, AlertService, TimerService, QuizListService,
+  AnswerShowService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

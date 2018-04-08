@@ -14,6 +14,7 @@ import {LorayneListComponent} from './lorayne-list/lorayne-list.component';
 import {BindingExamplesComponent} from './binding-examples/binding-examples.component';
 import {ParentComponent} from './parent/parent.component';
 import {LearningComponent} from './learning/learning.component';
+import {AnswerShowComponent} from './answer-show/answer-show.component';
 // import {EntrySummaryListComponent} from './entry-summary-list/entry-summary-list.component';
 // import {FirstComponent} from './first/first.component';
 // import {EntryListComponent} from './entry-list/entry-list.component';
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
   { path: 'learn', component: LearningComponent},
   { path: 'paginate', component: TablePaginationComponent},
   { path: 'sortTable', component: SortTableComponent},
-  { path: 'showResult', component: ShowResultComponent},
+  { path: 'showResult', component: AnswerShowComponent},
   { path: 'quizzes', component: QuizListComponent },
   { path: 'answer', component:  AnswerComponent },
   { path: 'quizStuff', component:  QuizComponent },

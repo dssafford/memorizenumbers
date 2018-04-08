@@ -20,41 +20,40 @@
         </button>
     </span>
   </form>
+  {{message}}
 </div>
-<div *ngIf="show == true" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-  <div class="example-container mat-elevation-z8">
-    <mat-table fxFlex="500px" #table [dataSource]="dataSource">
+<!--<div *ngIf="show == true" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">-->
+  <!--<div class="example-container mat-elevation-z8">-->
+    <!--<mat-table fxFlex="500px" #table [dataSource]="dataSource">-->
 
-      <ng-container matColumnDef="id">
-        <mat-header-cell fxFlex="30px" *matHeaderCellDef> id </mat-header-cell>
-        <mat-cell fxFlex="30px" *matCellDef="let quiz"> {{quiz.id}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="date_added">
-        <mat-header-cell fxFlex="100px" *matHeaderCellDef> date added </mat-header-cell>
-        <mat-cell fxFlex="100px" *matCellDef="let quiz"> {{quiz.date_added}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="question">
-        <mat-header-cell fxFlex="70px" *matHeaderCellDef> question </mat-header-cell>
-        <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.question}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="answer">
-        <mat-header-cell fxFlex="70px" *matHeaderCellDef> answer </mat-header-cell>
-        <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.answer}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="correct">
-        <mat-header-cell fxFlex="70px" *matHeaderCellDef> correct </mat-header-cell>
-        <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.correct}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="comments">
-        <mat-header-cell fxFlex="200px" *matHeaderCellDef> comments </mat-header-cell>
-        <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.comments}} </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-
-  </div>
-<div>
-  <button mat-raised-button (click)="onClick=quizAgain()" color="primary">Quiz</button>
-  <button mat-raised-button (click)="onClick=return()" color="accent">Return</button>
-</div>
+      <!--<ng-container matColumnDef="id">-->
+        <!--<mat-header-cell fxFlex="30px" *matHeaderCellDef> id </mat-header-cell>-->
+        <!--<mat-cell fxFlex="30px" *matCellDef="let quiz"> {{quiz.id}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="date_added">-->
+        <!--<mat-header-cell fxFlex="100px" *matHeaderCellDef> date added </mat-header-cell>-->
+        <!--<mat-cell fxFlex="100px" *matCellDef="let quiz"> {{quiz.date_added}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="question">-->
+        <!--<mat-header-cell fxFlex="70px" *matHeaderCellDef> question </mat-header-cell>-->
+        <!--<mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.question}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="answer">-->
+        <!--<mat-header-cell fxFlex="70px" *matHeaderCellDef> answer </mat-header-cell>-->
+        <!--<mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.answer}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="correct">-->
+        <!--<mat-header-cell fxFlex="70px" *matHeaderCellDef> correct </mat-header-cell>-->
+        <!--<mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.correct}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="comments">-->
+        <!--<mat-header-cell fxFlex="200px" *matHeaderCellDef> comments </mat-header-cell>-->
+        <!--<mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.comments}} </mat-cell>-->
+      <!--</ng-container>-->
+      <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+      <!--<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>-->
+    <!--</mat-table>-->
+  <!--</div>-->
+  <!--<button type="submit" (click)="onClick=quizAgain()" color="primary" autofocus>Quiz</button>-->
+  <!--<button mat-raised-button (click)="onClick=return()" color="accent">Return</button>-->
+<!--</div>-->

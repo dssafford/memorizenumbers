@@ -1,12 +1,15 @@
 <section>
     <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
       <mat-form-field>
-        <input matInput name="chosenNumber" ngModel required autofocus #chosenNumberInput="ngModel">
-        <mat-error *ngIf="chosenNumberInput.hasError('required')">Field must not be empty.</mat-error>
+        <input matInput name="chosenNumber" #crapInput ngModel required autofocus>
+        <mat-error *ngIf="chosenNumber.hasError('required')">Field must not be empty.</mat-error>
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
     </form>
 </section>
+<!--<span appBacon>sandwich!</span>-->
+<!--<div><input #someInput placeholder="Your favorite pizza toping"></div>-->
+
 
 <div fxLayout="row" fxLayoutAlign="center" class="my-container"><h1 *ngIf="isCounting" class="h1-big-red">
   {{randomNumber}} </h1>

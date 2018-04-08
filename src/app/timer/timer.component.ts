@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/do';
@@ -7,7 +7,7 @@ import {TimerService} from '../service/timer.service';
 import {ResultEntry} from '../model/ResultEntry';
 import {AppRoutingModule} from '../app-routing.module';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
+import {FormControl, NgForm, Validators} from '@angular/forms';
 
 const HEROES = [
   {id: 1, name: 'Superman'},
@@ -25,7 +25,9 @@ const HEROES = [
 })
 
 
-export class TimerComponent implements OnInit, OnDestroy {
+export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
+  chosenNumber = new FormControl('', [
+    Validators.required ]);
   ticks = 0;
   randomNumber = 0;
   timer = Observable.timer(2000, 1000);
@@ -37,13 +39,25 @@ export class TimerComponent implements OnInit, OnDestroy {
   list_setup_count: number;
 
   // numberList: Array<AnswerList> = new Array<AnswerList>();
-  chosenNumber: number = 0;
+  myChosenNumber: number = 0;
   model: any = {};
   isCounting: any;
   questions: any[] = [];
 
   results: any[] = [];
   newResultEntry: ResultEntry;
+
+  @ViewChild('crapInput') vc: ElementRef;
+  @ViewChild('someInput') someInput: ElementRef;
+
+
+
+  ngAfterViewInit() {
+    console.log('in afterviewinit');
+    this.vc.nativeElement.valueOf().focus();
+
+    // this.someInput.nativeElement.value = 'Anchovies! 🍕🍕';
+  }
 
   constructor(private timerService: TimerService, private router: Router) {
   }
@@ -71,7 +85,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.resetCounter();
 
     this.isCounting = true;
-    this.chosenNumber = this.model.runNumber;
+    this.myChosenNumber = this.model.runNumber;
     // this.question = new Array(this.chosenNumber);
     // debugger
 
@@ -96,12 +110,12 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     console.log(form.value);
-    console.log('value of chosenNumber = ' + form.controls['chosenNumber'].value);
+    // console.log('value of chosenNumber = ' + form.controls['doug'].value);
 
     this.resetCounter();
 
     this.isCounting = true;
-    this.chosenNumber = form.controls['chosenNumber'].value;
+    this.myChosenNumber = form.controls['chosenNumber'].value;
 
     // this.question = new Array(this.chosenNumber);
     // debugger
@@ -123,7 +137,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
 
 
-    if (this.counter == this.chosenNumber-1) {
+    if (this.counter === this.myChosenNumber - 1) {
       // debugger
       setTimeout(() => {
           this.stop();
@@ -155,8 +169,8 @@ export class TimerComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    console.log('this.chosennubmer = ' + this.chosenNumber);
-    if (this.chosenNumber = 0) {
+    console.log('this.chosennubmer = ' + this.myChosenNumber);
+    if (this.myChosenNumber = 0) {
       this.stop();
     }
 
