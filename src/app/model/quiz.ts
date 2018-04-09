@@ -11,7 +11,7 @@ export class Quiz {
   id: number;
   score: number;
   numberOfQuestions: number;
-  date_added: string;
+  date_added: Date;
   comments: string;
 
   answers: Answer[];
@@ -25,4 +25,5 @@ export class Answer {
   question: number;
   answer: number;
   correct: boolean;
+  comments: string;
 }

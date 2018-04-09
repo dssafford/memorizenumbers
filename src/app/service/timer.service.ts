@@ -4,7 +4,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
 import {Quiz} from '../model/quiz';
-import {Answer} from '../model/Answer';
 
 @Injectable()
 export class TimerService {
@@ -36,7 +35,8 @@ export class TimerService {
     myQuiz = new Quiz();
     myQuiz.numberOfQuestions = quizEntry.numberOfQuestions;
     myQuiz.score = quizEntry.score;
-    myQuiz.date_added = this.dbTimestampFormatDate(this.d);
+    myQuiz.date_added = this.d;
+
     myQuiz.comments = quizEntry.comments;
 
     this.addNewQuiz(myQuiz);
@@ -44,10 +44,10 @@ export class TimerService {
 
   addNewQuiz(myQuiz: Quiz) {
     return this.http
-      .post('http://localhost:8004' + '/api/Quiz', myQuiz)
+      .post('http://localhost:8004/api/Quiz', myQuiz)
       .toPromise()
-      .then(response => response as Quiz)
-      .catch(this.handleError);
+      .then(response => response as Quiz);
+      // .catch(this.handleError);
   }
 
   dbTimestampFormatDate(date): string {
@@ -66,13 +66,13 @@ export class TimerService {
     const strTime = hours + ':' + minutes + ':' + seconds;
     console.log('hey adding this -' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '  ' + strTime);
     // debugger
-    return (day + '-' + (month + 1) + '-' + year + '  ' + strTime).toString();
+    return (year + '-' + (month + 1) + '-' + day + '  ' + strTime).toString();
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('ERROR OCCURRED TALKING TO SERVER' + error);
-    return Promise.reject(error.message || error);
-  }
+  // private handleError(error: any): Promise<any> {
+  //   console.error('ERROR OCCURRED TALKING TO SERVER' + error);
+  //   return Promise.reject(error.message || error);
+  // }
 
 
 }

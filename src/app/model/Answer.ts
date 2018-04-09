@@ -3,7 +3,6 @@ export class Answer {
   question: number;
   answer: number;
   correct: boolean;
-  date_added: string;
   comments: string;
 
   constructor() {}

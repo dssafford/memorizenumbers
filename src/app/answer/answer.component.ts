@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import 'rxjs/add/observable/of';
 import {Quiz} from '../model/quiz';
 import {Answer} from '../model/Answer';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AnswerShowService} from '../service/answer-show.service';
 
 @Component({
@@ -76,6 +76,8 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     // Set up Results Quiz and Answer List
     this.createResults();
 
+    this.router.navigateByUrl('showResult');
+
   }
 
   return() {
@@ -94,9 +96,11 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
     // set up quiz
      this.currentQuiz = new Quiz();
-     this.currentQuiz.comments = 'dude';
+
      this.currentQuiz.numberOfQuestions = this.questions.length;
-     this.currentQuiz.answers = new Array<Answer>();
+     this.currentQuiz.date_added = new Date();
+     this.currentQuiz.comments = 'added from answer component';
+
 
     // Create Answers Array
     this.newAnswers = new Array < Answer >();
@@ -107,9 +111,10 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.questions.length; i++) {
 
       this.currentAnswer  = new Answer();
-      this.currentAnswer.id = i;
+      // this.currentAnswer.id = i;
       this.currentAnswer.question = this.questions[i];
       this.currentAnswer.answer = this.answers[i];
+
       if (this.currentAnswer.question == this.currentAnswer.answer) {
         this.currentAnswer.correct = true;
         numCorrect++;
@@ -118,30 +123,37 @@ export class AnswerComponent implements OnInit, AfterViewInit {
         numIncorrect++;
       }
 
-      this.currentAnswer.date_added = this.timerService.dbTimestampFormatDate(this.d);
+
       // debugger
       this.currentAnswer.comments = 'chosen ' + finalNumber;
 
       this.newAnswers[i] = this.currentAnswer;
 
-      this.currentQuiz.answers.push(this.currentAnswer);
+      // this.currentQuiz.answers.push(this.currentAnswer);
      }
 
      // get the quiz info
      this.currentQuiz.score = this.getScore(numCorrect, numIncorrect); //this.getScore(numCorrect, numIncorrect);
 
+
+     this.currentQuiz.answers = new Array<Answer>();
+     for (let j = 0; j < this.questions.length; j++) {
+       this.currentQuiz.answers.push(this.newAnswers[j]);
+     }
+
+
      this.mystr = JSON.stringify(this.currentQuiz);
      console.log(this.mystr);
 
+     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
      this.http
-       .post('http://localhost:8004' + '/api/Quiz', this.currentQuiz)
+       .post('http://localhost:8004' + '/api/Quiz', this.currentQuiz, {headers: headers})
        .toPromise()
        .then(response => response as Quiz);
 
-     this.changeAnswerArray();
+     // this.changeAnswerArray();
 
      // this.show = true;
-     this.router.navigateByUrl('showResult');
 
      // this.dataSource = new ResultsDataSource(this.newAnswers);
 
