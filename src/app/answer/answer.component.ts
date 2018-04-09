@@ -142,6 +142,8 @@ export class AnswerComponent implements OnInit, AfterViewInit {
      }
 
 
+
+
      this.mystr = JSON.stringify(this.currentQuiz);
      console.log(this.mystr);
 
@@ -151,7 +153,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
        .toPromise()
        .then(response => response as Quiz);
 
-     // this.changeAnswerArray();
+     this.changeAnswerArray();
 
      // this.show = true;
 

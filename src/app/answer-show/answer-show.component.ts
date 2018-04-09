@@ -23,6 +23,7 @@ export class AnswerShowComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    debugger
     this.answerShow.currentMessage.subscribe(message => this.message = message);
     this.answerShow.myArray.subscribe(data => this.answerResults = data);
 
