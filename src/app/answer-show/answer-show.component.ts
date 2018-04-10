@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import {ResultEntry} from '../model/ResultEntry';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
@@ -23,6 +23,12 @@ export class AnswerShowComponent implements OnInit, AfterViewInit {
   constructor(public answerShow: AnswerShowService,
               private router: Router) { }
 
+  public myFocusTriggeringEventEmitter = new EventEmitter<boolean>();
+
+  someMethod() {
+    this.myFocusTriggeringEventEmitter.emit(true);
+  }
+
   ngAfterViewInit() {
     console.log('in afterviewinit');
     this.vc.nativeElement.valueOf().focus();
@@ -40,7 +46,7 @@ export class AnswerShowComponent implements OnInit, AfterViewInit {
 
     console.log('in answer-show dataSource = ' + this.shitDataSource);
 
-
+    this.someMethod();
   }
 
   return() {

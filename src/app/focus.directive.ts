@@ -1,10 +1,10 @@
 import {Directive, ElementRef, EventEmitter, Inject, Input, OnInit, Renderer} from '@angular/core';
 
 @Directive({
-  selector: '[focus]'
+  selector: '[appfocus]'
 })
 export class FocusDirective implements OnInit{
-  @Input('focus') focusEvent: EventEmitter<boolean>
+  @Input('appfocus') focusEvent: EventEmitter<boolean>
 
   constructor(@Inject(ElementRef) private element: ElementRef, private renderer: Renderer) { }
 

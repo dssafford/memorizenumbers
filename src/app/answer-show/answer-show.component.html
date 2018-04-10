@@ -27,8 +27,12 @@
     </mat-table>
   </div>
   <form (ngSubmit)="onSubmit()">
-  <button type="submit" #crapInput onclick="onSubmit()">Quiz</button>
-  <button mat-raised-button (click)="onClick=return()" color="accent">Return</button>
+      <span>
+        <button  class="button-TryAgain" type="submit" #crapInput [appfocus]="myFocusTriggeringEventEmitter">Try Again</button>
+        <button  class="button-Return" type="button" (click)="return()" >Home</button>
+
+    </span>
+  <!--<button mat-raised-button (click)="onClick=return()" color="accent">Return</button>-->
 </form>
   <p></p>
 </div>

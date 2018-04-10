@@ -6,8 +6,8 @@
         <!--{{i}}-->
         <div *ngIf="i==0; then first else last"></div>
             <ng-template #first>
-             <input class="input-stuff" name={{i}} ngModel [required]="true" [autofocus]="true"
-                    [focus]="myFocusTriggeringEventEmitter"><br>
+             <input name={{i}} ngModel [required]="true" [autofocus]="true"
+                    [appfocus]="myFocusTriggeringEventEmitter"><br>
             </ng-template>
             <ng-template #last>
              <input class="input-stuff" name={{i}} ngModel [required]="true"><br>
@@ -15,7 +15,7 @@
       </div>
     </span>
     <span>
-        <button mat-raised-button="check" [type]="submit" class="half">
+        <button mat-raised-button="check" #crapInput >
           <mat-icon>done</mat-icon>
         </button>
     </span>
