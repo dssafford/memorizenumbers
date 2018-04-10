@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ResultEntry} from '../model/ResultEntry';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
@@ -11,19 +11,26 @@ import {Answer} from '../model/Answer';
   templateUrl: './answer-show.component.html',
   styleUrls: ['./answer-show.component.css']
 })
-export class AnswerShowComponent implements OnInit {
+export class AnswerShowComponent implements OnInit, AfterViewInit {
   message: string;
 
   shitDataSource: AnswerDataSource;
   answerResults: Answer[] = [];
+  @ViewChild('crapInput') vc: ElementRef;
 
   displayedColumns = ['question', 'answer', 'correct', 'comments'];
 
   constructor(public answerShow: AnswerShowService,
               private router: Router) { }
 
+  ngAfterViewInit() {
+    console.log('in afterviewinit');
+    this.vc.nativeElement.valueOf().focus();
+
+    // this.someInput.nativeElement.value = 'Anchovies! 🍕🍕';
+  }
   ngOnInit() {
-    debugger
+
     this.answerShow.currentMessage.subscribe(message => this.message = message);
     this.answerShow.myArray.subscribe(data => this.answerResults = data);
 
@@ -32,13 +39,15 @@ export class AnswerShowComponent implements OnInit {
     this.shitDataSource = new AnswerDataSource(this.answerResults);
 
     console.log('in answer-show dataSource = ' + this.shitDataSource);
+
+
   }
 
   return() {
     this.router.navigateByUrl('home');
   }
 
-  quizAgain() {
+  onSubmit() {
     this.router.navigateByUrl('quiz');
   }
 
