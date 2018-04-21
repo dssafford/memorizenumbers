@@ -70,7 +70,7 @@ export class QuizListComponent implements AfterViewInit {
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          this.resultsLength = 5; //data.total_count;
+          this.resultsLength = 5; //data.results.length;
           return data;
         }),
         catchError(() => {

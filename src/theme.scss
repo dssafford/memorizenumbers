@@ -1,0 +1,37 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$custom-primary: mat-palette($mat-deep-orange);
+$custom-accent:  mat-palette($mat-grey);
+
+$custom-theme: mat-light-theme($custom-primary, $custom-accent);
+
+@include angular-material-theme($custom-theme);
+
+
+//
+//$my-app-primary: mat-palette($mat-deep-orange);
+//$my-app-accent:  mat-palette($mat-grey);
+//$my-app-warn:    mat-palette($mat-yellow);
+//
+//$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+//
+//@include angular-material-theme($my-app-theme);
+//
+//.alternate-theme {
+//  $alternate-primary: mat-palette($mat-light-blue);
+//  $alternate-accent: mat-palette($mat-yellow, 400);
+//
+//  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+//
+//  @include angular-material-theme($alternate-theme);
+//
+//}
+//.dark-primary-color    { background: #E64A19; }
+//.default-primary-color { background: #FF5722; }
+//.light-primary-color   { background: #FFCCBC; }
+//.text-primary-color    { color: #FFFFFF; }
+//.accent-color          { background: #607D8B; }
+//.primary-text-color    { color: #212121; }
+//.secondary-text-color  { color: #757575; }
+//.divider-color         { border-color: #BDBDBD; }
