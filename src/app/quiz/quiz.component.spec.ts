@@ -1,6 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuizComponent } from './quiz.component';
+import {QuizListComponent} from '../quiz-list/quiz-list.component';
+import {TimerComponent} from '../timer/timer.component';
+import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatTabsModule} from '@angular/material';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TimerService} from '../service/timer.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {QuizListService} from '../service/quiz-list.service';
+import {SharedService} from '../service/shared.service';
 
 describe('QuizComponent', () => {
   let component: QuizComponent;
@@ -8,7 +19,12 @@ describe('QuizComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuizComponent ]
+      declarations: [ QuizComponent, QuizListComponent, TimerComponent ],
+      imports: [ MatTabsModule, MatInputModule, MatFormFieldModule,
+      MatTableModule, MatPaginatorModule, BrowserModule,
+      BrowserAnimationsModule, FormsModule, ReactiveFormsModule, HttpClientTestingModule,
+      RouterTestingModule, MatSortModule],
+      providers: [TimerService, QuizListService, SharedService],
     })
     .compileComponents();
   }));

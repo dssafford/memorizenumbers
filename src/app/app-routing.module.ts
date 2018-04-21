@@ -11,8 +11,6 @@ import {SortTableComponent} from './sort-table/sort-table.component';
 import {TablePaginationComponent} from './table-pagination/table-pagination.component';
 import {LearnListComponent} from './learn-list/learn-list.component';
 import {LorayneListComponent} from './lorayne-list/lorayne-list.component';
-import {BindingExamplesComponent} from './binding-examples/binding-examples.component';
-import {ParentComponent} from './parent/parent.component';
 import {LearningComponent} from './learning/learning.component';
 import {AnswerShowComponent} from './answer-show/answer-show.component';
 // import {EntrySummaryListComponent} from './entry-summary-list/entry-summary-list.component';
@@ -41,8 +39,8 @@ const appRoutes: Routes = [
   // {path: 'become-angular-tailer', component: FourthComponent},
   // {path: '', component: EntryListComponent},
 
-  { path: 'parent', component: ParentComponent},
-  { path: 'binding', component: BindingExamplesComponent},
+  // { path: 'parent', component: ParentComponent},
+  // { path: 'binding', component: BindingExamplesComponent},
   { path: 'lorayne', component: LorayneListComponent},
   { path: 'learn', component: LearningComponent},
   { path: 'paginate', component: TablePaginationComponent},

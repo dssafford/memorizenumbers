@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuizDetailsComponent } from './quiz-details.component';
+import {MatTableModule} from '@angular/material';
+import {QuizListService} from '../service/quiz-list.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {SharedService} from '../service/shared.service';
+import {RouterTestingModule} from '@angular/router/testing';
+import {RouterModule} from '@angular/router';
 
 describe('QuizDetailsComponent', () => {
   let component: QuizDetailsComponent;
@@ -8,7 +15,10 @@ describe('QuizDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuizDetailsComponent ]
+      declarations: [ QuizDetailsComponent ],
+      imports: [MatTableModule, HttpClientModule, RouterTestingModule] ,
+  providers: [QuizListService, SharedService
+  ],
     })
     .compileComponents();
   }));

@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuizListComponent } from './quiz-list.component';
+import {MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {QuizListService} from '../service/quiz-list.service';
+import {HttpClientModule} from '@angular/common/http';
+import {SharedService} from '../service/shared.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
 
 describe('QuizListComponent', () => {
   let component: QuizListComponent;
@@ -8,7 +15,11 @@ describe('QuizListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuizListComponent ]
+      declarations: [ QuizListComponent ],
+      imports: [MatInputModule, MatTableModule, MatPaginatorModule,
+        HttpClientModule, BrowserAnimationsModule, MatSortModule, BrowserModule,
+        FormsModule],
+      providers: [QuizListService, SharedService],
     })
     .compileComponents();
   }));

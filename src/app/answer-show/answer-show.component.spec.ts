@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnswerShowComponent } from './answer-show.component';
+import {MatTableModule} from '@angular/material';
+import {AnswerShowService} from '../service/answer-show.service';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FocusDirective} from '../focus.directive';
 
 describe('AnswerShowComponent', () => {
   let component: AnswerShowComponent;
@@ -8,7 +12,9 @@ describe('AnswerShowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnswerShowComponent ]
+      declarations: [ AnswerShowComponent, FocusDirective ],
+      imports: [MatTableModule, RouterTestingModule],
+      providers: [AnswerShowService],
     })
     .compileComponents();
   }));

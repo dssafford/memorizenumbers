@@ -29,30 +29,36 @@ import { SortTableComponent } from './sort-table/sort-table.component';
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 import { LearnListComponent } from './learn-list/learn-list.component';
 import { LorayneListComponent } from './lorayne-list/lorayne-list.component';
-import { BindingExamplesComponent } from './binding-examples/binding-examples.component';
-import { ParentComponent } from './parent/parent.component';
-import { ChildComponent } from './child/child.component';
+
 import { LearningComponent } from './learning/learning.component';
 import { CssComponent } from './css/css.component';
 import { QuizDetailsComponent } from './quiz-details/quiz-details.component';
 import { AnswerShowComponent } from './answer-show/answer-show.component';
 import {AnswerShowService} from './service/answer-show.service';
+import {AlertComponent} from './alert/alert.component';
+import {BaconDirective} from './service/bacon-directive';
+import {SharedService} from './service/shared.service';
+import {MatInputModule} from '@angular/material';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective, QuizListComponent, HomeComponent, ShowResultComponent,
-    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent, SortTableComponent, TablePaginationComponent, LearnListComponent,
-    LorayneListComponent, BindingExamplesComponent, ParentComponent, ChildComponent, LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent
+    AppComponent, AlertComponent,
+    TimerComponent, MenuItemComponent, DynamicFormComponent, AnswerComponent, FocusDirective,
+    BaconDirective, QuizListComponent, HomeComponent, ShowResultComponent,
+    FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent,
+    SortTableComponent, TablePaginationComponent, LearnListComponent,
+    LorayneListComponent,
+    LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule, MatInputModule
   ],
   providers: [AuthenticationService, AlertService, TimerService, QuizListService,
-  AnswerShowService],
+  AnswerShowService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

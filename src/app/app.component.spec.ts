@@ -2,7 +2,15 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {TimerComponent} from './timer/timer.component';
 import {
-  MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatMenuModule, MatOptionModule, MatSelectModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule, MatListModule,
+  MatMenuModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -11,15 +19,20 @@ import {MenuItemComponent} from './menu-item/menu-item.component';
 import {AlertService} from './service/alert.service';
 import {AuthenticationService} from './service/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
+import {SidenavListComponent} from './navigation/sidenav-list/sidenav-list.component';
+import {HeaderComponent} from './navigation/header/header.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent, TimerComponent, MenuItemComponent
+        AppComponent, TimerComponent, MenuItemComponent, SidenavListComponent,
+        HeaderComponent
       ],
       imports: [MatIconModule, MatInputModule, MatIconModule, MatFormFieldModule, MatGridListModule, MatOptionModule,
         MatSelectModule, MatCardModule, MatMenuModule, MatToolbarModule, FormsModule, ReactiveFormsModule,
-        RouterTestingModule, HttpClientModule],
+        RouterTestingModule, HttpClientModule, MatSidenavModule, MatListModule,
+      BrowserAnimationsModule],
       providers: [AlertService, AuthenticationService],
     }).compileComponents();
   }));

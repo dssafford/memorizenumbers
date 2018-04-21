@@ -1,46 +1,95 @@
 <div class="example-container mat-elevation-z8">
 
-  <!--<div class="spinner-container" *ngIf="dataSource.loading$ | async">-->
-    <!--<mat-spinner></mat-spinner>-->
-  <!--</div>-->
   <div class="example-header">
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input matInput (keyup)="applyFilter($event.target.value)"
+             placeholder="Filter" #input>
     </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z8">
+    <div *ngIf="isLoadingResults || isRateLimitReached">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <!--<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">-->
+      <!--GitHub's API rate limit has been reached. It will be reset in one minute.-->
+      <!--</div>-->
+    </div>
+
+    <mat-table #table [dataSource]="dataSource" class="example-table"
+               matSort matSortActive="score" matSortDisableClear matSortDirection="asc">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Number Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+                         disableClear="true">id</mat-header-cell>
+        <mat-cell *matCellDef="let quiz">{{ quiz.id }}</mat-cell>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="numberOfQuestions">
+        <mat-header-cell *matHeaderCellDef># Questions</mat-header-cell>
+        <mat-cell *matCellDef="let quiz">{{ quiz.numberOfQuestions }}</mat-cell>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="score">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+                         disableClear="true">Score</mat-header-cell>
+        <mat-cell *matCellDef="let quiz">{{ quiz.score }}</mat-cell>
+      </ng-container>
+
+
+      <!-- State Column -->
+      <ng-container matColumnDef="comments">
+        <mat-header-cell *matHeaderCellDef>Comments</mat-header-cell>
+        <mat-cell *matCellDef="let quiz">{{ quiz.comments }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      [showFirstLastButtons]="true">
+
+    </mat-paginator>
   </div>
 
   <!--<mat-table (matSortChange)="sortData($event)" [dataSource]="dataSource"-->
              <!--matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>-->
 
-    <mat-table [dataSource]="dataSource"
-               matSort matSortDirection="asc">
-    <ng-container matColumnDef="id">
-      <mat-header-cell fxFlex="30px" mat-sort-header *matHeaderCellDef> id</mat-header-cell>
-      <mat-cell fxFlex="30px" *matCellDef="let quiz"> {{quiz.id}}</mat-cell>
-    </ng-container>
-      <ng-container matColumnDef="number_of_questions">
-        <mat-header-cell fxFlex="70px" *matHeaderCellDef> # Qs</mat-header-cell>
-        <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.numberOfQuestions}}</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="score">
-        <mat-header-cell fxFlex="70px" *matHeaderCellDef> score</mat-header-cell>
-        <mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.score}}</mat-cell>
-      </ng-container>
-    <ng-container matColumnDef="date_added">
-      <mat-header-cell mat-sort-header fxFlex="200px" *matHeaderCellDef> date added</mat-header-cell>
-      <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.date_added| date:'fullDate'}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="comments">
-      <mat-header-cell fxFlex="200px" *matHeaderCellDef> comments</mat-header-cell>
-      <mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.comments}}</mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></mat-row>
-  </mat-table>
-  <mat-paginator [length]="5" [pageSize]="4" [pageSizeOptions]="[5, 10, 25]">
-  </mat-paginator>
-</div>
-<p></p>
+    <!--<mat-table [dataSource]="dataSource"-->
+               <!--matSort matSortDirection="asc">-->
+    <!--<ng-container matColumnDef="id">-->
+      <!--<mat-header-cell fxFlex="30px" mat-sort-header *matHeaderCellDef> id</mat-header-cell>-->
+      <!--<mat-cell fxFlex="30px" *matCellDef="let quiz"> {{quiz.id}}</mat-cell>-->
+    <!--</ng-container>-->
+      <!--<ng-container matColumnDef="number_of_questions">-->
+        <!--<mat-header-cell fxFlex="70px" *matHeaderCellDef> # Qs</mat-header-cell>-->
+        <!--<mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.numberOfQuestions}}</mat-cell>-->
+      <!--</ng-container>-->
+      <!--<ng-container matColumnDef="score">-->
+        <!--<mat-header-cell fxFlex="70px" *matHeaderCellDef> score</mat-header-cell>-->
+        <!--<mat-cell fxFlex="70px" *matCellDef="let quiz"> {{quiz.score}}</mat-cell>-->
+      <!--</ng-container>-->
+    <!--<ng-container matColumnDef="date_added">-->
+      <!--<mat-header-cell mat-sort-header fxFlex="200px" *matHeaderCellDef> date added</mat-header-cell>-->
+      <!--<mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.date_added| date:'fullDate'}}</mat-cell>-->
+    <!--</ng-container>-->
+    <!--<ng-container matColumnDef="comments">-->
+      <!--<mat-header-cell fxFlex="200px" *matHeaderCellDef> comments</mat-header-cell>-->
+      <!--<mat-cell fxFlex="200px" *matCellDef="let quiz"> {{quiz.comments}}</mat-cell>-->
+    <!--</ng-container>-->
+    <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+    <!--<mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></mat-row>-->
+  <!--</mat-table>-->
+  <!--<mat-paginator [length]="5" [pageSize]="4" [pageSizeOptions]="[5, 10, 25]">-->
+  <!--</mat-paginator>-->
+<!--</div>-->
+<!--<p></p>-->
 
 <!--<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">-->
   <!--<div class="example-container mat-elevation-z8">-->

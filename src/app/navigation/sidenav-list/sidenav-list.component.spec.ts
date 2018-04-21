@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidenavListComponent } from './sidenav-list.component';
+import {MatIconModule, MatListModule} from '@angular/material';
 
 describe('SidenavListComponent', () => {
   let component: SidenavListComponent;
@@ -8,7 +9,9 @@ describe('SidenavListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidenavListComponent ]
+      declarations: [ SidenavListComponent ],
+      imports: [MatIconModule, MatListModule, MatListModule] ,
+      providers: [],
     })
     .compileComponents();
   }));

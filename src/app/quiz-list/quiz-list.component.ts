@@ -1,74 +1,49 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {QuizListService} from '../service/quiz-list.service';
-import {Observable} from 'rxjs/Observable';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {fromEvent} from 'rxjs/observable/fromEvent';
-import {debounceTime, distinctUntilChanged, startWith, tap, delay, catchError, finalize} from 'rxjs/operators';
-import {merge} from 'rxjs/observable/merge';
-import {QuizListDataSource} from '../service/quizListDataSource';
+import {Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {Observable} from 'rxjs/Observable';
+import {merge} from 'rxjs/observable/merge';
+import {of as observableOf} from 'rxjs/observable/of';
+import {catchError} from 'rxjs/operators/catchError';
+import {map} from 'rxjs/operators/map';
+import {startWith} from 'rxjs/operators/startWith';
+import {switchMap} from 'rxjs/operators/switchMap';
 import {Quiz} from '../model/quiz';
-import {DataSource} from '@angular/cdk/collections';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {of} from 'rxjs/Observable/of';
+import {tap, debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {fromEvent} from 'rxjs/observable/fromEvent';
 
-
+/**
+ * @title Table retrieving data through HTTP
+ */
 @Component({
   selector: 'app-quiz-list',
-  templateUrl: './quiz-list.component.html',
-  styleUrls: ['./quiz-list.component.css']
+  styleUrls: ['quiz-list.component.css'],
+  templateUrl: 'quiz-list.component.html',
 })
-export class QuizListComponent implements OnInit, AfterViewInit {
-  api = 'http://localhost:8004/api/QuizList';
-  title = 'Quiz List Directory';
+export class QuizListComponent implements AfterViewInit {
+  // displayedColumns = ['created', 'state', 'number', 'title'];
+  displayedColumns = ['id', 'numberOfQuestions', 'score', 'comments'];
 
-  quizzes: Quiz[];
+  // exampleDatabase: ExampleHttpDao | null;
+  dataSource = new MatTableDataSource();
 
-  displayedColumns = ['id', 'number_of_questions', 'score', 'date_added', 'comments'];
-
-  // dataSource: QuizListDataSource;
-
-  dataSource = new MatTableDataSource<Quiz>();
-  length: number;
+  resultsLength = 0;
+  isLoadingResults = false;
+  isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
   @ViewChild('input') input: ElementRef;
 
-
-
-
-
-  constructor(private quizlistService: QuizListService,
-              private http: HttpClient) {
-  }
-
-  ngOnInit() {
-
-    this.quizlistService.getQuizList().subscribe(
-      data => {
-        this.dataSource.data = data;
-      });
-
-
-
-console.log(this.quizlistService.getQuizList().toPromise());
-console.log('test');
-  }
-
-  getQuizzes(): Observable<Quiz[]> {
-
-    return this.quizlistService.getQuizList();
-
+  constructor(private http: HttpClient) {
   }
 
   ngAfterViewInit() {
-
-
+    // this.exampleDatabase = new ExampleHttpDao(this.http);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
+    this.isLoadingResults = true;
+    // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
     fromEvent(this.input.nativeElement, 'keyup ')
@@ -77,69 +52,56 @@ console.log('test');
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
-
-          // this.loadQuizzesPage();
+          this.applyFilter(this.input.nativeElement.valueOf());
         })
       )
       .subscribe();
 
+
+
     merge(this.sort.sortChange, this.paginator.page)
-      // .pipe(
-      //   tap(() => this.loadQuizzesPage())
-      // )
-      .subscribe();
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.getData();
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = 5; //data.total_count;
+          return data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // Catch if the GitHub API has reached its rate limit. Return empty data.
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
+      ).subscribe(data => this.dataSource.data = data);
   }
 
+  getData(): Observable<Quiz[]> {
+    // const apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;
+    return this.http.get<Quiz[]>('http://localhost:8004/api/QuizList')
+      .map((data: any) => data as Quiz[]);
+
+  }
+
+  getQuizListData(sort: string, order: string, page: number): Observable<Quiz> {
+    const href = 'http://localhost:8004/api/QuizList';
+    // console.log(this.http.get<Quiz>(href).toPromise());
+    return this.http.get<Quiz>(href);
+  }
+  quizListData(): Observable<Quiz> {
+    const href = 'http://localhost:8004/api/QuizList';
+    // console.log(this.http.get<Quiz>(href).toPromise());
+    return this.http.get<Quiz>(href);
+  }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-
-  rowClicked(row: any): void {
-    console.log(row);
-  }
-
-  // loadQuizzesPage() {
-  //   this.dataSource.loadQuizzes(
-  //     // this.input.nativeElement.value,
-  //     this.sort.direction,
-  //     this.paginator.pageIndex,
-  //     this.paginator.pageSize);
-  // }
 }
-
-// export class QuizDataSource extends DataSource<any> {
-//
-//   private quizSubject = new BehaviorSubject<Quiz[]>([]);
-//
-//   private loadingSubject = new BehaviorSubject<boolean>(false);
-//
-//   public loading$ = this.loadingSubject.asObservable();
-//
-//   constructor(private quizListService: QuizListService) {
-//     super();
-//   }
-//
-//   loadQuizzes(filter: string,
-//               sortDirection: string,
-//               pageIndex: number,
-//               pageSize: number) {
-//
-//     this.loadingSubject.next(true);
-//
-//     this.quizListService.findAllQuizzes(filter, sortDirection,
-//       pageIndex, pageSize).pipe(
-//       catchError(() => of([])),
-//       finalize(() => this.loadingSubject.next(false))
-//     )
-//       .subscribe(quizzes => this.quizSubject.next(quizzes));
-//
-//   }
-//
-//     connect(): Observable<Quiz[]> {
-//     return this.quizSubject.asObservable();
-//   }
-//   disconnect() {}
-//
-// }

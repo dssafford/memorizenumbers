@@ -4,18 +4,19 @@ import {Observable} from 'rxjs/Observable';
 import {ResultEntry} from '../model/ResultEntry';
 import {map} from 'rxjs/operators';
 import {Quiz} from '../model/quiz';
+import {SharedService} from './shared.service';
 
 @Injectable()
 export class QuizListService {
 
   api = 'http://localhost:8004/api/QuizList';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private shared: SharedService) {
   }
 
   getQuizList(): Observable<Quiz[]> {
 
-    console.log(this.http.get('http://localhost:8004/api/QuizList').toPromise());
+    console.log(this.http.get(this.shared.dockerAPI + '/api/QuizList').toPromise());
 
     return (this.http.get<Quiz[]>(this.api));
 
@@ -23,8 +24,15 @@ export class QuizListService {
 
   getAnswerList(id: string): Observable<ResultEntry[]> {
 
-    const myApi = 'http://localhost:8004/api/getAnswers/' + id;
+    const myApi = this.shared.dockerAPI + '/api/getAnswers/' + id;
     return (this.http.get<ResultEntry[]>(myApi));
+
+  }
+
+  getData(): Observable<Quiz[]> {
+    // const apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;
+    return this.http.get<Quiz[]>('http://localhost:8004/api/QuizList')
+      .map((data: any) => data as Quiz[]);
 
   }
 
@@ -56,9 +64,9 @@ export class QuizListService {
   // }
 
   findAllQuizzes(): Observable<Quiz[]> {
-    console.log(this.http.get(this.api).toPromise());
+    console.log(this.http.get(this.shared.dockerAPI + '/api/QuizList').toPromise());
 
-    return this.http.get(this.api, {
+    return this.http.get(this.shared.dockerAPI + '/api/QuizList', {
       params: new HttpParams()
         .set('pageNumber', '0')
         .set('pageSize', '10')

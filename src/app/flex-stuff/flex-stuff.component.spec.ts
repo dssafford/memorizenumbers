@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FlexStuffComponent } from './flex-stuff.component';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {FormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('FlexStuffComponent', () => {
   let component: FlexStuffComponent;
@@ -8,7 +12,10 @@ describe('FlexStuffComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlexStuffComponent ]
+      declarations: [ FlexStuffComponent ],
+      imports: [MatFormFieldModule, FormsModule, BrowserModule,
+      MatInputModule, BrowserAnimationsModule],
+      providers: [],
     })
     .compileComponents();
   }));
