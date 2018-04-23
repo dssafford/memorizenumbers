@@ -88,7 +88,9 @@ export class QuizListComponent implements AfterViewInit {
       .map((data: any) => data as Quiz[]);
 
   }
-
+  rowClicked(row: any): void {
+    console.log(row);
+  }
   getQuizListData(sort: string, order: string, page: number): Observable<Quiz> {
     const href = 'http://localhost:8004/api/QuizList';
     // console.log(this.http.get<Quiz>(href).toPromise());

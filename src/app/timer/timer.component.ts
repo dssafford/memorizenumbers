@@ -29,6 +29,7 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
   chosenNumber = new FormControl('', [
     Validators.required ]);
   ticks = 0;
+  timeDelay: number = 1000;
   randomNumber = 0;
   timer = Observable.timer(2000, 1000);
   counter = 0;
@@ -36,16 +37,12 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
   subscription2: any;
   newDate: string;
   d = new Date();
-  list_setup_count: number;
 
   // numberList: Array<AnswerList> = new Array<AnswerList>();
   myChosenNumber: number = 0;
   model: any = {};
   isCounting: any;
   questions: any[] = [];
-
-  results: any[] = [];
-  newResultEntry: ResultEntry;
 
   @ViewChild('crapInput') vc: ElementRef;
   @ViewChild('someInput') someInput: ElementRef;
@@ -63,17 +60,17 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('Im in the timer component .ngOnInit() method')
+    // console.log('Im in the timer component .ngOnInit() method')
     this.newDate = this.timerService.dbTimestampFormatDate(this.d);
     this.resetCounter();
     this.isCounting = true;
 
   }
 
-  gotoAnswer() {
-    [this.questions] = this.questions;
-    this.router.navigate(['answer']);
-  }
+  // gotoAnswer() {
+  //   [this.questions] = this.questions;
+  //   this.router.navigate(['answer']);
+  // }
   resetCounter() {
     this.ticks = 0;
     this.randomNumber = 0;
@@ -86,19 +83,10 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.isCounting = true;
     this.myChosenNumber = this.model.runNumber;
-    // this.question = new Array(this.chosenNumber);
-    // debugger
-
-
     this.subscription1 = this.timer.subscribe(t => this.ticks = t);
     this.subscription2 = this.timer.subscribe(x => {
       this.getRandomInt(0, 9);
     });
-
-
-
-
-    // this.timerService.createAmswerList(this.questions);
 
   }
 
@@ -142,7 +130,7 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
       setTimeout(() => {
           this.stop();
         },
-        1000);
+        this.timeDelay);
       ;
 
 
@@ -154,13 +142,6 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscription1.unsubscribe();
     this.subscription2.unsubscribe();
     this.isCounting = false;
-    // var i;
-    // for (i = 1; i < this.numberList.length; i++) {
-    //   console.log('final number = ' + this.numberList[i].Question);
-    // }
-
-    // Go to the Answer form
-    // this.gotoAnswer();
 
     console.log("questions in timer component length = " + this.questions.length);
     this.timerService.showQuestions(this.questions);

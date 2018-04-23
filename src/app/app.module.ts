@@ -39,6 +39,12 @@ import {AlertComponent} from './alert/alert.component';
 import {BaconDirective} from './service/bacon-directive';
 import {SharedService} from './service/shared.service';
 import {MatInputModule} from '@angular/material';
+import { LocationTabComponent } from './location-tab/location-tab.component';
+import { LocationBodyComponent } from './location-body/location-body.component';
+import { LocationCarComponent } from './location-car/location-car.component';
+import { LocationCardsComponent } from './location-cards/location-cards.component';
+import { LocationHouseComponent } from './location-house/location-house.component';
+import { LocationHousegitComponent } from './location-housegit/location-housegit.component';
 
 
 
@@ -50,7 +56,7 @@ import {MatInputModule} from '@angular/material';
     FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent,
     SortTableComponent, TablePaginationComponent, LearnListComponent,
     LorayneListComponent,
-    LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent
+    LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent, LocationTabComponent, LocationBodyComponent, LocationCarComponent, LocationCardsComponent, LocationHouseComponent, LocationHousegitComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

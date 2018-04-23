@@ -1,5 +1,5 @@
 .button-TryAgain {
-  background-color: #4CAF50; /* Green */
+  background-color: #E64A19; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -10,7 +10,7 @@
 }
 
 .button-Return {
-  background-color: red;
+  background-color: gray;
   border: none;
   color: white;
   padding: 15px 32px;

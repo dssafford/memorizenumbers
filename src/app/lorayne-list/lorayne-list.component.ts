@@ -47,9 +47,7 @@ export class LorayneListComponent implements OnInit {
 
   }
 
-  rowClicked(row: any): void {
-    console.log(row);
-  }
+
 
   ngOnInit() {
 
@@ -67,6 +65,7 @@ export interface MYNUMBER {
 }
 
 const NUMBER_LEARNING_DATA: MYNUMBER[] = [
+  {'number': 0, 'name' : 'zoo'},
   {'number': 1, 'name' : 'tie'},
 {'number': 2, 'name': 'knee'},
 {'number': 3, 'name': 'Ma'},

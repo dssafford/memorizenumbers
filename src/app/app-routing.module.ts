@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MenuItemComponent} from './menu-item/menu-item.component';
 import {TimerComponent} from './timer/timer.component';
 import {AnswerComponent} from './answer/answer.component';
 import {QuizListComponent} from './quiz-list/quiz-list.component';
@@ -13,6 +12,7 @@ import {LearnListComponent} from './learn-list/learn-list.component';
 import {LorayneListComponent} from './lorayne-list/lorayne-list.component';
 import {LearningComponent} from './learning/learning.component';
 import {AnswerShowComponent} from './answer-show/answer-show.component';
+import {LocationTabComponent} from './location-tab/location-tab.component';
 // import {EntrySummaryListComponent} from './entry-summary-list/entry-summary-list.component';
 // import {FirstComponent} from './first/first.component';
 // import {EntryListComponent} from './entry-list/entry-list.component';
@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   // {path: '', component: EntryListComponent},
 
   // { path: 'parent', component: ParentComponent},
-  // { path: 'binding', component: BindingExamplesComponent},
+  { path: 'location', component: LocationTabComponent},
   { path: 'lorayne', component: LorayneListComponent},
   { path: 'learn', component: LearningComponent},
   { path: 'paginate', component: TablePaginationComponent},
