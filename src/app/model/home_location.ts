@@ -7,23 +7,11 @@
 //
 //   constructor() {}
 // }
-export class Quiz {
+export class HomeLocation {
   id: number;
-  score: number;
-  numberOfQuestions: number;
-  date_added: Date;
+  locationNumber: number;
+  locationName: number;
   comments: string;
-
-  answers: Answer[];
 
   constructor() {}
-}
-
-
-export class Answer {
-  id: number;
-  question: number;
-  answer: number;
-  correct: boolean;
-  comments: string;
 }

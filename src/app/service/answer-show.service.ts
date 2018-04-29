@@ -12,9 +12,11 @@ export class AnswerShowService implements OnInit {
   }
   // this.currentQuiz.answers = new Array<Answer>();
   private messageSource = new BehaviorSubject<string>('shit from service message');
-  currentMessage = this.messageSource.asObservable();
+
 
   private arraySource = new BehaviorSubject < Answer[] > (new Array<Answer>());
+
+  currentMessage = this.messageSource.asObservable();
   myArray = this.arraySource.asObservable();
 
   changeMessage(message: string) {

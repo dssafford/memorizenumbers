@@ -10,7 +10,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-  <mat-table #table [dataSource]="dataSource" matSort >
+  <mat-table #table [dataSource]="dataSource" >
 
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef fxFlex="30px"> No.</mat-header-cell>
@@ -18,7 +18,7 @@
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px"> Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef fxFlex="200px"> Name</mat-header-cell>
       <mat-cell *matCellDef="let mynumber" fxFlex="200px"> {{mynumber.name}}</mat-cell>
     </ng-container>
 

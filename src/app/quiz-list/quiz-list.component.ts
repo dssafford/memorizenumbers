@@ -57,8 +57,6 @@ export class QuizListComponent implements AfterViewInit {
       )
       .subscribe();
 
-
-
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         startWith({}),

@@ -60,7 +60,7 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    // console.log('Im in the timer component .ngOnInit() method')
+    console.log('Im in the timer component .ngOnInit() method')
     this.newDate = this.timerService.dbTimestampFormatDate(this.d);
     this.resetCounter();
     this.isCounting = true;
@@ -74,7 +74,7 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
   resetCounter() {
     this.ticks = 0;
     this.randomNumber = 0;
-    this.timer = Observable.timer(2000, 1000);
+    this.timer = Observable.timer(2000, this.timeDelay);
     this.counter = 0;
   }
 
@@ -82,6 +82,7 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.resetCounter();
 
     this.isCounting = true;
+    this.timeDelay = 1000;
     this.myChosenNumber = this.model.runNumber;
     this.subscription1 = this.timer.subscribe(t => this.ticks = t);
     this.subscription2 = this.timer.subscribe(x => {
@@ -127,6 +128,7 @@ export class TimerComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.counter === this.myChosenNumber - 1) {
       // debugger
+      console.log('timeDelay = ' + this.timeDelay);
       setTimeout(() => {
           this.stop();
         },

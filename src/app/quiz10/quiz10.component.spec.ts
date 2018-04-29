@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationHousegitComponent } from './location-housegit.component';
+import { Quiz10Component } from './quiz10.component';
 
-describe('LocationHousegitComponent', () => {
-  let component: LocationHousegitComponent;
-  let fixture: ComponentFixture<LocationHousegitComponent>;
+describe('Quiz10Component', () => {
+  let component: Quiz10Component;
+  let fixture: ComponentFixture<Quiz10Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationHousegitComponent ]
+      declarations: [ Quiz10Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LocationHousegitComponent);
+    fixture = TestBed.createComponent(Quiz10Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

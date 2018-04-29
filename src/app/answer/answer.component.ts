@@ -7,6 +7,11 @@ import {Quiz} from '../model/quiz';
 import {Answer} from '../model/Answer';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AnswerShowService} from '../service/answer-show.service';
+import {LORAYNE_LEARNING_DATA} from '../data/lorayneNumbers';
+
+import  _ = require('lodash');
+
+
 
 @Component({
   selector: 'app-answer',
@@ -27,7 +32,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   currentAnswer: Answer;
   mystr: string;
 
-
+  returnAnswer: string;
   message: string;
   myAnswers: Answer[];
 
@@ -89,7 +94,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
   }
 
    createResults() {
-
+// debugger
     let numCorrect: number = 0;
     let numIncorrect: number = 0;
     let finalNumber: string = '';
@@ -108,6 +113,12 @@ export class AnswerComponent implements OnInit, AfterViewInit {
       finalNumber = finalNumber + this.questions[i];
      }
 
+     // debugger
+     // Get text answer for final number
+     this.returnAnswer = this.getTextAnswer(finalNumber);
+
+    console.log('***** hey, the name is ' + this.returnAnswer);
+
     for (let i = 0; i < this.questions.length; i++) {
 
       this.currentAnswer  = new Answer();
@@ -125,7 +136,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
 
       // debugger
-      this.currentAnswer.comments = 'chosen ' + finalNumber;
+      this.currentAnswer.comments = 'chosen ' + finalNumber + '-' + this.returnAnswer;
 
       this.newAnswers[i] = this.currentAnswer;
 
@@ -141,9 +152,6 @@ export class AnswerComponent implements OnInit, AfterViewInit {
        this.currentQuiz.answers.push(this.newAnswers[j]);
      }
 
-
-
-
      this.mystr = JSON.stringify(this.currentQuiz);
      console.log(this.mystr);
 
@@ -155,9 +163,15 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
      this.changeAnswerArray();
 
-     // this.show = true;
+   }
 
-     // this.dataSource = new ResultsDataSource(this.newAnswers);
+
+  getTextAnswer(finalAnswer: string): string {
+// debugger
+    let q = _.find(LORAYNE_LEARNING_DATA, {number: Number(finalAnswer)});
+
+    console.log(q); // {name:'Dave',sex:male,age:34}
+    return q.name;
 
    }
   // todo wow what here
@@ -175,14 +189,3 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     this.answerShow.changeArray(this.newAnswers);
   }
 }
-
-// export class ResultsDataSource extends DataSource<any> {
-//   constructor(private answerResults: ResultEntry[]) {
-//     super();
-//   }
-//   connect(): Observable<ResultEntry[]> {
-//     return Observable.of(this.answerResults);
-//   }
-//   disconnect() {}
-//
-// }

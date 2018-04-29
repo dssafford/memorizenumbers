@@ -44,7 +44,7 @@ import { LocationBodyComponent } from './location-body/location-body.component';
 import { LocationCarComponent } from './location-car/location-car.component';
 import { LocationCardsComponent } from './location-cards/location-cards.component';
 import { LocationHouseComponent } from './location-house/location-house.component';
-import { LocationHousegitComponent } from './location-housegit/location-housegit.component';
+import { Quiz10Component } from './quiz10/quiz10.component';
 
 
 
@@ -56,7 +56,8 @@ import { LocationHousegitComponent } from './location-housegit/location-housegit
     FlexStuffComponent, SidenavListComponent, HeaderComponent, QuizComponent,
     SortTableComponent, TablePaginationComponent, LearnListComponent,
     LorayneListComponent,
-    LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent, LocationTabComponent, LocationBodyComponent, LocationCarComponent, LocationCardsComponent, LocationHouseComponent, LocationHousegitComponent
+    LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent, LocationTabComponent, LocationBodyComponent,
+    LocationCarComponent, LocationCardsComponent, LocationHouseComponent, Quiz10Component
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

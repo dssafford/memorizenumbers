@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './service/authentication.service';
-import {Answer} from './model/Answer';
-import {Quiz} from './model/quiz';
 import {HttpClient} from '@angular/common/http';
 
 @Component({

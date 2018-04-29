@@ -1,6 +1,9 @@
 <section>
     <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
       <mat-form-field>
+        TimeDelay: <input matInput name="timeDelay" [(ngModel)]="timeDelay" value={{timeDelay}}/>
+      </mat-form-field>
+      <mat-form-field>
         <input matInput name="chosenNumber" #crapInput ngModel required autofocus>
         <mat-error *ngIf="chosenNumber.hasError('required')">Field must not be empty.</mat-error>
       </mat-form-field>
