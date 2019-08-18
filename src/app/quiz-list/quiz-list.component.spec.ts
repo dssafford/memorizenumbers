@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuizListComponent } from './quiz-list.component';
-import {MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule} from '@angular/material';
 import {QuizListService} from '../service/quiz-list.service';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedService} from '../service/shared.service';
@@ -18,7 +18,7 @@ describe('QuizListComponent', () => {
       declarations: [ QuizListComponent ],
       imports: [MatInputModule, MatTableModule, MatPaginatorModule,
         HttpClientModule, BrowserAnimationsModule, MatSortModule, BrowserModule,
-        FormsModule],
+        FormsModule, MatProgressSpinnerModule],
       providers: [QuizListService, SharedService],
     })
     .compileComponents();

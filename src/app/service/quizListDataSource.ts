@@ -1,11 +1,7 @@
 
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import {Observable} from 'rxjs/Observable';
-// import {Lesson} from "../model/lesson";
-// import {CoursesService} from "./courses.service";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable, BehaviorSubject, of} from 'rxjs';
 import {catchError, finalize} from "rxjs/operators";
-import {of} from "rxjs/observable/of";
 import {ResultEntry} from '../model/ResultEntry';
 import {QuizListService} from './quiz-list.service';
 

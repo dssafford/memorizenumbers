@@ -1,13 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {BehaviorSubject} from 'rxjs';
+import {BODY_LOCATION_DATA} from '../data/bodyNumbers';
 
 @Component({
   selector: 'app-location-body',
   templateUrl: './location-body.component.html',
   styleUrls: ['./location-body.component.css']
 })
-export class LocationBodyComponent implements OnInit {
+export class LocationBodyComponent implements OnInit, AfterViewInit {
   displayedColumns = ['number', 'name'];
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -16,10 +17,13 @@ export class LocationBodyComponent implements OnInit {
   public loading = false;
 
   dataSource = new MatTableDataSource<MYNUMBER>();
-  constructor(){}
+
+  constructor() {
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
@@ -33,6 +37,7 @@ export class LocationBodyComponent implements OnInit {
       this.loading = false;
     }, 1000);
   }
+
   applyFilter(filterValue: string) {
 
     this.loading = true;
@@ -46,8 +51,6 @@ export class LocationBodyComponent implements OnInit {
 
 
   }
-
-
 
   ngOnInit() {
 
@@ -63,15 +66,4 @@ export interface MYNUMBER {
   name: string;
 }
 
-const BODY_LOCATION_DATA: MYNUMBER[] = [
-  {'number': 1, 'name' : 'foot'},
-  {'number': 2, 'name': 'shin'},
-  {'number': 3, 'name': 'knee'},
-  {'number': 4, 'name': 'thigh'},
-  {'number': 5, 'name': 'belly button'},
-  {'number': 6, 'name': 'chest'},
-  {'number': 7, 'name': 'neck'},
-  {'number': 8, 'name': 'mouth'},
-  {'number': 9, 'name': 'eyes'},
-  {'number': 10, 'name': 'top of head'},
-]
+

@@ -7,7 +7,7 @@
   <div class="example-container mat-elevation-z8">
     <mat-table fxFlex="500px" #table [dataSource]="shitDataSource">
       <ng-container matColumnDef="question">
-        <mat-header-cell fxFlex="70px" *matHeaderCellDef> question</mat-header-cell>
+        <mat-header-cell fxFlex="70px" *matHeaderCellDef> Quest</mat-header-cell>
         <mat-cell fxFlex="70px" *matCellDef="let answer"> {{answer.question}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="answer">

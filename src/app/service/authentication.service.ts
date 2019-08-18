@@ -1,11 +1,17 @@
-﻿import { Injectable } from '@angular/core';
+
+import {throwError as observableThrowError } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+
 import {User} from '../model/user';
 import {Router} from '@angular/router'
-import 'rxjs/add/operator/catch';
+
 import {Cookie} from 'ng2-cookies';
+
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {map, startWith, switchMap} from 'rxjs/operators';
+
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService {
@@ -52,8 +58,8 @@ export class AuthenticationService {
     // let options = new RequestOptions({ headers: headers });
 
     return this.http.get<User>(resourceUrl)
-      .map((data: any) => data.results as User)
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+      .pipe(map((data: any) => data.results as User))
+      // .catch((error: any) => observableThrowError(error.json().error || 'Server error'));
 
     // return this._http.get(resourceUrl, options)
     //   .map((res: Response) => res.json())

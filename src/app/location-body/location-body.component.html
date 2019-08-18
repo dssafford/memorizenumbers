@@ -4,7 +4,7 @@
   <div *ngIf="loading == true">
     <mat-spinner mode="indeterminate" color="accent"></mat-spinner>
   </div>
-
+<div>dodo bird</div>
   <!--<div class="example-header">-->
     <!--<mat-form-field>-->
       <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
@@ -13,8 +13,8 @@
   <mat-table #table [dataSource]="dataSource" matSort >
 
     <ng-container matColumnDef="number">
-      <mat-header-cell *matHeaderCellDef fxFlex="30px"> No.</mat-header-cell>
-      <mat-cell *matCellDef="let mynumber" fxFlex="30px"> {{mynumber.number}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef fxFlex="50px"> No.</mat-header-cell>
+      <mat-cell *matCellDef="let mynumber" fxFlex="50px"> {{mynumber.number}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">

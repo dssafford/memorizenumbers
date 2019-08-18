@@ -6,7 +6,7 @@ import {AnswerShowService} from '../service/answer-show.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FocusDirective} from '../focus.directive';
 
-describe('AnswerShowComponent', () => {
+describe('AnswerShowWordComponent', () => {
   let component: AnswerShowComponent;
   let fixture: ComponentFixture<AnswerShowComponent>;
 

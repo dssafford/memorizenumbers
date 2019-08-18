@@ -1,10 +1,11 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import {ResultEntry} from '../model/ResultEntry';
 import {DataSource} from '@angular/cdk/collections';
-import {Observable} from 'rxjs/Observable';
+
 import {AnswerShowService} from '../service/answer-show.service';
 import {Router} from '@angular/router';
 import {Answer} from '../model/Answer';
+import {Observable, of} from 'rxjs/index';
 
 @Component({
   selector: 'app-answer-show',
@@ -72,7 +73,7 @@ export class AnswerDataSource extends DataSource<any> {
     super();
   }
   connect(): Observable<ResultEntry[]> {
-    return Observable.of(this.answerResults);
+    return of(this.answerResults);
   }
   disconnect() {}
 

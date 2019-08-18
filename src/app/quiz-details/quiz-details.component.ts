@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {DataSource} from '@angular/cdk/collections';
 import {TimerService} from '../service/timer.service';
-import {Observable} from 'rxjs/Observable';
+import {Observable, of} from 'rxjs';
 import {ResultEntry} from '../model/ResultEntry';
 import {QuizListService} from '../service/quiz-list.service';
 
@@ -52,7 +52,7 @@ export class AnswerDataSource extends DataSource<any> {
     super();
   }
   connect(): Observable<ResultEntry[]> {
-    return Observable.of(this.answerResults);
+    return of(this.answerResults);
   }
   disconnect() {}
 

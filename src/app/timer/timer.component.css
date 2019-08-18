@@ -2,6 +2,7 @@
 .mat-form-field {
   width: 100px;
   text-align: center;
+  float: none;
 }
 
 .same-width {

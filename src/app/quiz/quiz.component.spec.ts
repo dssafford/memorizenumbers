@@ -3,7 +3,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { QuizComponent } from './quiz.component';
 import {QuizListComponent} from '../quiz-list/quiz-list.component';
 import {TimerComponent} from '../timer/timer.component';
-import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatTabsModule} from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule
+} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -23,7 +31,7 @@ describe('QuizComponent', () => {
       imports: [ MatTabsModule, MatInputModule, MatFormFieldModule,
       MatTableModule, MatPaginatorModule, BrowserModule,
       BrowserAnimationsModule, FormsModule, ReactiveFormsModule, HttpClientTestingModule,
-      RouterTestingModule, MatSortModule],
+      RouterTestingModule, MatSortModule, MatProgressSpinnerModule ]  ,
       providers: [TimerService, QuizListService, SharedService],
     })
     .compileComponents();

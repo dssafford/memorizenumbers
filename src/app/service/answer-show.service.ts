@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from '@angular/core';
 import {Answer} from '../model/Answer';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class AnswerShowService implements OnInit {

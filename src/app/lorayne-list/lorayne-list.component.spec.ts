@@ -1,8 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LorayneListComponent } from './lorayne-list.component';
-import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableModule} from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatTableDataSource,
+  MatTableModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {LORAYNE_LEARNING_DATA} from '../data/lorayneNumbers';
 
 describe('LorayneListComponent', () => {
   let component: LorayneListComponent;
@@ -27,5 +35,11 @@ describe('LorayneListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have 100 numbers in lorayne list', function () {
+   const data = LORAYNE_LEARNING_DATA;
+
+    expect(data.length).toEqual(101);
   });
 });

@@ -2,22 +2,21 @@ import {AfterViewInit, Component, EventEmitter, Input, OnInit} from '@angular/co
 import {ResultEntry} from '../model/ResultEntry';
 import {TimerService} from '../service/timer.service';
 import {Router} from '@angular/router';
-import 'rxjs/add/observable/of';
+
 import {Quiz} from '../model/quiz';
 import {Answer} from '../model/Answer';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AnswerShowService} from '../service/answer-show.service';
 import {LORAYNE_LEARNING_DATA} from '../data/lorayneNumbers';
 
-import  _ = require('lodash');
-
-
+import * as find from 'lodash/find';
 
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.css']
 })
+
 export class AnswerComponent implements OnInit, AfterViewInit {
   questions: any[] = [];
   answers: any = [];
@@ -61,8 +60,8 @@ export class AnswerComponent implements OnInit, AfterViewInit {
     if(this.answers.length === 0) {
       this.showButton = false;
     }
-    console.log('Im in the answer component .ngOnInit() method')
-    console.log('found questions, length = ' + this.timerService.getQuestions().length);
+    // console.log('Im in the answer component .ngOnInit() method')
+    // console.log('found questions, length = ' + this.timerService.getQuestions().length);
 
     this.questions = this.timerService.getQuestions();
 
@@ -117,7 +116,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
      // Get text answer for final number
      this.returnAnswer = this.getTextAnswer(finalNumber);
 
-    console.log('***** hey, the name is ' + this.returnAnswer);
+    // console.log('***** hey, the name is ' + this.returnAnswer);
 
     for (let i = 0; i < this.questions.length; i++) {
 
@@ -153,7 +152,7 @@ export class AnswerComponent implements OnInit, AfterViewInit {
      }
 
      this.mystr = JSON.stringify(this.currentQuiz);
-     console.log(this.mystr);
+     // console.log(this.mystr);
 
      const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
      this.http
@@ -167,13 +166,75 @@ export class AnswerComponent implements OnInit, AfterViewInit {
 
 
   getTextAnswer(finalAnswer: string): string {
-// debugger
-    let q = _.find(LORAYNE_LEARNING_DATA, {number: Number(finalAnswer)});
+    const finalAnswerLength = finalAnswer.length;
+    // console.log('length of string ' + finalAnswer + ' - ' + finalAnswerLength);
 
-    console.log(q); // {name:'Dave',sex:male,age:34}
-    return q.name;
+    if(finalAnswerLength === 1) {
+      console.log('## Final - length of string ' + finalAnswer + ' - ' + finalAnswerLength);
+    } else if (finalAnswerLength === 2) {
+      console.log('## Final - length of string ' + finalAnswer + ' - ' + finalAnswerLength);
+    }else if (finalAnswerLength === 3) {
+      console.log('## Final - length of string ' + finalAnswer + ' - ' + finalAnswerLength);
+    }else if (finalAnswerLength === 4) {
+        let firstString =  finalAnswer.substr(0, 2);
+        let secondString = finalAnswer.substr(2, 2);
+        firstString = this.getLorayneResult(parseInt(firstString));
+        secondString = this.getLorayneResult(parseInt(secondString));
+        console.log('the two strings are ' + firstString + '-' + secondString);
+      return 'the two string are ' + firstString + '-' + secondString;
+    }else if (finalAnswerLength === 5) {
+      console.log('## Final - length of string ' + finalAnswer + ' - ' + finalAnswerLength);
+    }else if (finalAnswerLength === 6) {
+      let firstString =  finalAnswer.substr(0, 2);
+      let secondString = finalAnswer.substr(2, 2);
+      let thirdString = finalAnswer.substr(4, 2);
+      firstString = this.getLorayneResult(parseInt(firstString));
+      secondString = this.getLorayneResult(parseInt(secondString));
+      thirdString = this.getLorayneResult(parseInt(secondString));
+      console.log('the two strings are ' + firstString + '-' + secondString + '-' + thirdString);
+    }else if (finalAnswerLength === 7) {
+      console.log('## Final - length of string ' + finalAnswer + ' - ' + finalAnswerLength);
+    }else if (finalAnswerLength === 8) {
+      let firstString =  finalAnswer.substr(0, 2);
+      let secondString = finalAnswer.substr(2, 2);
+      let thirdString = finalAnswer.substr(4, 2);
+      let forthString = finalAnswer.substr(6,2);
 
+      firstString = this.getLorayneResult(parseInt(firstString));
+      secondString = this.getLorayneResult(parseInt(secondString));
+      thirdString = this.getLorayneResult(parseInt(secondString));
+      forthString = this.getLorayneResult(parseInt(forthString));
+      console.log('the two strings are ' + firstString + '-' + secondString + '-' + thirdString + '-' + forthString);
+    }else if (finalAnswerLength === 9) {
+      console.log('## Final - length of string ' + finalAnswer + ' - ' + finalAnswerLength);
+    } else if (finalAnswerLength === 10) {
+      let firstString =  finalAnswer.substr(0, 2);
+      let secondString = finalAnswer.substr(2, 2);
+      let thirdString = finalAnswer.substr(4, 2);
+      let forthString = finalAnswer.substr(6,2);
+      let fifthString = finalAnswer.substr(8,2);
+      firstString = this.getLorayneResult(parseInt(firstString));
+      secondString = this.getLorayneResult(parseInt(secondString));
+      thirdString = this.getLorayneResult(parseInt(secondString));
+      forthString = this.getLorayneResult(parseInt(forthString));
+      fifthString = this.getLorayneResult(parseInt(forthString));
+      console.log('the two strings are ' + firstString + '-' + secondString + '-' + thirdString + '-' + forthString + '-' + fifthString);
+    }
+
+    return 'ERROR IN ANSWER-GET TEXT ANSWER';
    }
+
+   getLorayneResult(inputNumber: number) {
+     let q = find(LORAYNE_LEARNING_DATA, {number: Number(inputNumber)});
+     if ( q !== undefined) {
+       console.log(q); // {name:'Dave',sex:male,age:34}
+       return q.name;
+     } else {
+       return 'ERROR IN GETLORAYNERESULT';
+     }
+   }
+
+
   // todo wow what here
   // todo-me dude
 

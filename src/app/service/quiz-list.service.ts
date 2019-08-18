@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {ResultEntry} from '../model/ResultEntry';
-import {map} from 'rxjs/operators';
+
 import {Quiz} from '../model/quiz';
 import {SharedService} from './shared.service';
+import {map} from 'rxjs/internal/operators';
 
 @Injectable()
 export class QuizListService {
@@ -32,7 +33,7 @@ export class QuizListService {
   getData(): Observable<Quiz[]> {
     // const apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;
     return this.http.get<Quiz[]>('http://localhost:8004/api/QuizList')
-      .map((data: any) => data as Quiz[]);
+      .pipe(map((data: any) => data as Quiz[]));
 
   }
 

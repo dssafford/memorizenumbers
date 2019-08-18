@@ -18,7 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
 import {TimerService} from '../service/timer.service';
 
-describe('TimerComponent', () => {
+describe('WordTimerComponent', () => {
   let component: TimerComponent;
   let fixture: ComponentFixture<TimerComponent>;
 

@@ -8,10 +8,6 @@
 //   constructor() {}
 // }
 export class HomeLocation {
-  id: number;
-  locationNumber: number;
-  locationName: number;
-  comments: string;
-
-  constructor() {}
+  number: number;
+  name: string;
 }

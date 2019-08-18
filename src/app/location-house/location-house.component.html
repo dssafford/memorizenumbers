@@ -12,14 +12,14 @@
   <!--</div>-->
   <mat-table #table [dataSource]="dataSource"  >
 
-    <ng-container matColumnDef="locationNumber">
-      <mat-header-cell *matHeaderCellDef fxFlex="30px"> No.</mat-header-cell>
-      <mat-cell *matCellDef="let mynumber" fxFlex="30px"> {{mynumber.locationNumber}}</mat-cell>
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef fxFlex="50px"> No.</mat-header-cell>
+      <mat-cell *matCellDef="let mynumber" fxFlex="50px"> {{mynumber.number}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="locationName">
+    <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef fxFlex="200px"> Name</mat-header-cell>
-      <mat-cell *matCellDef="let mynumber" fxFlex="200px"> {{mynumber.locationName}}</mat-cell>
+      <mat-cell *matCellDef="let mynumber" fxFlex="200px"> {{mynumber.name}}</mat-cell>
     </ng-container>
 
 

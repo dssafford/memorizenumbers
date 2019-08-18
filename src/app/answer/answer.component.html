@@ -6,11 +6,11 @@
         <!--{{i}}-->
         <div *ngIf="i==0; then first else last"></div>
             <ng-template #first>
-             <input name={{i}} ngModel [required]="true" [autofocus]="true"
+            <label>1</label> <input name={{i}} ngModel [required]="true" [autofocus]="true"
                     [appfocus]="myFocusTriggeringEventEmitter"><br>
             </ng-template>
             <ng-template #last>
-             <input class="input-stuff" name={{i}} ngModel [required]="true"><br>
+             <label>{{i+1}}</label><input class="input-stuff" name={{i}} ngModel [required]="true"><br>
             </ng-template>
       </div>
     </span>

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ResultEntry} from '../model/ResultEntry';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable, timer} from 'rxjs';
 import {Router} from '@angular/router';
 import {Quiz} from '../model/quiz';
 
@@ -12,17 +12,35 @@ export class TimerService {
   }
 
   randomNumber = 0;
-  timer = Observable.timer(2000, 1000);
+  timer = timer(2000, 1000);
   d = new Date();
   chosenNumber: number;
   model: any = {};
   isCounting: any;
   questions: any[] = [];
 
+
+  getRandomNumber(min,  max): number {
+    // debugger
+    return this.randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  }
+
+
+
   showQuestions(questions: any[]) {
     this.questions = questions;
     console.log('In timerService, length = '  + this.questions.length);
     this.router.navigate(['answer']);
+  }
+
+  showRandomWords(questions: any[]) {
+
+    setTimeout(() => {
+      this.questions = questions;
+      console.log('In timerService, length = '  + this.questions.length);
+      this.router.navigate(['answerWord']);
+      }, 2000);
   }
 
   getQuestions(): ResultEntry[] {
@@ -64,7 +82,7 @@ export class TimerService {
     seconds = seconds;
 
     const strTime = hours + ':' + minutes + ':' + seconds;
-    console.log('hey adding this -' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '  ' + strTime);
+    // console.log('hey adding this -' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '  ' + strTime);
     // debugger
     return (year + '-' + (month + 1) + '-' + day + '  ' + strTime).toString();
   }

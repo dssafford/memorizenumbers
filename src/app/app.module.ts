@@ -38,13 +38,22 @@ import {AnswerShowService} from './service/answer-show.service';
 import {AlertComponent} from './alert/alert.component';
 import {BaconDirective} from './service/bacon-directive';
 import {SharedService} from './service/shared.service';
-import {MatInputModule} from '@angular/material';
+import {MatCheckboxModule, MatDialogModule, MatInputModule, MatRadioModule} from '@angular/material';
 import { LocationTabComponent } from './location-tab/location-tab.component';
 import { LocationBodyComponent } from './location-body/location-body.component';
 import { LocationCarComponent } from './location-car/location-car.component';
 import { LocationCardsComponent } from './location-cards/location-cards.component';
 import { LocationHouseComponent } from './location-house/location-house.component';
-import { Quiz10Component } from './quiz10/quiz10.component';
+import { FlashCardsComponent } from './flash-cards/flash-cards.component';
+import {DougMsgDialogComponent} from './flash-cards/doug-msg.component';
+import {LocationSunListComponent} from './location-sunList/location-sunList.component';
+import { RandomWordQuizComponent } from './random-word-quiz/random-word-quiz.component';
+import {WordTimerComponent} from './word-timer/word-timer.component';
+import {AnswerShowWordComponent} from './answer-show-word/answer-show-word.component';
+import {AnswerWordComponent} from './answer-word/answer-word.component';
+import { RunTestComponent } from './run-test/run-test.component';
+import { LocationPresidentsComponent } from './location-presidents/location-presidents.component';
+
 
 
 
@@ -57,15 +66,20 @@ import { Quiz10Component } from './quiz10/quiz10.component';
     SortTableComponent, TablePaginationComponent, LearnListComponent,
     LorayneListComponent,
     LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent, LocationTabComponent, LocationBodyComponent,
-    LocationCarComponent, LocationCardsComponent, LocationHouseComponent, Quiz10Component
+    LocationCarComponent, LocationCardsComponent, LocationHouseComponent, FlashCardsComponent, LocationSunListComponent,
+    DougMsgDialogComponent, WordTimerComponent, AnswerShowWordComponent, AnswerWordComponent,
+    RandomWordQuizComponent,
+    RunTestComponent,
+    LocationPresidentsComponent,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     ReactiveFormsModule, FormsModule, MaterialModule, AppRoutingModule,
-    FlexLayoutModule, MatInputModule
+    FlexLayoutModule, MatInputModule, MatRadioModule, MatDialogModule, MatCheckboxModule
   ],
   providers: [AuthenticationService, AlertService, TimerService, QuizListService,
   AnswerShowService, SharedService],
+  entryComponents: [DougMsgDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

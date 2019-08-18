@@ -13,6 +13,12 @@ import {LorayneListComponent} from './lorayne-list/lorayne-list.component';
 import {LearningComponent} from './learning/learning.component';
 import {AnswerShowComponent} from './answer-show/answer-show.component';
 import {LocationTabComponent} from './location-tab/location-tab.component';
+import {FlashCardsComponent} from './flash-cards/flash-cards.component';
+import {RandomWordQuizComponent} from './random-word-quiz/random-word-quiz.component';
+import {WordTimerComponent} from './word-timer/word-timer.component';
+import {AnswerShowWordComponent} from './answer-show-word/answer-show-word.component';
+import {AnswerWordComponent} from './answer-word/answer-word.component';
+import {RunTestComponent} from './run-test/run-test.component';
 // import {EntrySummaryListComponent} from './entry-summary-list/entry-summary-list.component';
 // import {FirstComponent} from './first/first.component';
 // import {EntryListComponent} from './entry-list/entry-list.component';
@@ -46,13 +52,18 @@ const appRoutes: Routes = [
   { path: 'paginate', component: TablePaginationComponent},
   { path: 'sortTable', component: SortTableComponent},
   { path: 'showResult', component: AnswerShowComponent},
+  { path: 'showWordResult', component: AnswerShowWordComponent},
   { path: 'quizzes', component: QuizListComponent },
   { path: 'answer', component:  AnswerComponent },
+  { path: 'answerWord', component:  AnswerWordComponent },
   { path: 'quizStuff', component:  QuizComponent },
   { path: 'quiz' , component: TimerComponent },
   { path: 'home', component: HomeComponent },
+  {path: 'flash-cards', component: FlashCardsComponent},
+  {path: 'test', component: RunTestComponent},
+  {path: 'randomWords', component: WordTimerComponent},
   // otherwise redirect to home
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'randomWords' }
 
 ];
 

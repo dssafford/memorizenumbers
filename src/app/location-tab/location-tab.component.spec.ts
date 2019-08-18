@@ -18,6 +18,8 @@ import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LocationBodyComponent} from '../location-body/location-body.component';
 import {LocationHouseComponent} from '../location-house/location-house.component';
+import {LocationCarComponent} from '../location-car/location-car.component';
+import {LocationCardsComponent} from '../location-cards/location-cards.component';
 
 describe('LocationTabComponent', () => {
   let component: LocationTabComponent;
@@ -25,7 +27,8 @@ describe('LocationTabComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationTabComponent      LocationBodyComponent, LocationHouseComponent],
+      declarations: [ LocationTabComponent, LocationBodyComponent, LocationHouseComponent,
+      LocationCarComponent, LocationCardsComponent],
       imports: [MatTabsModule, MatProgressSpinnerModule, MatTableModule,
         MatFormFieldModule, MatPaginatorModule, HttpClientTestingModule,
         BrowserAnimationsModule, MatInputModule, MatSortModule, FormsModule] ,

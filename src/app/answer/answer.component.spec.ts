@@ -9,7 +9,7 @@ import {AnswerShowService} from '../service/answer-show.service';
 import {FocusDirective} from '../focus.directive';
 
 
-describe('AnswerComponent', () => {
+describe('AnswerWordComponent', () => {
   let component: AnswerComponent;
   let fixture: ComponentFixture<AnswerComponent>;
 

@@ -1,16 +1,9 @@
 import {Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {Observable} from 'rxjs/Observable';
-import {merge} from 'rxjs/observable/merge';
-import {of as observableOf} from 'rxjs/observable/of';
-import {catchError} from 'rxjs/operators/catchError';
-import {map} from 'rxjs/operators/map';
-import {startWith} from 'rxjs/operators/startWith';
-import {switchMap} from 'rxjs/operators/switchMap';
+import {Observable, merge, of as observableOf, fromEvent} from 'rxjs';
+import {catchError, map, startWith, switchMap, tap, debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Quiz} from '../model/quiz';
-import {tap, debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {fromEvent} from 'rxjs/observable/fromEvent';
 
 /**
  * @title Table retrieving data through HTTP
@@ -28,12 +21,12 @@ export class QuizListComponent implements AfterViewInit {
   dataSource = new MatTableDataSource();
 
   resultsLength = 0;
-  isLoadingResults = false;
+  isLoadingResults = true;
   isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('input') input: ElementRef;
+  @ViewChild('douginput') input: ElementRef;
 
   constructor(private http: HttpClient) {
   }
@@ -83,7 +76,7 @@ export class QuizListComponent implements AfterViewInit {
   getData(): Observable<Quiz[]> {
     // const apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;
     return this.http.get<Quiz[]>('http://localhost:8004/api/QuizList')
-      .map((data: any) => data as Quiz[]);
+      .pipe(map((data: any) => data as Quiz[]));
 
   }
   rowClicked(row: any): void {

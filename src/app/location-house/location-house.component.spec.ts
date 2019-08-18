@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LocationHouseComponent } from './location-house.component';
+import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('LocationHouseComponent', () => {
   let component: LocationHouseComponent;
@@ -8,7 +11,10 @@ describe('LocationHouseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationHouseComponent ]
+      declarations: [ LocationHouseComponent ],
+      imports: [MatProgressSpinnerModule, MatTableModule,
+        MatPaginatorModule, MatFormFieldModule, MatInputModule,
+        BrowserAnimationsModule, HttpClientModule],
     })
     .compileComponents();
   }));

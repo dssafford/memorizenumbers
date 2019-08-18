@@ -1,3 +1,51 @@
-<p>
-  location-cards works!
-</p>
+<div class=" mat-elevation-z8" fxLayout="column" fxLayoutAlign="center center"
+     fxLayoutGap="10px" >
+
+  <div *ngIf="loading == true">
+    <mat-spinner mode="indeterminate" color="accent"></mat-spinner>
+  </div>
+
+  <!--<div class="example-header">-->
+  <!--<mat-form-field>-->
+  <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
+  <!--</mat-form-field>-->
+  <!--</div>-->
+  <mat-table #table [dataSource]="dataSource" matSort >
+
+    <ng-container matColumnDef="card_number">
+      <mat-header-cell *matHeaderCellDef fxFlex="50px"> No.</mat-header-cell>
+      <mat-cell *matCellDef='let myCard' fxFlex="50px"> {{myCard.card_number}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="card_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="130px"> Card</mat-header-cell>
+      <mat-cell *matCellDef='let myCard' fxFlex="130px"> {{myCard.card_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="person_name">
+      <mat-header-cell *matHeaderCellDef  fxFlex="150px"> Person</mat-header-cell>
+      <mat-cell *matCellDef='let myCard' fxFlex="150px"> {{myCard.person_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="object_name">
+      <mat-header-cell *matHeaderCellDef fxFlex="100px"> Object</mat-header-cell>
+      <mat-cell *matCellDef='let myCard' fxFlex="100px"> {{myCard.object_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action_name">
+      <mat-header-cell *matHeaderCellDef  fxFlex="100px"> Action</mat-header-cell>
+      <mat-cell *matCellDef='let myCard' fxFlex="100px"> {{myCard.action_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="comments">
+      <mat-header-cell *matHeaderCellDef fxFlex="100px"> Comments</mat-header-cell>
+      <mat-cell *matCellDef='let myCard' fxFlex="100px"> {{myCard.comments}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]" [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

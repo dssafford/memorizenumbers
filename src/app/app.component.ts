@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './service/authentication.service';
 import {HttpClient} from '@angular/common/http';
+import {DougMsgDialogComponent} from './flash-cards/doug-msg.component';
+import {MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -24,18 +26,20 @@ export class AppComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private userService: AuthenticationService, http: HttpClient) {
+
+  constructor( private router: Router, private userService: AuthenticationService, http: HttpClient) {
   }
 
+
   ngOnInit() {
-    //Quiz
+    // Quiz
     // id: number;
     // score: number;
     // number_of_questions: number;
     // date_added: string;
     // comments: string;
 
-    //answer
+    // answer
     // id: number;
     // question: number;
     // answer: number;
