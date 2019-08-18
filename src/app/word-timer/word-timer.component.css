@@ -1,0 +1,96 @@
+
+.mat-form-field {
+  width: 100px;
+  text-align: center;
+  float: none;
+}
+
+.same-width {
+  width: 200px;
+}
+
+.input-stuff {
+  font-size:20px;
+  size: 1px;
+}
+
+.h1-big-red {
+  color: red;
+  font-size: 128px;
+}
+.h1-big-blue {
+  color: blue;
+  font-size: 128px;
+}
+/*.done {*/
+/*position: fixed;*/
+/*bottom: 20px;*/
+/*right: 20px;*/
+/*color: white;*/
+/*}*/
+.example-container {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+}
+
+.example-container > * {
+  width: 30%;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 300px;
+  width: 30%;
+}
+
+.example-full-width {
+  width: 40%;
+}
+.list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-container > * {
+  alignment: center;
+  width: 40%;
+}
+
+.full {
+  width: 100%;
+}
+
+.half {
+  width: 50%;
+}
+.my-container {
+  width: 400px;
+  margin: auto;
+  padding:8px;
+}
+.my-container-right {
+  width: 400px;
+  margin: auto;
+  padding:8px;
+  alignment: right;
+}
+/*.my-container > * {*/
+  /*width: 50%;*/
+/*}*/
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.input-small {
+  width: 10px !important;
+  text-align: right !important;
+
+}
+
+
+

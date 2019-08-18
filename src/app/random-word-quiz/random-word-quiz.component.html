@@ -1,0 +1,115 @@
+<span class="dougexample-container">
+  <br>
+  <!--<div class="flex-container">-->
+    <!--<label class="doug">Range From:</label><input size="4" type="text" class="crap" [(ngModel)]="txtFrom"-->
+                                                  <!--name="txtFrom"/>-->
+    <!--<label class="doug">To:</label><input size="4" type="text" class="crap" [(ngModel)]="txtTo" value="100"/>-->
+
+  <!--</div>-->
+  <!--<span>Total Number of Questions: <input size="4" class="crap" [(ngModel)]="numQuestionsDesired"/>-->
+    <!--<span><mat-checkbox [checked]="true" [(ngModel)]="ckDefaultTo">Default To</mat-checkbox></span></span>-->
+
+
+  <mat-radio-group [(ngModel)]="selectedData">
+    <!--<mat-radio-button value="lorayne" (click)="dido('lorayne')">Lorayne</mat-radio-button>-->
+    <!--<mat-radio-button value="body" (click)="dido('body')">Body</mat-radio-button>-->
+    <!--<mat-radio-button value="house" (click)="dido('house')">House</mat-radio-button>-->
+    <!--<mat-radio-button value="cards" (click)="dido('cards')">Cards</mat-radio-button>-->
+    <!--<mat-radio-button value="sunList" (click)="dido('sunList')">Sun List</mat-radio-button>-->
+    <mat-radio-button value="randomWords" (click)="dido('randomWords')">Random Words</mat-radio-button>
+  </mat-radio-group>
+
+  <span *ngIf="numQuestion <= numQuestionsDesired-1"> <h1>Random value is <input size="20" class="shit" readonly
+                                                                                  [(ngModel)]="randomNumber"/></h1></span>
+
+  <span *ngIf="showRightAnswer" class="redtext">
+    You entered {{youEntered}}. Right answer for {{currentQuiz.id}} is {{rightAnswer}}...
+  </span>
+
+  <div *ngIf=showAnswer>
+    <h2 class="dude"> Answer is {{answer}} </h2>
+  </div>
+<span *ngIf="numQuestion <= numQuestionsDesired-1">
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Let's see how much you know</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-grid-list cols="1" rowHeight="50px">
+          <mat-grid-tile>
+            <mat-form-field>
+                <input matInput class="shit" [(ngModel)]="enteredAnswer" name="dude" required autofocus
+                       autocomplete="off"
+                       tabindex="0"/>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+      <mat-card-actions align="center">
+      <span>
+        <button mat-fab color="accent" type="button" (click)="resetDougForm()">
+          <mat-icon>update</mat-icon>
+        </button>
+        <button mat-fab color="primary" onsubmit="checkAnswer">
+          <mat-icon>checked</mat-icon>
+        </button>
+     </span>
+      </mat-card-actions>
+      <mat-card-footer>
+      </mat-card-footer>
+    </mat-card>
+  </form>
+</span>
+  <mat-card>
+    <mat-card-content>
+      <mat-grid-list cols="4" rowHeight="30px">
+        <mat-grid-tile>
+          <label>#Q's</label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label [style.color]="displayCorrect">Correct</label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label [style.color]="displayWrong">Wrong</label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label >Score</label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label >{{numQuestion}}</label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label >{{numCorrect}}</label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>{{numWrong}}</label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label >{{myScore}}%</label>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="newWrongLength > 0">
+    Wrong Answers:
+  <ul>
+    <li *ngFor="let myWrong of myWrongs">
+      {{ myWrong.question + ' - ' + myWrong.answer }}
+    </li>
+  </ul>
+  </mat-card>
+  <p></p>
+  <span *ngIf="numQuestion >= numQuestionsDesired && newWrongLength > 0">
+    <button mat-button color="primary" (click)="quizRandom()">Quiz Wrongs
+      <mat-icon>reorder</mat-icon>
+    </button>
+  </span>
+  <p></p>
+
+  <span *ngIf="showReset">
+    <button mat-button color="warn" (click)="resetDougForm()">Reset
+      <mat-icon>find_replace</mat-icon>
+    </button>
+  </span>
+</span>

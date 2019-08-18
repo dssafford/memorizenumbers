@@ -1,0 +1,32 @@
+<div class=" mat-elevation-z8" fxLayout="column" fxLayoutAlign="center center"
+     fxLayoutGap="10px" >
+
+  <div *ngIf="loading == true">
+    <mat-spinner mode="indeterminate" color="accent"></mat-spinner>
+  </div>
+
+  <!--<div class="example-header">-->
+    <!--<mat-form-field>-->
+      <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
+    <!--</mat-form-field>-->
+  <!--</div>-->
+  <mat-table #table [dataSource]="dataSource" matSort >
+
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef fxFlex="50px"> No.</mat-header-cell>
+      <mat-cell *matCellDef="let mynumber" fxFlex="50px"> {{mynumber.number}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px"> Name</mat-header-cell>
+      <mat-cell *matCellDef="let mynumber" fxFlex="200px"> {{mynumber.name}}</mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="100" [pageSize]="21" [pageSizeOptions]="[5, 10, 25]" [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

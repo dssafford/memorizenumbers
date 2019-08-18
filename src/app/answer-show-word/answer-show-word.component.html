@@ -1,0 +1,40 @@
+<!--{{message}}-->
+
+<!--<p>-->
+  <!--<button type="button" (click)="newMessage()">New Message</button>-->
+<!--</p>-->
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <div class="example-container mat-elevation-z8">
+    Random words show
+    <mat-table fxFlex="600px" #table [dataSource]="shitDataSource">
+      <ng-container matColumnDef="question">
+        <mat-header-cell fxFlex="100px" *matHeaderCellDef> Quest</mat-header-cell>
+        <mat-cell fxFlex="100px" *matCellDef="let answer"> {{answer.question}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="answer">
+        <mat-header-cell fxFlex="100px" *matHeaderCellDef> answer</mat-header-cell>
+        <mat-cell fxFlex="100px" *matCellDef="let answer"> {{answer.answer}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="correct">
+        <mat-header-cell fxFlex="70px" *matHeaderCellDef> correct</mat-header-cell>
+        <mat-cell fxFlex="70px" *matCellDef="let answer"> {{answer.correct}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="comments">
+        <mat-header-cell fxFlex="200px" *matHeaderCellDef> comments</mat-header-cell>
+        <mat-cell fxFlex="200px" *matCellDef="let answer"> {{answer.comments}}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+      <span>
+        <button  class="button-TryAgain" type="submit" #crapInput [appfocus]="myFocusTriggeringEventEmitter">Try Again</button>
+        <button  class="button-Return" type="button" (click)="return()" >Home</button>
+
+    </span>
+  <!--<button mat-raised-button (click)="onClick=return()" color="accent">Return</button>-->
+</form>
+  <p></p>
+</div>
+

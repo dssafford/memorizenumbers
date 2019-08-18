@@ -1,0 +1,109 @@
+<div class="my-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="60px">
+        <mat-grid-tile [colspan]="2">
+          <mat-form-field>
+            <input matInput placeholder="How many" maxlength="1" [(ngModel)]="model.runNumber" required class="input-small">
+          </mat-form-field>
+        </mat-grid-tile>
+        <!--<mat-grid-tile>-->
+        <!--</mat-grid-tile>-->
+        <mat-grid-tile [colspan]="2">
+          <button mat-mini-fab (click)="selectNumberPressed(model.runNumber)">
+            <mat-icon>check circle</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
+          <h4 *ngIf="isCounting">Random Number (every second) : {{randomNumber}}</h4> -- counter = {{counter}}
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div class="my-container">
+  <!--*ngIf="!isCounting">-->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Quiz</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="1" rowHeight="30px">
+        <mat-grid-tile *ngIf="chosenNumber >= 1">
+          <mat-form-field>
+            <input matInput placeholder="A1" required
+                   [(ngModel)]="entry_in_progress.A1" value="Project">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="chosenNumber >= 2">
+          <mat-form-field>
+            <input matInput placeholder="A2" required
+                   [(ngModel)]="entry_in_progress.A2" value="Project">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="chosenNumber >= 3">
+          <mat-form-field>
+            <input matInput placeholder="A3" required
+                   [(ngModel)]="entry_in_progress.A3" value="Project">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile *ngIf="chosenNumber >= 4">
+          <mat-form-field>
+            <input matInput placeholder="A4" required
+                   [(ngModel)]="entry_in_progress.A4">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="chosenNumber >= 5">
+          <mat-form-field>
+            <input matInput placeholder="A5" required
+                   [(ngModel)]="entry_in_progress.A5">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="chosenNumber >= 6">
+          <mat-form-field>
+            <input matInput placeholder="A6" required
+                   [(ngModel)]="entry_in_progress.A6">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="chosenNumber >= 7">
+          <mat-form-field>
+            <input matInput placeholder="A7" required
+                   [(ngModel)]="entry_in_progress.A7">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="chosenNumber >= 8">
+          <mat-form-field>
+            <input matInput placeholder="A8" required
+                   [(ngModel)]="entry_in_progress.A8">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="chosenNumber >= 9">
+          <mat-form-field>
+            <input matInput placeholder="A9" required
+                   [(ngModel)]="entry_in_progress.A9">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="chosenNumber >= 10">
+          <mat-form-field>
+            <input matInput placeholder="A10" required
+                   [(ngModel)]="entry_in_progress.A10">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button mat-button (click)="cancelPressed()">Cancel</button>
+      <span class="done">
+          <button mat-icon-button="playlist add check" (click)="scoreEntries()">
+            <mat-icon>done</mat-icon>
+          </button>
+        </span>
+    </mat-card-actions>
+    <mat-card-footer>
+    </mat-card-footer>
+  </mat-card>
+</div>

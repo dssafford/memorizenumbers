@@ -1,0 +1,23 @@
+<section>
+  Random Words Quiz
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)" >
+      <mat-form-field>
+        TimeDelay: <input matInput name="timeDelay" [(ngModel)]="timeDelay" value={{timeDelay}}/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="chosenNumber" required [(ngModel)]="myChosenNumber" #crapInput autofocus placeholder="How Many Values?" >
+        <mat-error *ngIf="chosenNumber.hasError('required')">Field must not be empty.</mat-error>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+    </form>
+  <p></p>
+</section>
+<!--<span appBacon>sandwich!</span>-->
+<!--<div><input #someInput placeholder="Your favorite pizza toping"></div>-->
+
+<span *ngIf="showMessage">
+<div fxLayout="row" fxLayoutAlign="center" class="my-container"><h1 *ngIf="isCounting">
+  {{counter}}  &nbsp; {{myWord}}</h1></div>
+  <p></p>
+</span>
+
