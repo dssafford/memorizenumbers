@@ -42,7 +42,7 @@ export class WordTimerComponent implements OnInit, AfterViewInit, AfterViewCheck
   showMessage: boolean = false;
   runonce: boolean = true;
 
-  @ViewChild('crapInput') vc: ElementRef;
+  @ViewChild('crapInput', { static: true }) vc: ElementRef;
 
   // @ViewChild('someInput') someInput: ElementRef;
 

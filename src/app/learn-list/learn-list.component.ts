@@ -18,8 +18,8 @@ export class LearnListComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient) {
   }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   /**
    * Set the paginator after the view init since this component will

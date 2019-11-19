@@ -9,7 +9,7 @@ import {NavItem} from '../model/nav-item';
 })
 export class MenuItemComponent implements OnInit {
   @Input() items: NavItem[];
-  @ViewChild('childMenu') public childMenu;
+  @ViewChild('childMenu', { static: true }) public childMenu;
 
   constructor(public router: Router) {
   }

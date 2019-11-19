@@ -20,8 +20,8 @@ export class LorayneListComponent implements OnInit, AfterViewInit {
   // mynumbers: LORAYNE_LEARNING_DATA[];
   constructor(){}
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.

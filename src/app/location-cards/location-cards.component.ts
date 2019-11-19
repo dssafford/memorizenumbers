@@ -31,8 +31,8 @@ export class LocationCardsComponent implements OnInit, AfterViewInit {
   constructor() {
   }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   /**
    * Set the paginator after the view init since this component will

@@ -39,7 +39,7 @@ export class TimerComponent implements OnInit, AfterViewInit, AfterViewChecked, 
   questions: any[] = [];
   hey = 4;
 
-  @ViewChild('crapInput') vc: ElementRef;
+  @ViewChild('crapInput', { static: true }) vc: ElementRef;
 
   // @ViewChild('someInput') someInput: ElementRef;
 

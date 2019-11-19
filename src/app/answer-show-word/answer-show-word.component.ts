@@ -17,7 +17,7 @@ export class AnswerShowWordComponent implements OnInit, AfterViewInit {
 
   shitDataSource: AnswerDataSource;
   answerResults: Answer[] = [];
-  @ViewChild('crapInput') vc: ElementRef;
+  @ViewChild('crapInput', { static: true }) vc: ElementRef;
 
   displayedColumns = ['question', 'answer', 'correct', 'comments'];
 
