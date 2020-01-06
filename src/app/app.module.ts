@@ -44,6 +44,7 @@ import { LocationBodyComponent } from './location-body/location-body.component';
 import { LocationCarComponent } from './location-car/location-car.component';
 import { LocationCardsComponent } from './location-cards/location-cards.component';
 import { LocationHouseComponent } from './location-house/location-house.component';
+import { LocationRW20ListComponent } from './location-rwhite20list/location-rw20list.component';
 import { FlashCardsComponent } from './flash-cards/flash-cards.component';
 import {DougMsgDialogComponent} from './flash-cards/doug-msg.component';
 import {LocationSunListComponent} from './location-sunList/location-sunList.component';
@@ -67,7 +68,7 @@ import { LocationPresidentsComponent } from './location-presidents/location-pres
     LorayneListComponent,
     LearningComponent, CssComponent, QuizDetailsComponent, AnswerShowComponent, LocationTabComponent, LocationBodyComponent,
     LocationCarComponent, LocationCardsComponent, LocationHouseComponent, FlashCardsComponent, LocationSunListComponent,
-    DougMsgDialogComponent, WordTimerComponent, AnswerShowWordComponent, AnswerWordComponent,
+    DougMsgDialogComponent, WordTimerComponent, AnswerShowWordComponent, AnswerWordComponent, LocationRW20ListComponent,
     RandomWordQuizComponent,
     RunTestComponent,
     LocationPresidentsComponent,
