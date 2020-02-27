@@ -54,6 +54,8 @@ import {AnswerShowWordComponent} from './answer-show-word/answer-show-word.compo
 import {AnswerWordComponent} from './answer-word/answer-word.component';
 import { RunTestComponent } from './run-test/run-test.component';
 import { LocationPresidentsComponent } from './location-presidents/location-presidents.component';
+import { Familyroom25Component } from './familyroom25/familyroom25.component';
+import { Fourseasonroom20Component } from './fourseasonroom20/fourseasonroom20.component';
 
 
 
@@ -72,6 +74,8 @@ import { LocationPresidentsComponent } from './location-presidents/location-pres
     RandomWordQuizComponent,
     RunTestComponent,
     LocationPresidentsComponent,
+    Familyroom25Component,
+    Fourseasonroom20Component,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,

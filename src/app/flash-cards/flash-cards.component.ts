@@ -15,6 +15,7 @@ import {HOUSE_GROUND_FLOOR_DATA} from '../data/houseGroundFloor';
 import {CARD_DATA} from '../data/cards';
 import {HOUSE_BASEMENT1_DATA} from '../data/houseBasement1Numbers';
 import {PRESIDENTS_DATA} from '../data/presidents';
+import {RW20_LIST_DATA} from '../data/rw20List';
 
 // import {catchError} from 'rxjs/internal/operators';
 
@@ -208,9 +209,13 @@ export class FlashCardsComponent implements OnInit {
         // console.log('in getNewQuestion - house');
         this.randomNumber = this.timerService.getRandomNumber(parseInt(this.txtFrom, 10), parseInt(this.txtTo, 10));
         this.answer = this.getAnswer(this.randomNumber);
+      } else if (this.selectedData === 'rw20List') {
+        // console.log('in getNewQuestion - house');
+        this.randomNumber = this.timerService.getRandomNumber(parseInt(this.txtFrom, 10), parseInt(this.txtTo, 10));
+        this.answer = this.getAnswer(this.randomNumber);
+      } else {
+        this.dougDialogRef = this.dialog.open(DougMsgDialogComponent);
       }
-    } else {
-      this.dougDialogRef = this.dialog.open(DougMsgDialogComponent);
     }
   }
 
@@ -305,6 +310,8 @@ export class FlashCardsComponent implements OnInit {
       return this.getCardResult(inputNumber);
     } else if (this.selectedData === 'sunList') {
       return this.getSunListResult(inputNumber);
+    } else if (this.selectedData === 'rw20List') {
+      return this.getRW20ListResult(inputNumber);
     }
   }
 
@@ -327,7 +334,15 @@ export class FlashCardsComponent implements OnInit {
       return 'ERROR IN GetBodyResult';
     }
   }
-
+getRW20ListResult(inputNumber: number) {
+  const q = find(RW20_LIST_DATA, {number: Number(inputNumber)});
+  if (q !== undefined) {
+    console.log(q); // {name:'Dave',sex:male,age:34}
+    return q.name;
+  } else {
+    return 'ERROR IN GetSunListResult';
+  }
+}
   getSunListResult(inputNumber: number) {
     const q = find(SUN_LIST_DATA, {number: Number(inputNumber)});
     if (q !== undefined) {

@@ -1,0 +1,30 @@
+import {MYNUMBER} from '../location-familyroom25/location-familyroom25.component';
+
+export const FAMILYROOM25_LIST_DATA: MYNUMBER[] = [
+  {'number': 0, 'name' : 'O'},
+  {'number': 1, 'name' : 'fireplace'},
+  {'number': 2, 'name': 'mantle'},
+  {'number': 3, 'name': 'dogsign'},
+  {'number': 4, 'name': 'treepicture'},
+  {'number': 5, 'name': 'lifeslogan'},
+  {'number': 6, 'name': 'candle'},
+  {'number': 7, 'name': 'rockingchair'},
+  {'number': 8, 'name': 'grandmapillow'},
+  {'number': 9, 'name': 'flowerpot'},
+  {'number': 10, 'name': 'tv'},
+  {'number': 11, 'name' : 'soundbar'},
+  {'number': 12, 'name' : 'appletv'},
+  {'number': 13, 'name': 'cablebox'},
+  {'number': 14, 'name': 'tvstand'},
+  {'number': 15, 'name': 'basket'},
+  {'number': 16, 'name': 'gnome'},
+  {'number': 17, 'name': 'icelandhouse'},
+  {'number': 18, 'name': 'stones'},
+  {'number': 19, 'name': 'bell'},
+  {'number': 20, 'name': 'endtable'},
+  {'number': 21, 'name': 'floorlamp'},
+  {'number': 22, 'name': 'mirror'},
+  {'number': 23, 'name': 'couch'},
+  {'number': 24, 'name': 'antiquecabinet'},
+  {'number': 25, 'name': 'bench'}
+];
