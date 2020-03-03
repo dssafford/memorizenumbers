@@ -1,8 +1,8 @@
-import {MYNUMBER} from '../location-familyroom25/location-familyroom25.component';
+import {MYNUMBER} from '../fourseasonroom20/fourseasonroom20.component';
 
-export const 4SEASONROOM20_LIST_DATA: MYNUMBER[] = [
+export const FOURSEASONROOM20_LIST_DATA: MYNUMBER[] = [
   {'number': 1, 'name' : 'doorway'},
-  {'number': 2, 'name': 'dougdish'},
+  {'number': 2, 'name': 'dogdish'},
   {'number': 3, 'name': 'dogwater'},
   {'number': 4, 'name': 'slidingglassdoor'},
   {'number': 5, 'name': 'floorplant'},

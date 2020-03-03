@@ -1,4 +1,4 @@
-import {MYNUMBER} from '../location-familyroom25/location-familyroom25.component';
+import {MYNUMBER} from '../familyroom25/familyroom25.component';
 
 export const FAMILYROOM25_LIST_DATA: MYNUMBER[] = [
   {'number': 0, 'name' : 'O'},
