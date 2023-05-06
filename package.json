@@ -26,14 +26,14 @@
     "angular-in-memory-web-api": "^0.6.1",
     "core-js": "^2.6.5",
     "ng2-cookies": "^1.0.12",
-    "npm": "^6.9.0",
+    "npm": "^9.6.6",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.802.1",
-    "@angular/cli": "~8.2.1",
+    "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "~8.2.0",
     "@angular/language-service": "~8.2.0",
     "@types/jasmine": "~3.3.8",
